@@ -14,3 +14,6 @@ Step 4: Type in addDummyRecords.php
 Your database will set up.
 
 Lastly, to begin the program, run localhost/default.php
+
+
+If still unclear on how to set up the XAMPP system, do refer to https://www.youtube.com/watch?v=r0lDDeVkaks
