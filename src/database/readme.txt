@@ -9,10 +9,11 @@ Once XAMPP is setup and functioning properly, the next step is to set up the dat
 
 To set up the database:
 
-Step 1: Make sure you are in localhost
-Step 2: Type in localhost/CreateDB.php
-Step 3: Type in localhost/CreateTable.php
-Step 4: Type in localhost/addDummyRecords.php
+Step 0: Go to where your XAMPP folder. Go into the htdocs folder and create one folder for our project, e.g. htdocs/FYP
+Step 1: Go to a webbrowser and type in the below url in order. The URL will depends on where you store your php files
+Step 2: Type in localhost/FYP/CreateDB.php
+Step 3: Type in localhost/FYP/CreateTable.php
+Step 4: Type in localhost/FYP/addDummyRecords.php
 
 After each successful attempt, the site will display that the database/table/records has been added in successfully. 
 Once all steps are successful, your database can be said to have been set up successfully.
