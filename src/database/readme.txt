@@ -5,7 +5,7 @@ After setting up and installing XAMPP, open the XAMPP control panel and start Ap
 Thereafter, go your browser and type in localhost, you should be directed to http://localhost/dashboard/ which indicates XAMPP has been set up successfully.
 If still unclear on how to set up the XAMPP system, do refer to https://www.youtube.com/watch?v=r0lDDeVkaks
 
-Once XAMPP is setup and functioning properly, the next step is to set up the database first.
+Once XAMPP is setup and functioning properly, the next step is to set up the database.
 
 To set up the database:
 
