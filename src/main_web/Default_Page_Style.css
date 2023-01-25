@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Montserrat", sans-serif;
+	color: white;
+	text-decoration: none;
+}
+
+/*Brand Name Customization*/
+header p {
+	 font-weight: 600;
+}
+
+/*Website headers/categories*/
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 10%;
+	background: black;
+}
+
+/*nav titles customizations and animation*/
+.nav-titles{
+	list-style: none;
+	display: flex;
+}
+
+.nav-titles li {
+	padding: 0px 30px;
+}
+
+.nav-titles li a:hover {
+	color: orange;
+}
+
+/*Login and Sign up Customizations*/
+.login_info{
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+}
+
+.login {
+	 margin: 1px 20px;
+	 cursor: pointer;
+}
+.login:hover {
+	color: orange;
+}	
+
+.sign_up{
+	padding: 9px 20px;
+	background-color: blue;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.sign_up:hover {
+	background-color: orange;
+}
