@@ -12,7 +12,7 @@ To set up the database:
 Step 1: Make sure you are in localhost
 Step 2: Type in localhost/CreateDB.php
 Step 3: Type in localhost/CreateTable.php
-Step 4: Type in addDummyRecords.php
+Step 4: Type in localhost/addDummyRecords.php
 
 After each successful attempt, the site will display that the database/table/records has been added in successfully. 
 Once all steps are successful, your database can be said to have been set up successfully.
