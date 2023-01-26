@@ -15,6 +15,10 @@ body{
 	overflow: hidden;
 }
 
+p{
+	color: white;
+}
+
 /*Box positon*/
 .login{
 	position: absolute;
@@ -47,6 +51,7 @@ body{
 form .text_field{
 	position: relative;
 	margin: 34px 10px;
+	color:white;
 }
 
 /*text field box*/
@@ -62,32 +67,12 @@ form .text_field{
 	outline: none;
 }
 
-/*text field label*/
-.text_field label{
-	transform: translate(-3px, -35px);
-	position: absolute;
-	top: 50%;
-	left: 5px;
-	color: white;
-	font-size: 16px;
-	pointer-events: none;
-	transition: .5s; 
-}
 
 /*text field animation*/
 .text_field input:hover{
 	border: 1px solid whitesmoke;
 }
 
-/*
-.text_field input:focus ~ label,
-.text_field input:valid ~ label{
-	color: white;
-	font-size: 16px;
-	top: -7px;
-	left: +5px;
-}
-*/
 /*Forget Password text*/
 .pass{
 	margin: -5px 0 20px 5px;
@@ -138,3 +123,11 @@ input[type="submit"]:hover{
 		text-decoration: underline;
 }
 
+span {
+	color:red;
+	font-size: 16px;
+}
+
+.text_field p {
+	color: white;
+}

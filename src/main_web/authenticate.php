@@ -4,10 +4,13 @@
 	//connecting to DB
 	include("inc_db_fyp.php");
 	
+	
 	// Now we check if the data from the login form was submitted, isset() will check if the data exists.
 	if ( !isset($_POST['username'], $_POST['password']) ) {
 		// Could not get the data that should have been sent.
-		exit('Please fill both the username and password fields!');
+		$error = 'Please fill both the username and password fields!';
+		$_SESSION["error"] = $error;
+		exit('');
 	}
 	
 	// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
@@ -33,12 +36,14 @@
 			header('Location: home.php');
 		} else {
 			// Incorrect password
-			echo 'Incorrect username and/or password!';
+			$error = 'Incorrect Username and/or Password';
+			$_SESSION["error"] = $error;
 			header('Location: login.php');
 		}
 		} else {
 			// Incorrect username
-			echo 'Incorrect username and/or password!';
+			$error = 'Incorrect Username and/or Password';
+			$_SESSION["error"] = $error;
 			header('Location: login.php');
 		}
 

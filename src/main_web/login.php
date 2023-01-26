@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,16 @@
 	<h1>Login</h1>
 	<form action = "authenticate.php" method = "POST">
 		<div class = 'text_field'>
-			Username: <input type="text" name="username" />
-			<label>Username</label>
+			<p>Username: </p><input type="text" name="username"required />
 		</div>
 		<div class = 'text_field'>
-			Password: <input type="password" name="password" required />
-			<label>Password</label>
+			<p>Password: </p><input type="password" name="password" required />
+			<?php
+			if(isset($_SESSION["error"])){
+				$error = $_SESSION["error"];
+				echo "<span>$error</span>";
+			}
+			?> 
 		</div>
 		<div class="pass">Forgot Password?</div>
         <input type="submit" value="Sign In">
@@ -26,4 +31,8 @@
 </div>
 </body>
 </html>
+
+<?php
+    unset($_SESSION["error"]);
+?>
 
