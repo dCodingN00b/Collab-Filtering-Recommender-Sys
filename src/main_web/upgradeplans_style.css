@@ -30,8 +30,6 @@ header {
 	list-style: none;
 	display: flex;
 	overflow:hidden;
-	position: relative;
-	margin: 0 auto;
 }
 
 .nav-titles li {
@@ -50,6 +48,19 @@ header {
 }
 .nav-titles li a:hover {
 	color: forestgreen;
+}
+
+.nav-titles li a[name='adminmanage'] {
+	transform: translate(430%, 0%);
+	position:absolute;
+}
+
+.nav-titles li a[name='admincreate'] {
+	position:absolute;
+}
+
+.nav-titles li a[name='upgradeplans'] {
+	position:absolute;
 }
 
 li a[name='recs']{
@@ -156,131 +167,114 @@ h1{
 	padding: 50px 0px;
 }
 
-.landscape-container {
+.pricing {
+	height: 550px;
+}
+
+.pricing-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 1200px;
 	transform: translate(0%, 0%);
-	height: 700px;
+
 }
 
-
-.welcome-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #d9eafc;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-	margin-top: 20px;
-	width: 100%;
-	 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	 
+.pricing-box:nth-child(1) {
+    width: 350px;
+    padding: 130px 0px;
+    margin: 0 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 1px;
+	position: relative;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.welcome {
-	font-size: 32px;
-	font-weight: bold;
-	margin-right: 0px;
-	transform: translate(30%, 0%);
+.pricing-box:nth-child(2) {
+    width: 350px;
+    padding: 130px 0px;
+    margin: 0 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 1px;
+	position: relative;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.pricing-box:nth-child(3) {
+    width: 350px;
+    padding: 130px 0px;
+    margin: 0 20px;
+    text-align: center;
+    background-color:white;
+    border-radius: 1px;
+	position: relative;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.pricing-box img[name='standard']{
+	max-width: 12%;
+    height: auto;
+    position: absolute;
+    top: 8%;
+    left: 19%;
+	overflow: hidden;
+}
+
+.pricing-box img[name='pro']{
+	max-width: 13%;
+    height: auto;
+    position: absolute;
+    top: 8%;
+    left: 28%;
+	overflow: hidden;
+}
+
+.pricing-box img[name='custom']{
+	max-width: 13%;
+    height: auto;
+    position: absolute;
+    top: 6%;
+    left: 21%;
+	overflow: hidden;
+}
+
+.pricing-box h2 {
+    font-size: 24px;
+	transform: translate(0%, -300%);
+}
+
+.pricing-box p[name='intro'] {
+	transform: translate(0%, -150%);
+    font-size: 18px;
+    color: #636363;
+}
+
+.pricing-box h3 {
+	transform: translate(0%, 200%);
+    font-size: 25px;
+    color: black;
+}
+
+.pricing-box button {
+	transform: translate(0%, 250%);
+	padding: 10px 15px;
+	background-color: #b3ffbf;
+	border:none;
+	font-size: 16px;
+	border-radius: 5px;
+	font-weight: 600;
 	
 }
 
-img {
-  max-width: 30%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.content-container {
-  display: flex;
-  width: 100%;
-}
-
-.activity {
-	font-size: 24px;
-	font-weight: bold;
-	margin-right: 0px;
-	transform: translate(10%, 0%);
-}
-
-.activity-box button{
-	padding: 20px 20px;
-	background-color: #c9deff;
-	border: none;
-	font-size: 20px;
+.pricing-box button:hover {
+	transform: translate(0%, 250%);
+	padding: 10px 16px;
+	background-color: lightgreen;
+	border:none;
+	font-size: 16px;
 	border-radius: 5px;
-	transform: translate(-25%, 0%);
-}
-
-.activity-box button:hover{
-	padding: 22px 22px;
-	background-color: lightblue;
-	border: none;
-	font-size: 20px;
-	border-radius: 5px;
-	transform: translate(-23%, 0%);
+	font-weight: 600;
 	cursor: pointer;
 	transition: 0.3s;
+	
 }
-
-.activity-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-	margin-top: 20px;
-	margin-right: 30px;
-	width: 54%;
-transform: translate(0%, -20%);
- box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.doc {
-	font-size: 24px;
-	font-weight: bold;
-	margin-right: 0px;
-	transform: translate(6%, 0%);
-}
-
-.doc-box button{
-	padding: 20px 20px;
-	background-color: #c9deff;
-	border: none;
-	font-size: 20px;
-	border-radius: 5px;
-	transform: translate(-10%, 0%);
-}
-
-.doc-box button:hover{
-	padding: 22px 22px;
-	background-color: lightblue;
-	border: none;
-	font-size: 20px;
-	border-radius: 5px;
-	transform: translate(-8%, 0%);
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-.doc-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-	margin-top: 20px;
-	width: 47%;
-transform: translate(0%, -20%);
- box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-

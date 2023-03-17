@@ -6,47 +6,61 @@
 	font-family: "Montserrat", sans-serif;
 }
 
+
 p{
-	color: white;
+	color: black;
 }
 
-/*background color*/
 .wrapper{
     background: rgb(0,36,0);
-	
+	background:powderBlue;
 	background: radial-gradient(circle, rgba(0,36,0,0.5048144257703081) 0%, rgba(179,238,182,0.5664390756302521) 
 0%, rgba(114,200,110,1) 100%, rgba(200,229,201,0.4235819327731093) 100%);
-	background:powderBlue;
+	
     padding: 0 20px 0 20px;
+	transform: translate(0%, 0%);
+	
 }
 
-/*entire content's position*/
 .main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-
-/*size of interface*/
 .row{
-    width: 1300px;
+    width: 1200px;
     height: 1000px;
     border-radius: 0px;
     background: white;
-   
 }
-
-/*image customizations*/
 .side-image{
     background-image: url("images/test.jpg");
-    background-position: center;
-	background-position: -300px 0px;
-    background-size: cover;
+    background-position: -300px 0px;
+    background-size: 1000px 1000px;
     background-repeat: no-repeat;
     position: relative;
-    border-radius: 0px 0 0 0px;
+    border-radius: 5px 0 0 5px;
+	transform: translate(0%, 0%);
+	
 }
+
+.usertype{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+	transform: translate(0.1%, 0%);
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
 img{
     width: 35px;
     position: absolute;
@@ -54,7 +68,6 @@ img{
     left: 30px;
 }
 
-/*RECS*/
 .text p {
 	letter-spacing: 2px;
 	font-size: 25px;
@@ -63,14 +76,59 @@ img{
 	font-weight: 600;
 }
 
-/*Move entire login box*/
-.login{
+.orgreg{
 	width: 450px;
 	transform: translate(10%, 0%);
 }
 
+.orgreg h3 {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 140px;
+    display: inline-block;
+	transform: translate(44%, 0%);
+}
+
+.orgreg h3[name='orgregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 160px;
+    display: inline-block;
+	transform: translate(41%, 0%);
+}
+
+.orgreg h3[name='indregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 160px;
+    display: inline-block;
+	transform: translate(40%, 0%);
+}
+
+.orgreg h3[name='orgregister']{
+	border-bottom:2px solid lightgreen;
+}
+
+.orgreg h3[name='indivregister']{
+	color: grey;
+}
+	
+.orgreg h3[name='indivregister']:hover{
+	color: green;
+	border-bottom:2px solid lightgreen;
+}
+
 /*Header 1 text (Login)*/
-.login h1 {
+.orgreg h1 {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
@@ -81,7 +139,7 @@ img{
 	
 }
 
-.login h1[name='login'] {
+.orgreg h1[name='login'] {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
@@ -92,7 +150,7 @@ img{
 	transform:translate(3%, 0%);
 }
 
-.login h1[name='register'] {
+.orgreg h1[name='register'] {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
@@ -103,25 +161,27 @@ img{
 	transform:translate(0%, 0%);
 }
 
-.login a{
+.orgreg a{
 	text-decoration: none;
 }
 
-.login h1[name='login']{
+.orgreg h1:hover{
+	color: green;
 	border-bottom:2px solid lightgreen;
 }
 
-.login h1[name='register']{
-	color: grey;
+.orgreg h1[name='register']{
+	border-bottom:2px solid lightgreen;
+	color:black;
 }
 
-.login h1[name='register']:hover{
+.orgreg h1[name='login']:hover{
 	color: green;
 	border-bottom:2px solid lightgreen;
 }
 
 /*Form customization */
-.login form{
+.orgreg form{
 	padding: 0px 60px;
 	box-sizing: border-box;
 }
@@ -142,6 +202,7 @@ a[name='recs']:hover{
 	text-decoration:none;
 	color:black;
 }
+
 
 /*text field box*/
 .text_field input{
@@ -165,9 +226,8 @@ a[name='recs']:hover{
 /*Forget Password text*/
 .pass{
 	margin: -5px 0 20px 5px;
-	color: Cornflowerblue;
+	color: black;
 	cursor: pointer;
-	padding: 0px 5px;
 }
 
 /*Forget Password text animation*/
@@ -178,6 +238,24 @@ a[name='recs']:hover{
 a[name='ref'] {
 	position: absolute;
     bottom: 0;
+}
+
+input.tickbox {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxes label {
+  display: block;
+  padding-right: 10px;
+  padding-left: 33px;
+  text-indent: -22px;
+}
+.checkboxes input {
+  vertical-align: middle;
+}
+.checkboxes label span {
+  vertical-align: middle;
 }
 
 /*Login Button Customizations*/
@@ -191,6 +269,7 @@ input[type="submit"]{
 	color: whitesmoke;
 	font-weight: 700;
 	cursor: pointer;
+	
 	outline: none;
 }
 
@@ -211,7 +290,7 @@ input[type="submit"]:hover{
 }
 
 .signup_link a{
-	color: green;
+	color: light blue;
 	text-decoration: none;
 }
 

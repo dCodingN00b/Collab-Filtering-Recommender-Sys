@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+
+
+
+
+.text p {
+	letter-spacing: 2px;
+	font-size: 25px;
+	padding: 10px 10px;
+	color:black;
+	font-weight: 600;
+}
+
+.reg{
+	width: 450px;
+	margin: 0 auto;
+	height: 900px;
+	
+}
+
+.reg h3 {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 140px;
+    display: inline-block;
+	transform: translate(50%, 0%);
+}
+
+.reg h3[name = 'orgregister']{
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 150px;
+    display: inline-block;
+	transform: translate(21%, 0%);
+}
+
+.reg h3[name = 'indivregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 130px;
+    display: inline-block;
+	transform: translate(19%, 0%);
+}
+
+
+.reg h3[name = 'adminregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 110px;
+    display: inline-block;
+	transform: translate(14%, 0%);
+}
+
+
+/*Header 1 text (Login)*/
+.reg h1 {
+	color: grey;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+}
+
+.reg a{
+	text-decoration: none;
+}
+
+/*Form customization */
+.reg form{
+	padding: 0px 60px;
+	box-sizing: border-box;
+}
+
+/*text field customizations*/
+form .text_field{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+}
+
+a[name='recs']{
+	text-decoration:none;
+	color:black;
+}
+
+a[name='recs']:hover{
+	text-decoration:none;
+	color:black;
+}
+
+
+
+
+/*text field box*/
+.text_field input{
+	width: 100%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+}
+
+
+/*text field animation*/
+.text_field input:hover{
+	border: 1px solid green;
+}
+
+/*Forget Password text*/
+.pass{
+	margin: -5px 0 20px 5px;
+	color: black;
+	cursor: pointer;
+}
+
+/*Forget Password text animation*/
+.pass:hover{
+	text-decoration: underline;
+}
+
+a[name='ref'] {
+	position: absolute;
+    bottom: 0;
+}
+
+input.tickbox {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxes label {
+  display: block;
+  padding-right: 10px;
+  padding-left: 33px;
+  text-indent: -22px;
+}
+.checkboxes input {
+  vertical-align: middle;
+}
+.checkboxes label span {
+  vertical-align: middle;
+}
+
+/*Login Button Customizations*/
+input[type="submit"]{
+	width: 100%;
+	height: 50px;
+	background: lightgreen;
+	border: 1px solid whitesmoke;
+	border-radius: 5px;
+	font-size: 20px;
+	color: whitesmoke;
+	font-weight: 700;
+	cursor: pointer;
+	
+	outline: none;
+}
+
+/*Login Button Animations*/
+input[type="submit"]:hover{
+	border-color: whitesmoke;
+	background: MediumSeaGreen;
+    color: #fff;
+	transition: .2s;
+}
+
+/*Sign Up Link Customizations*/
+.signup_link{
+	margin: 30px 0;
+	text-align: center;
+	font-size: 16px;
+	color: black;
+}
+
+.signup_link a{
+	color: light blue;
+	text-decoration: none;
+}
+
+/*Sign Up link Animation*/
+.signup_link a:hover{
+	text-decoration: underline;
+}
+
+span {
+	color:black;
+	font-size: 16px;
+	padding: 10px 0px;
+}
+
+.text_field p {
+	color: black;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 	0px 0px;
+	font-family: "Montserrat", sans-serif;
+	color: black;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+h1 {
+	padding: 20px 20px;
+	color:black;
+}
+
+/*Website headers/categories*/
+header {
+	
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 1%;
+	background: aliceblue;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;	
+}
+
+/*nav titles customizations and animation*/
+
+.nav-titles{
+	list-style: none;
+	display: flex;
+	overflow:hidden;
+}
+
+.nav-titles li {
+	padding: 0px 30px;
+}
+
+.nav-titles li a {
+
+	float: left;
+	font-size: 16px;
+	color: black;
+	padding: 24px 0px;
+	text-decoration: none;
+	position:Relative;
+	z-index: 2;
+}
+.nav-titles li a:hover {
+	color: forestgreen;
+}
+
+
+li a[name='recs']{
+	letter-spacing: 2px;
+	color:black;
+	font-size: 22px;
+	padding: 20px 0px;
+	text-align: center;
+	float: left;
+	position:relative;
+}
+
+/*no color change*/
+.nav-titles li a[name='recs']:hover {
+	color: black;
+	border-bottom: None;
+}
+
+/* dropdown container */
+.dropdown {
+	right: 1px;
+
+	float: right;
+}
+
+/*Login and Sign up Customizations*/
+.dropdown {
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	
+}
+
+.dropdown  {
+	content: '';
+    position: absolute;
+    border: 0px solid #000;
+	cursor: pointer;
+	transform: translate(0%, -90%);
+	padding: 21px 7px;
+	z-index: 1;
+}
+
+
+/* Dropdown button */
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+/*Dropdown nav bar customization*/
+.dropdown:hover, .profile:hover {
+	color: black;
+	cursor:pointer;
+	background-color: lightgreen;
+}
+
+/* Dropdown content */
+.profile-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 180px;
+	border: 1px solid lightgrey;
+	z-index: 1;
+	left:auto;
+	right: -1em;
+	text-align:right;
+	transform: translate(-5%, 65%);
+	
+}
+
+/*inside the profile dropdown*/
+.profile-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+/*profile dropdown animation*/
+.dropdown:hover .profile-content {
+	display: block;
+}
+
+.profile-content a:hover {
+	background-color: lightgreen;
+	
+}
+
+h1{
+	text-align:center;
+	padding: 50px 0px;
+}
+
+
+@media only screen and (max-width: 768px){
+    .side-image{
+        border-radius: 10px 10px 0 0;
+    }
+    img{
+        width: 35px;
+        position: absolute;
+        top: 20px;
+        left: 47%;
+    }
+    .text{
+        position: absolute;
+        top: 70%;
+        text-align: center;
+    }
+    .text p,i{
+        font-size: 17px;
+    }
+    .row{
+        max-width: 420px;
+        width: 100%;
+    }
+}
+
