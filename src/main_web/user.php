@@ -10,7 +10,7 @@ class User {
 	private $email;
 	private $userType;
 	private $orgName;
-	private $orgSite;
+	private $orgWeb;
 	private $pricePlan;
 	private $accountStatus;
 	private $dateTime;
@@ -36,8 +36,8 @@ class User {
 		return $this -> orgName;
 	}
 	
-	function getOrgSite(){
-		return $this -> orgSite;
+	function getorgWeb(){
+		return $this -> orgWeb;
 	}
 	
 	function getPricePlan(){
@@ -69,8 +69,8 @@ class User {
 		$this->orgName = $orgName;
 	}
 	
-	function setOrgSite($orgSite){
-		$this->orgSite = $orgSite;
+	function setorgWeb($orgWeb){
+		$this->orgWeb = $orgWeb;
 	}
 
 
@@ -101,7 +101,8 @@ class User {
 			return false;
 		}
 	}
-	//Get User information 
+	
+	//authenticate get user information to store in session 
 	public function getInfo($email){
 		//Forming database connection
 		include("inc_db_fyp.php");
@@ -128,6 +129,7 @@ class User {
 		return $info;
 	}
 	
+	//admin get user info to view user info to manage, delete, or edit
 	function getUserInfo ($userid) {
 		//Forming database connection
 		include("inc_db_fyp.php");
@@ -143,8 +145,8 @@ class User {
 		return $row;
 	}
 	
-	//Create user
-	public function registerUser($email, $userType, $name, $password, $orgName, $orgSite){
+	//register user
+	public function registerUser($email, $userType, $name, $password, $orgName, $orgWeb){
 		//Forming database connection
 		include("inc_db_fyp.php");
 		
@@ -153,7 +155,7 @@ class User {
 		$statement = $conn->prepare("INSERT INTO users (userType, name, password, emailAddress, `Organization Name`, `Organization Website`) VALUES (?, ?, ?, ?, ?, ?)");
 		
 		//Bind parameters
-		$statement->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgSite);
+		$statement->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
 		
 		//Execute
 		$statement->execute();
@@ -165,7 +167,7 @@ class User {
 	}
 	
 	
-	//methods
+	//admin delete account
 	function deleteUser ($userid){
 		//Forming database connection
 		include("inc_db_fyp.php");
@@ -189,7 +191,8 @@ class User {
 		$conn->close();
 	}
 	
-	function editUser ($emailAddress, $password, $name, $userType, $orgName, $orgSite, $userid) {
+	//admin edit account
+	function editUser ($email, $password, $name, $userType, $orgName, $orgWeb, $userid) {
 		//Forming database connection
 		include("inc_db_fyp.php");
 		
@@ -197,7 +200,7 @@ class User {
 			SET emailAddress = ?, password = ?, name = ?, userType = ?,`Organization Name` = ?, `Organization Website` = ?
 			WHERE userID = ?";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('sssssss', $emailAddress, $password, $name, $userType, $orgName, $orgSite, $userid);
+		$stmt->bind_param('sssssss', $email, $password, $name, $userType, $orgName, $orgWeb, $userid);
 		
 		try{
 		if ($stmt->execute()){
@@ -215,6 +218,7 @@ class User {
 		$conn->close();
 	}
 	
+	//admin manage account
 	function manageUser ($pricePlan, $accountStatus, $userid){
 		//Forming database connection
 		include("inc_db_fyp.php");
@@ -240,14 +244,15 @@ class User {
 		$conn->close();
 	}
 	
-	function createAccount ($emailAddress, $password, $name, $userType, $orgName, $orgSite)
+	//admin create account
+	function createAccount ($email, $password, $name, $userType, $orgName, $orgWeb)
 	{
 		//Forming database connection
 		include("inc_db_fyp.php");
 		
 		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `name`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
 								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $emailAddress, $orgName, $orgSite);
+		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
 		$stmt->execute();
 		$stmt->close();
 		$_SESSION['successStatus'] = "Account Successfully Created.";

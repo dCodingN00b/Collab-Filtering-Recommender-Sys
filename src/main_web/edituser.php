@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
 #check if update button is clicked and update user info accordingly (if email and password is fine)
 if (isset($_POST['submit']) and ($_POST['submit'] == 'Update') and ($DisplayForm == False)){
 	
-	$emailAddress = $_POST['email'];
+	$email = $_POST['email'];
 	$password = $_POST['password'];
 	$name = $_POST['name'];
 	$userType = $_POST['userType'];
@@ -95,7 +95,7 @@ if (isset($_POST['submit']) and ($_POST['submit'] == 'Update') and ($DisplayForm
 	}
 	
 	#call user entity method
-	$user-> editUser($emailAddress, $password, $name, $userType, $orgName, $orgSite, $userid);
+	$user-> editUser($email, $password, $name, $userType, $orgName, $orgSite, $userid);
 	header("Location: manageaccounts.php");
 }
 
