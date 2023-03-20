@@ -31,8 +31,8 @@ body {
 }
 
 .sidenav img{
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-right: 10px;
 }
 
@@ -49,13 +49,11 @@ body {
 
 
 .topsidenav {
-	width: 250px;
-	height: 60px;
-	background-color:lavender;
+	height: 10px;
 }
 
 .sidenav a {
-  padding: 35px 10px 10px 15px;
+  padding: 20px 15px;
   text-decoration: none;
   font-size: 20px;
   color: black;
@@ -63,10 +61,15 @@ body {
   transition: 0.3s;
   display: flex; 
   align-items: center;
+  background-color:#dedede;
 }
 
-.sidenav a:hover {
-  color: green;
+.sidenav span:hover {
+ 
+}
+
+.sidenav a:hover{
+	background-color: #c7dbf0;
 }
 
 .sidenav .closebtn {
@@ -171,6 +174,7 @@ li a[name='recs']{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	border: 2px solid black;
 	background-color: transparent;
 	display: flex;
 	justify-content: center;
@@ -276,6 +280,128 @@ input[name='generate']{
 	padding: 10px 10px;
 	
 }
+
+/*hint customize*/
+.tooltip1[data-tip] {
+	position:relative;
+
+}
+
+.tooltip1[data-tip]:before {
+	content:'';
+	display:none;
+	content:'';
+	/*up arrow*/
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid lightblue;	
+	position:absolute;
+	
+	top:25px;
+	left:5px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+.tooltip1[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:30px;
+	left:-80px;
+	padding:5px 8px;
+	background:lightblue;
+	background:lightblue;
+	color:black;
+	
+	z-index:9;
+	font-size: 0.75em;
+	height:110px;
+	width: 250px;
+	line-height:18px;
+
+	border-radius: 3px;
+	white-space: pre-wrap;
+	
+	
+}
+.tooltip1[data-tip]:hover:before,
+.tooltip1[data-tip]:hover:after {
+	display:block;
+}
+
+
+.tooltip2[data-tip] {
+	position:relative;
+
+}
+
+.tooltip2[data-tip]:before {
+	content:'';
+	display:none;
+	content:'';
+	/*up arrow*/
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid lightblue;	
+	position:absolute;
+	
+	top:25px;
+	left:5px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+.tooltip2[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:30px;
+	left:-80px;
+	padding:5px 8px;
+	background:lightblue;
+	background:lightblue;
+	color:black;
+	
+	z-index:9;
+	font-size: 0.75em;
+	height:110px;
+	width: 260px;
+	line-height:18px;
+
+	border-radius: 3px;
+	white-space: pre-wrap;
+	
+	
+}
+.tooltip2[data-tip]:hover:before,
+.tooltip2[data-tip]:hover:after {
+	display:block;
+}
+
+.hint:hover{
+	cursor: pointer;
+}
+
+
+
+.user {
+	
+	transform: translate(19%, 200%);
+
+}
+
+.product{
+	
+	transform: translate(43%, 100%);
+	
+
+}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}

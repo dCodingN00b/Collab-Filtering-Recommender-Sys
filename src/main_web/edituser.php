@@ -21,12 +21,13 @@
 <title>Edit User</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
- <link rel="stylesheet" href="edituser_style.css?version7">
+ <link rel="stylesheet" href="edituser_style.css?version8">
 </head>
 <!-- change of button (all, admin, org, ind) based on current url-->
 <body onload = 'checkOrg();'>
 <?php
 include ('inc_db_fyp.php');
+include ('user.php');
 if ($userType == '0') #admin
 {#header, top navbar
 ?>
@@ -34,8 +35,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-				<li><a name = 'adminmanage' href="manageaccounts.php">Manage Accounts</a></li>					
-				<li><a name = 'admincreate' href="createaccount.php?id=orgcreateacc">Create Account</a></li>
+			    <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>
@@ -48,13 +49,34 @@ if ($userType == '0') #admin
 	</header>
 	<h1>Edit User</h1>
 <?php 
-#check is update button is clicked and update user info accordingly
-if (isset($_POST['submit']) and ($_POST['submit'] == 'Update')){
-	$sql = "UPDATE users 
-			SET emailAddress = ?, password = ?, userName = ?, userType = ?,`Organization Name` = ?, `Organization Website` = ?
-			WHERE userID = ?";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param('sssssss', $emailAddress, $password, $name, $userType, $orgName, $orgSite, $user);
+$DisplayForm = False;
+
+#get user info by calling user entity method and display info
+$user = new User();
+$row = $user-> getUserInfo ($userid);
+
+#check if email and password valid
+if (isset($_POST['submit'])) {
+	if ($_POST['password'] != $_POST['cpassword']){
+			echo "<p> Password does not match </p>";
+			$DisplayForm = True; 
+	}	
+	else {
+		#if email same as original, don't need to check
+		if ($row["emailAddress"] !== $_POST['email'])
+		{
+			#call method inside user entity class to check if email already in database, return bool
+			$DisplayForm = $user -> checkEmail($_POST['email']);
+			
+			if ($DisplayForm) {
+				echo "<p> Email Taken </p>";
+			}
+		}
+	}
+}
+
+#check if update button is clicked and update user info accordingly (if email and password is fine)
+if (isset($_POST['submit']) and ($_POST['submit'] == 'Update') and ($DisplayForm == False)){
 	
 	$emailAddress = $_POST['email'];
 	$password = $_POST['password'];
@@ -72,29 +94,11 @@ if (isset($_POST['submit']) and ($_POST['submit'] == 'Update')){
 		$orgSite = '';
 	}
 	
-	$user = $userid;
-	try{
-		if ($stmt->execute()){
-			$_SESSION['successStatus'] = "User Information Successfully Updated.";
-			header("Location: manageaccounts.php");
-		}
-		else{
-			  throw new Exception("error");
-		}
-	}
-	catch (Exception $e) {
-		echo $e->getMessage();
-	}
+	#call user entity method
+	$user-> editUser($emailAddress, $password, $name, $userType, $orgName, $orgSite, $userid);
+	header("Location: manageaccounts.php");
 }
 
-#retrieve user info
-$sql = "SELECT * FROM users WHERE userID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $user);
-$user = $userid;
-$stmt->execute();
-$result = $stmt->get_result();
-$row = mysqli_fetch_array($result);
 
 echo"
 <div class = 'reg'>
@@ -112,7 +116,7 @@ echo"
 			<span>Confirm Password: </span><input type='password' name='cpassword' value = '{$row["password"]}' required />
 		</div>
 		<div class = 'text_field'>
-			<span>Name: </span><input type='text' name='name' value = '{$row["userName"]}' required />
+			<span>Name: </span><input type='text' name='name' value = '{$row["name"]}' required />
 		</div>
 		<div class = 'text_field'>
 			<span>User Type: </span>

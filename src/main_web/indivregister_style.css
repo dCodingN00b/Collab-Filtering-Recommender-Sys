@@ -129,15 +129,38 @@ img{
 	border-bottom:2px solid lightgreen;
 }
 
-/*Header 1 text (Login)*/
+/*login and signup heading customization*/
 .indreg h1 {
-	color: grey;
+	color: black;
 	text-align: center;
 	padding: 30px 20px;
 	font-size: 30px;
 	border-bottom: 2px solid lavender;
 	width: 222.5px;
     display: inline-block;
+	
+}
+
+.indreg h1[name='login'] {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+	transform:translate(3%, 0%);
+}
+
+.indreg h1[name='register'] {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+	transform:translate(0%, 0%);
 }
 
 .indreg a{

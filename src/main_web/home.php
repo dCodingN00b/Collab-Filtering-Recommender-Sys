@@ -8,6 +8,33 @@
 	}
 	
 	$userType = $_SESSION['userType'];
+	
+	if (isset($_SESSION['pricePlan'])){
+		if ($_SESSION['pricePlan'] == '0'){
+			$pricePlan = 'Free Trial';
+		}
+		else if ($_SESSION['pricePlan'] == 'i1'){
+			$pricePlan = 'Individual - Standard';
+		}
+		else if ($_SESSION['pricePlan'] == 'i2'){
+			$pricePlan = 'Individual - Pro';
+		}
+		else if ($_SESSION['pricePlan'] == 'o1'){
+			$pricePlan = 'Organization - Standard';
+		}
+		else if ($_SESSION['pricePlan'] == 'o2'){
+			$pricePlan = 'Organization - Pro';
+		}
+	}
+	
+	#time now - time of creation
+	$date = strtotime($_SESSION['dateTimeOfCreation']);
+	$timePassed = time() - $date;
+	$daysPassed = $timePassed  / 86400;
+	$daysRemaining = floor(30.0 - $daysPassed);
+	
+	$_SESSION['currentplan'] = $pricePlan;
+	$_SESSION['daysremaining'] = $daysRemaining;
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +42,7 @@
 <head>
 <title>Home</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
- <link rel="stylesheet" href="home_style.css?version14">
+ <link rel="stylesheet" href="home_style.css?version19">
 
 </head>
 <body>
@@ -28,10 +55,13 @@ if ($userType == '1') #org (client)
                 <ul class="nav-titles">
 					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
                     <li><a name = 'workspace' href="workspace.php">Workspace</a></li>
-					<li><a name = 'upgradeplans' href="upgradeplans.php">Upgrade Plan</a></li>
-				  </ul>
+					<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
+					Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
+				</ul>
+				
+
 				<div class="dropdown">
-					<button class="profile"><?=$_SESSION['name'][0]?></button>
+					<button class="profile"><?php echo $_SESSION['name'][0]?></button>
 					<div class="profile-content">
 						<a class="logout" href="accountsettings.php">Account Settings</a></li>
 						<a class="logout" href="logout.php">Logout</a></li>
@@ -64,8 +94,9 @@ if ($userType == '1') #org (client)
                 <ul class="nav-titles">
 					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
                     <li><a name = 'workspace' href="workspace.php">Workspace</a></li>
-					<li><a name = 'upgradeplans' href="upgradeplans.php">Upgrade Plan</a></li>
-				  </ul>
+					<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
+					Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
+				</ul>
 				<div class="dropdown">
 					<button class="profile"><?=$_SESSION['name'][0]?></button>
 					<div class="profile-content">
@@ -99,9 +130,9 @@ if ($userType == '1') #org (client)
 	<header>
 			 <nav>
                 <ul class="nav-titles">
-					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-					<li><a name = 'adminmanage' href="manageaccounts.php">Manage Accounts</a></li>					
-                    <li><a name = 'admincreate' href="createaccount.php?id=orgcreateacc">Create Account</a></li>
+					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     			
+                    <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
+					<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
 				  </ul>
 				<div class="dropdown">
 					<button class="profile"><?=$_SESSION['name'][0]?></button>

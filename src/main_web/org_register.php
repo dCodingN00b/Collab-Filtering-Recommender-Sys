@@ -6,14 +6,39 @@
     <link rel="stylesheet" href="orgregister_style.css?version13">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <title>Sign Up Page</title>
+	<style>
+	.success-box {
+		background-color: whitesmoke;
+		color: white;
+		padding: 20px;
+		left: 0;
+		width: 100%;
+		z-index: -9999;
+		vertical-align: middle;
+	}
+
+	.success-box .close-button {
+		color: black;
+		float: right;
+		font-size: 30px;
+		font-weight: bold;
+		cursor: pointer;
+		transform:translate(0%, -20%);
+	}
+	
+	.success-box p {
+		transform:translate(0%, 20%);
+	}
+	</style>
 </head>
 <body>
 <?php
 	include ('inc_db_fyp.php');
+	include ('user.php');
+	
 	$DisplayForm = TRUE;
 	$userType = '';
 	if (isset($_POST['submit'])){
-		echo "<p> hello! i am here! </p>";
 		if ($_POST['userType'] == 'Organization'){			
 			$userType = 1;
 			$DisplayForm = False; 
@@ -24,17 +49,18 @@
 		if ($_POST['password'] != $_POST['cpassword']){
 			echo "<p> Password does not match </p>";
 			$DisplayForm = True; 
-		}	
-		$stmt = $conn->prepare("SELECT emailAddress FROM users WHERE emailAddress = ?");
-		$stmt->bind_param('s', $_POST['email']);
-		$stmt->execute();
-		$stmt->store_result();
-		
-		if($stmt->num_rows > 0){
-			echo "<p> Email already used </p>";
-			$DisplayForm = True;
+		}else {
+			#call method inside user entity class to check if email already in database, return bool
+			$user = new User();
+			$DisplayForm = $user -> checkEmail($_POST['email']);
 		}
 		
+		#display error if email already taken
+		if (isset($_SESSION['successStatus'])){
+			echo"<p>{$_SESSION['successStatus']}</p>";
+			
+			unset($_SESSION['successStatus']);
+		}
 	}
 	
 	if ($DisplayForm){
@@ -98,15 +124,18 @@
 		$orgWeb = $_POST['orgsite'];
 
 
-		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `userName`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
-								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
-		$stmt->execute();
-		$stmt->close();
-		$userID = mysqli_insert_id($conn);
-		echo " <p>your user id is $userID </p>";
-		echo "<p> Thank you for signing up! </p>";
-		echo "<p> You will be redirected to Login page ...</p>";
+		#call user entity method to register
+		$user-> registerUser($email, $userType, $name, $password, $orgName, $orgWeb);
+		
+		#display success
+		if (isset($_SESSION['successStatus'])){
+			echo"<div class='success-box'>
+				
+					<p>{$_SESSION['successStatus']}</p>
+				</div>";
+			
+			unset($_SESSION['successStatus']);
+		}
 		header("refresh:3; url=login.php");
 		
 		$DisplayForm = False;
@@ -114,5 +143,11 @@
 		unset($_POST['submit']);
 	}
 ?>
+<script>
+// to close the success box
+document.querySelector('.close-button').addEventListener('click', function() {
+			document.querySelector('.success-box').style.display = 'none';
+		});
+</script>
 </body>
 </html>

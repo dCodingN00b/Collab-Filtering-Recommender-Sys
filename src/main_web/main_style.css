@@ -1117,8 +1117,8 @@ h2[name='head'] {
 
 /*pricing page customizations*/
 .pricing {
-	height: 1100px;
-	background-image: linear-gradient(aliceblue 13%, white 0%);
+	height: 700px;
+	background-image: linear-gradient(aliceblue 20%, white 0%);
 	background-repeat:no-repeat;
 	min-height: 30vh;
 }
@@ -1190,8 +1190,8 @@ h2[name='head'] {
 	max-width: 10%;
     height: auto;
     position: absolute;
-    top: 9%;
-    left: 29%;
+    top: 11%;
+    left: 9%;
 	overflow: hidden;
 }
 
@@ -1199,8 +1199,8 @@ h2[name='head'] {
 	max-width: 12%;
     height: auto;
     position: absolute;
-    top: 8%;
-    left: 19%;
+    top: 10%;
+    left: 21%;
 	overflow: hidden;
 }
 
@@ -1208,8 +1208,8 @@ h2[name='head'] {
 	max-width: 13%;
     height: auto;
     position: absolute;
-    top: 8%;
-    left: 28%;
+    top: 10%;
+    left: 29%;
 	overflow: hidden;
 }
 
@@ -1223,7 +1223,7 @@ h2[name='head'] {
 }
 
 .pricing-box h2 {
-    font-size: 24px;
+    font-size: 22px;
 	transform: translate(0%, -300%);
 }
 

@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>RECS</title>
-	<link rel="stylesheet" href="main_style.css?version95">
+	<link rel="stylesheet" href="main_style.css?version96">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<style>
@@ -301,11 +301,11 @@
 			<div class='pricing-container'>
 				<div class='pricing-box'>
 					<img name = 'free' src ='images/tick.svg' alt =''>
-					<h2>Free</h2>
+					<h2>30 Days Free Trial</h2>
 					<p name='intro'>For those who are </br>starting out.</p>
 					<p>1GB Uploadable Data</br>100 Recommendation Requests</p>
 					<h3>$0 / month</h3>
-					<button><a href = 'org_register.php'>Start Free</a></button>
+					
 				</div>
 				<div class='pricing-box'>
 					<img name = 'standard' src ='images/upgrade.svg' alt =''>
@@ -313,7 +313,7 @@
 					<p name='intro'>Get more out of the</br> product.</p>
 					<p>10GB Uploadable Data</br>1000 Recommendation Requests</p>
 					<h3>$14.90 / month</h3>
-					<button><a href = 'org_register.php'>Start 30 Days Free Trial</a></button>
+					
 				</div>
 				<div class='pricing-box'>
 					<img name = 'pro' src ='images/high.svg' alt =''>
@@ -321,9 +321,10 @@
 					<p name='intro'>Get the most out of</br> the product.</p>
 					<p>50GB Uploadable Data</br>5000 Recommendation Requests</p>
 					<h3>$49.90 / month</h3>
-					<button><a href = 'org_register.php'>Start 30 Days Free Trial</a></button>
+					
 				</div>
-			</div>
+			</div>";
+			/*echo"
 			<div class='pricing-container-bottom'>
 				<div class='pricing-box'>
 					<img name = 'custom' src ='images/custom.svg' alt =''>
@@ -333,8 +334,8 @@
 					<h3>?? / month</h3>
 					<button><a href = 'org_register.php'>Start 30 Days Free Trial</a></button>
 				</div>
-			</div>
-		</div>";
+			</div>*/
+		echo"</div>";
 	}
 	#Pricing Page (for ind)
 	else if ($id == 'indpricing'){
@@ -343,30 +344,32 @@
 			<div class='pricing-container'>
 				<div class='pricing-box'>
 					<img name = 'free' src ='images/tick.svg' alt =''>
-					<h2>Free</h2>
+					<h2>30 Days Free Trial</h2>
 					<p name='intro'>For those who are </br>starting out.</p>
 					<p>200 Recommendation Requests</p>
 					<h3>$0 / month</h3>
-					<button><a href = 'indiv_register.php'>Start Free</a></button>
+					
 				</div>
 				<div class='pricing-box'>
 					<img name = 'standard' src ='images/upgrade.svg' alt =''>
 					<h2>Standard</h2>
 					<p name='intro'>Get more out of the</br> product.</p>
 					<p>2000 Recommendation Requests</p>
-					<h3>$1.99 / month</h3>
-					<button><a href = 'indiv_register.php'>Start 30 Days Free Trial</a></button>
+					<h3>$4.90 / month</h3>
+					
 				</div>
 				<div class='pricing-box'>
 					<img name = 'pro' src ='images/high.svg' alt =''>
 					<h2>Pro</h2>
 					<p name='intro'>Get the most out of</br> the product.</p>
 					<p>10000 Recommendation Requests</p>
-					<h3>$4.99 / month</h3>
-					<button><a href = 'indiv_register.php'>Start 30 Days Free Trial</a></button>
+					<h3>$19.90 / month</h3>
+					
 				</div>
 			</div>
-			<div class='pricing-container-bottom'>
+			
+			<div class='pricing-container-bottom'>";
+			/*echo"
 				<div class='pricing-box'>
 					<img name = 'custom' src ='images/custom.svg' alt =''>
 					<h2>Custom</h2>
@@ -374,8 +377,8 @@
 					<p>Unlimited Recommendation Requests</p>
 					<h3>?? / month</h3>
 					<button><a href = 'indiv_register.php'>Start 30 Days Free Trial</a></button>
-				</div>
-			</div>
+				</div>*/
+			echo"</div>
 		</div>";
 	}
 	#faq page

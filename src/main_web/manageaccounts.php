@@ -31,7 +31,7 @@
 <head>
 <title>Manage Accounts</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="manageaccounts_style.css?version17">
+<link rel="stylesheet" href="manageaccounts_style.css?version18">
 <style>
 	.success-box {
 		background-color: whitesmoke;
@@ -65,8 +65,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-				<li><a name = 'adminmanage' href="manageaccounts.php">Manage Accounts</a></li>					
-				<li><a name = 'admincreate' href="createaccount.php?id=orgcreateacc">Create Account</a></li>
+			   <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>
@@ -131,7 +131,7 @@ if ($searchItem == ''){
 else if ($searchItem !== ''){
 	if ($sort == 'all' or $sort == ''){
 		$sql = "SELECT COUNT(*) as total FROM users WHERE (userID like ? OR CONCAT_WS(
-		userType,'', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
+		userType,'', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("ss", $search, $search1);		
 		$search = '%' . $searchItem . '%';
@@ -139,7 +139,7 @@ else if ($searchItem !== ''){
 	}
 	else if ($sort == 'admin'){
 		$sql = "SELECT COUNT(*) as total FROM users WHERE userType = ? AND (userID like ? OR CONCAT_WS(
-		'admin','', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
+		'admin','', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("sss", $user, $search, $search1);
 		$user = '0';
@@ -148,7 +148,7 @@ else if ($searchItem !== ''){
 	}
 	else if ($sort == 'org'){
 		$sql = "SELECT COUNT(*) as total FROM users WHERE userType = ? AND (userID like ? OR CONCAT_WS('',
-		'org','', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
+		'org','', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("sss", $user, $search, $search1);
 		$user = '1';
@@ -230,7 +230,7 @@ if ($searchItem == ''){
 }
 else{
 	if ($sort == 'all' or $sort == ''){
-		$sql = "SELECT * FROM users WHERE (userID like ? OR CONCAT_WS(userID, userName,'', 
+		$sql = "SELECT * FROM users WHERE (userID like ? OR CONCAT_WS(userID, name,'', 
 		emailAddress, '', `Organization Name`, '',`Organization Website`) = ?)
 		LIMIT $starting_limit, $results_per_page";
 		$stmt = $conn->prepare($sql);
@@ -241,7 +241,7 @@ else{
 	}
 	else if ($sort == 'admin'){
 		$sql = "SELECT * FROM users WHERE userType = ? AND (userID like ? OR CONCAT_WS(
-		'admin','', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
+		'admin','', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
 		LIMIT $starting_limit, $results_per_page";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("sss", $user, $search, $search1);
@@ -252,7 +252,7 @@ else{
 	}
 	else if ($sort == 'org'){
 		$sql = "SELECT * FROM users  WHERE userType = ? AND (userID like ? OR CONCAT_WS(
-		'org','', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
+		'org','', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
 		LIMIT $starting_limit, $results_per_page";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("sss", $user, $search, $search1);
@@ -262,7 +262,7 @@ else{
 	}
 	else if ($sort == 'ind'){
 		$sql = "SELECT * FROM users  WHERE userType = ? AND (userID like ? OR CONCAT_WS(userID, '',
-		'ind','', userName,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
+		'ind','', name,'', emailAddress, '', `Organization Name`, '',`Organization Website`) like ?)
 		LIMIT $starting_limit, $results_per_page";
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param("sss", $user, $search, $search1);
@@ -286,7 +286,7 @@ while($row = mysqli_fetch_array($result)){
 	}else{
 			echo '<td> Admin </td>';
 	}
-	echo '<td>' . $row['userName'] . '</td>';  
+	echo '<td>' . $row['name'] . '</td>';  
     echo '<td>' . $row['emailAddress'] . '</td>';
     echo '<td>' . $row['Organization Name'] . '</td>';
 	echo '<td>' . $row['Organization Website'] . '</td>';

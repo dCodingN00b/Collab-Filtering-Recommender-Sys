@@ -19,7 +19,7 @@
 
 <title>Create Account</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
- <link rel="stylesheet" href="createaccount_style.css?version11">
+ <link rel="stylesheet" href="createaccount_style.css?version12">
 <style>
 	.success-box {
 		background-color: whitesmoke;
@@ -37,13 +37,14 @@
 		font-size: 30px;
 		font-weight: bold;
 		cursor: pointer;
-		transform:translate(0%, -20%);
+		transform:translate(0%, -30%);
 	}
 </style>
 </head>
 <body>
 <?php 
 include ('inc_db_fyp.php');
+include ('user.php');
 if ($userType == '0') #admin
 {
 ?>
@@ -51,8 +52,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-				<li><a name = 'adminmanage' href="manageaccounts.php">Manage Accounts</a></li>					
-				<li><a name = 'admincreate' href="createaccount.php">Create Account</a></li>
+			   <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>
@@ -64,13 +65,14 @@ if ($userType == '0') #admin
 		</nav>		
 	</header>
 	<?php
+	#display success
 	if (isset($_SESSION['successStatus'])){
-	echo"<div class='success-box'>
-		<span class='close-button'>&times;</span>
-			<p>{$_SESSION['successStatus']}</p>
-		</div>";
-	
-	unset($_SESSION['successStatus']);
+		echo"<div class='success-box'>
+			<span class='close-button'>&times;</span>
+				<p>{$_SESSION['successStatus']}</p>
+			</div>";
+		
+		unset($_SESSION['successStatus']);
 	}
 	?>
 	<h1>Create Account</h1>
@@ -90,14 +92,10 @@ if (isset($_POST['submit'])){
 		echo "<p> Password does not match </p>";
 		$DisplayForm = True; 
 	}	
-	$stmt = $conn->prepare("SELECT emailAddress FROM users WHERE emailAddress = ?");
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-	$stmt->store_result();
-	
-	if($stmt->num_rows > 0){
-		echo "<p> Email already used.</p>";
-		$DisplayForm = True;
+	else {
+		#call method inside user entity class to check if email already in database, return bool
+		$user = new User();
+		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
 	
 }
@@ -144,19 +142,14 @@ if (isset($_POST['submit'])){
 		$orgName = $_POST['orgname'];
 		$orgWeb = $_POST['orgsite'];
 
-
-		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `userName`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
-								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
-		$stmt->execute();
-		$stmt->close();
-		$userID = mysqli_insert_id($conn);
-		$_SESSION['successStatus'] = "Account Successfully Created.";
-		header("location: createaccount.php?id=orgcreateacc");
+		#call user entity method too createaccount
+		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
+		
 		
 		$DisplayForm = False;
 		$_POST['userType'] == '';
 		unset($_POST['submit']);
+		header("location: createaccount.php?id=orgcreateacc");
 	}
 }else if ($id == 'indcreateacc') {	
 $DisplayForm = TRUE;
@@ -172,17 +165,11 @@ if (isset($_POST['submit'])){
 	if ($_POST['password'] != $_POST['cpassword']){
 		echo "<p> Password does not match </p>";
 		$DisplayForm = True; 
-	}	
-	$stmt = $conn->prepare("SELECT emailAddress FROM users WHERE emailAddress = ?");
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-	$stmt->store_result();
-	
-	if($stmt->num_rows > 0){
-		echo "<p> Email already used </p>";
-		$DisplayForm = True;
+	}else {
+		#call method inside user entity class to check if email already in database, return bool
+		$user = new User();
+		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
-	
 }
 	if ($DisplayForm){
 ?>
@@ -230,18 +217,13 @@ else{
 		}
 
 	
-		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `userName`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
-								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
-		$stmt->execute();
-		$stmt->close();
-		$userID = mysqli_insert_id($conn);
-		$_SESSION['successStatus'] = "Account Successfully Created.";
-		header("location: createaccount.php?id=orgcreateacc");
+		#call user entity method too createaccount
+		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
 		
 		$DisplayForm = False;
 		$_POST['userType'] == '';
 		unset($_POST['submit']);
+		header("location: createaccount.php?id=indcreateacc");
 	}
 }
 else if ($id == 'admincreateacc') {	
@@ -261,15 +243,10 @@ if (isset($_POST['submit'])){
 	if ($_POST['password'] != $_POST['cpassword']){
 		echo "<p> Password does not match </p>";
 		$DisplayForm = True; 
-	}	
-	$stmt = $conn->prepare("SELECT emailAddress FROM users WHERE emailAddress = ?");
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-	$stmt->store_result();
-	
-	if($stmt->num_rows > 0){
-		echo "<p> Email already used </p>";
-		$DisplayForm = True;
+	}else {
+		#call method inside user entity class to check if email already in database, return bool
+		$user = new User();	
+		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
 	
 }
@@ -318,20 +295,14 @@ else{
 		if (isset($_POST['orgsite'])){
 			$orgWeb = $_POST['orgsite'];
 		}
-
 	
-		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `userName`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
-								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
-		$stmt->execute();
-		$stmt->close();
-		$userID = mysqli_insert_id($conn);
-		$_SESSION['successStatus'] = "Account Successfully Created.";
-		header("location: createaccount.php?id=orgcreateacc");
+		#call user entity method too createaccount
+		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
 		
 		$DisplayForm = False;
 		$_POST['userType'] == '';
 		unset($_POST['submit']);
+		header("location: createaccount.php?id=admincreateacc");
 	}
 }
 }

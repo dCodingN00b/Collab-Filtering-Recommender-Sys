@@ -48,9 +48,34 @@ header {
 	position:Relative;
 	z-index: 2;
 }
+
+.nav-titles li a[name='currentplans'] {
+
+	float: right;
+	font-size: 16px;
+	color: black;
+	padding: 24px 0px;
+	text-decoration: none;
+	position:Relative;
+	z-index: 2;
+}
+
+.nav-titles li a[name='admincreate'] {
+
+	float: right;
+	font-size: 16px;
+	color: black;
+	padding: 24px 0px;
+	text-decoration: none;
+	position:Relative;
+	z-index: 2;
+}
+
 .nav-titles li a:hover {
 	color: forestgreen;
 }
+
+
 
 li a[name='recs']{
 	letter-spacing: 2px;
@@ -100,6 +125,7 @@ li a[name='recs']{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	border: 2px solid black;
 	background-color: transparent;
 	display: flex;
 	justify-content: center;

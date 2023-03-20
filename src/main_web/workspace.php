@@ -16,14 +16,16 @@
 	if (isset($_GET['option'])){
 		$option = $_GET['option'];
 	}
-	
+
 	$userType = $_SESSION['userType'];
+	$pricePlan = $_SESSION['currentplan'];
+	$daysRemaining = $_SESSION['daysremaining'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="workspace_style.css?version16">
+<link rel="stylesheet" href="workspace_style.css?version21">
 <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
 <style>
@@ -106,18 +108,67 @@ function openNav() {
   }
 }
 
+function currentLeftSideBarColor (){
+	var id =<?php echo json_encode($id); ?>;
+	
+	if (id == '' || id == 'intro'){
+		document.getElementById("intro").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'adddata'){
+		document.getElementById("adddata").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'uploadeddata'){
+		document.getElementById("uploadeddata").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'results'){
+		document.getElementById("results").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'generate-recommend'){
+		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'generate-recommend-recs'){
+		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'addlist'){
+		document.getElementById("addlist").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'uploadedlist'){
+		document.getElementById("uploadedlist").style.backgroundColor = "#c7dbf0";
+	}
+}
+
+// Get the link element
+const link = document.querySelector('a[href="#bottom"]');
+
+// Add a click event listener to the link
+link.addEventListener('click', (event) => {
+	// Prevent the default link behavior
+	event.preventDefault();
+
+	// Get the anchor element
+	const anchor = document.querySelector('#bottom');
+	
+	sleep(100).then(() => {
+		// Scroll to the anchor element
+		anchor.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+	});
+	
+	return false;
+});
 
 </script>
 </head>
-<body>
+<body onload = 'currentLeftSideBarColor ()'>
 
 <header>
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
-				<li><a href="workspace.php">Workspace</a></li>
-				<li><a name = 'upgradeplans' href="upgradeplans.php">Upgrade Plan</a></li>
+				<li><a name = 'workspace' href="workspace.php">Workspace</a></li>
+				<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
+				Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
 			</ul>
+				
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>
 				<div class="profile-content">
@@ -133,39 +184,60 @@ function openNav() {
 # if organization
 if ($userType == '1'){ 
 	echo"
-	<div id='mySidenav' class='sidenav' style='width: 250px;'>
+	<div id='mySidenav' class='sidenav' style='width: 250px; height: 530px;'>
 	<div class='topsidenav'></div>
-	  <a href='workspace.php?id=adddata'>
+	<p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px; background-color:whitesmoke; 'id = 'sidewords2'>Getting Started</p>
+	  <a href='workspace.php?id=intro' id = 'intro'>
+		<img src='images/rocket.svg' alt='Image 1'>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords1' >Introduction</span>
+	  </a>
+		<p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>Your Data</p>
+	  <a href='workspace.php?id=adddata' id=adddata>
 		<img src='images/adddata.svg' alt='Image 1'>
-		<span style='font-size: 18px;'id = 'sidewords1'>Add Data Set</span>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords2'>Add Data Set</span>
 	  </a>
-	  <a href='workspace.php?id=uploadeddata'>
+	  <a href='workspace.php?id=uploadeddata' id = 'uploadeddata'> 
 		<img src='images/uploadeddata.svg' alt='Image 2'>
-		<span style='font-size: 18px;' id = 'sidewords2'>Uploaded Data Set</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords3'>Uploaded Data Set</span>
 	  </a>
-	  <a href='generate-recommend.php'>
+	  <a href='generate-recommend.php#bottom' id = 'generaterecommend'>
 		<img src='images/yourdata.svg' alt='Image 3'>
-		<span style='font-size: 18px;' id = 'sidewords3'>Generate Ratings / Recommendations (Your Data)</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords4'>Generate Ratings / Recommendations (Your Data)</span>
 	  </a>
-	  <a href='generate-recommend-recs.php'>
+	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>Our Data</p>";
+	  /*echo"
+	  <a href='workspace.php?id=addlist#bottom' id = 'addlist'>
+		<img src='images/adddata.svg' alt='Image 1'>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List</span>
+	  </a>
+	  <a href='workspace.php?id=uploadedlist#bottom' id = 'uploadedlist'>
+		<img src='images/uploadeddata.svg' alt='Image 2'>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List</span>
+	  </a>";*/
+	  echo"
+	  <a href='generate-recommend-recs.php#bottom' id = 'generaterecommendrecs'>
 	  <img src='images/recsdata3.svg' alt='Image 3'>
-		<span style='font-size: 18px;' id = 'sidewords4'>Generate Ratings / Recommendations (REC's Data)</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords7'>Generate Ratings / Recommendations (REC's Data)</span>
 	  </a>
-	  <a href='workspace.php?id=results'>
+	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>History</p>
+	  <a href='workspace.php?id=results#bottom' id = 'results'>
 	  <img src='images/history2.svg' alt='Image 3'>
-		<span style='font-size: 18px;' id = 'sidewords5'>Results</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords8'>Results</span>
 	  </a>
+	  <span id='bottom'></span>
+	  </br></br></br>
 	</div>";
+	/*==
 	echo"
 	<div id='main' class='main' style='margin-left = 200px;'>
 		<span id = 'menuwords'></span>
 		<img id = 'menu' src='images/left.png' alt='Image 4' onclick='openNav()'>
-	</div>";
+	</div>";*/
 
 
-	if ($id == ''){
+	if ($id == '' or $id == 'intro'){
 		echo"<title>Workspace</title>";
-		echo"<div class='workspace-frame'>";
+		echo"<div class='workspace-frame' style = 'margin-top: 35px;'>";
 		echo"<div class='workspace' id='workspace' style='margin-left:250px;' >";
 		echo"<p name = 'workspace-title' style='text-align: center; font-size:30px'>Welcome to your Workspace!</p>";
 		echo"<p name = 'workspace-description' style='text-align: center; font-size:20px'>This is 
@@ -196,32 +268,66 @@ if ($userType == '1'){
 		echo"<title>Results</title>";
 		echo"<div class='results' id='results' style='margin-left:250px;' >";
 		echo"<h1 style='text-align: center; font-size:30px'>Results</h1></div>";
+	}else if ($id == 'addlist'){
+		echo"<title>Add List</title>";
+		echo"<div class = 'adddataset' id ='adddataset' style='margin-left:250px'>";
+		echo"<h1 style='text-align: center'>Add List</h1>";
+		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl:</p></br>";
+		echo"<form style='transform: translate(32%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
+			  <input style='background-color:whitesmoke;border:1px solid lightgrey;'type='file' name='fileToUpload' id='fileToUpload'>
+			  <input type='submit' value='Upload File' name='submit'>
+			</form></div>";
+	}else if ($id == 'uploadedlist'){
+		echo"<title>Uploaded List</title>";
+		echo"<div class = 'uploadedlist' id ='uploadedlist' style='margin-left:250px'>";
+		echo"<h1 style='text-align: center'>Uploaded List</h1>";
+		echo "</div>";
 	}
 }
 #if individual
 else if ($userType == '2'){
 	echo"
-	<div id='mySidenav' class='sidenav' style='width: 250px;'>
+	<div id='mySidenav' class='sidenav' style='width: 250px; height: 530px;'>
 	<div class='topsidenav'></div>
-	 
-	  <a href='generate-recommend-recs.php'>
+	<p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px; background-color:whitesmoke; 'id = 'sidewords2'>Getting Started</p>
+	  <a href='workspace.php?id=intro' id = 'intro'>
+		<img src='images/adddata.svg' alt='Image 1'>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords1' >Introduction</span>
+	  </a>
+	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>Our Data</p>";
+	  
+	  echo"
+	  <a href='workspace.php?id=addlist' id = 'addlist'>
+		<img src='images/adddata.svg' alt='Image 1'>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List</span>
+	  </a>
+	  <a href='workspace.php?id=uploadedlist' id = 'uploadedlist'>
+		<img src='images/uploadeddata.svg' alt='Image 2'>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List</span>
+	  </a>";
+	  echo"
+	  <a href='generate-recommend-recs.php#bottom' id = 'generaterecommendrecs'>
 	  <img src='images/recsdata3.svg' alt='Image 3'>
-		<span style='font-size: 18px;' id = 'sidewords4'>Generate Ratings / Recommendations (REC's Data)</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords7'>Generate Ratings / Recommendations (REC's Data)</span>
 	  </a>
-	  <a href='workspace.php?id=results'>
+	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>History</p>
+	  <a href='workspace.php?id=results#bottom' id = 'results'>
 	  <img src='images/history2.svg' alt='Image 3'>
-		<span style='font-size: 18px;' id = 'sidewords5'>Results</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords8'>Results</span>
 	  </a>
+	  <span id='bottom'></span>
+	  </br></br></br>
 	</div>";
+	/*==
 	echo"
 	<div id='main' class='main' style='margin-left = 200px;'>
 		<span id = 'menuwords'></span>
 		<img id = 'menu' src='images/left.png' alt='Image 4' onclick='openNav()'>
-	</div>";
+	</div>";*/
 
 
-	if ($id == ''){
-		echo"<div class='workspace-frame'>";
+	if ($id == '' or $id == 'intro'){
+		echo"<div class='workspace-frame' style = 'margin-top: 35px;'>";
 		echo"<title>Workspace</title>";
 		echo"<div class='workspace' id='workspace' style='margin-left:250px;' >";
 		echo"<p name = 'workspace-title' style='text-align: center; font-size:30px'>Welcome to your Workspace!</p>";
@@ -248,6 +354,20 @@ else if ($userType == '2'){
 		echo"<title>Results</title>";
 		echo"<div class='results' id='results' style='margin-left:250px;' >";
 		echo"<h1 style='text-align: center; font-size:30px'>Results</h1></div>";
+	}else if ($id == 'addlist'){
+		echo"<title>Add Data</title>";
+		echo"<div class = 'adddataset' id ='adddataset' style='margin-left:250px'>";
+		echo"<h1 style='text-align: center'>Add List</h1>";
+		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl:</p></br>";
+		echo"<form style='transform: translate(32%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
+			  <input style='background-color:whitesmoke;border:1px solid lightgrey;'type='file' name='fileToUpload' id='fileToUpload'>
+			  <input type='submit' value='Upload File' name='submit'>
+			</form></div>";
+	} else if ($id == 'uploadedlist'){
+		echo"<title>Uploaded List</title>";
+		echo"<div class = 'uploadedlist' id ='uploadedlist' style='margin-left:250px'>";
+		echo"<h1 style='text-align: center'>Uploaded List</h1>";
+		echo "</div>";
 	}
 }
 ?>

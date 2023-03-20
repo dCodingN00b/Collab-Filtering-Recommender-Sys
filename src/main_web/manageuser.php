@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <body>
 <?php
 include ('inc_db_fyp.php');
+include ('user.php');
+
 if ($userType == '0') #admin
 {
 
@@ -40,8 +42,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-				<li><a name = 'adminmanage' href="manageaccounts.php">Manage Accounts</a></li>					
-				<li><a name = 'admincreate' href="createaccount.php?id=orgcreateacc">Create Account</a></li>
+			    <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>
@@ -55,37 +57,23 @@ if ($userType == '0') #admin
 	<h1>Manage User</h1>
 <?php 
 
+#get user info by calling user entity method and display info
+$user = new User();
+$row = $user-> getUserInfo ($userid);
+
+
+
 #check is update button is clicked and update user info accordingly
 if (isset($_POST['submit']) and ($_POST['submit'] == 'Confirm')){
-	$sql = "UPDATE users 
-			SET pricePlan = ?, accountStatus = ?
-			WHERE userID = ?";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param('sss', $pricePlan, $accountStatus,$user);
 	$pricePlan = $_POST['priceplan'];
 	$accountStatus= $_POST['accstatus'];
-	$user = $userid;
-	try{
-		if ($stmt->execute()){
-			$_SESSION['successStatus'] = "User Information Successfully Updated.";
-			header("Location: manageaccounts.php");
-		}
-		else{
-			  throw new Exception("error");
-		}
-	}
-	catch (Exception $e) {
-		echo $e->getMessage();
-	}
+	
+	#call user entity method
+	$user-> manageUser ($pricePlan, $accountStatus, $userid);
+	header("Location: manageaccounts.php");
 }
 
-$sql = "SELECT * FROM users WHERE userID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $user);
-$user = $userid;
-$stmt->execute();
-$result = $stmt->get_result();
-$row = mysqli_fetch_array($result);
+
 
 echo"
 <div class = 'reg'>
@@ -97,7 +85,7 @@ echo"
 			<span>Email:</span><input type='email' name='email' value = '{$row["emailAddress"]}' style = 'color:grey; background-color:whitesmoke' readonly />
 		</div>
 		<div class = 'text_field'>
-			<span>Name: </span><input type='text' name='name' value = '{$row["userName"]}' style = 'color:grey; background-color:whitesmoke' readonly />
+			<span>Name: </span><input type='text' name='name' value = '{$row["name"]}' style = 'color:grey; background-color:whitesmoke' readonly />
 		</div>
 		<div class = 'text_field'>
 			<span>User Type: </span><input type='text' name='userType'" . (($row["userType"] == '1')? 'value = "Organization"' :
