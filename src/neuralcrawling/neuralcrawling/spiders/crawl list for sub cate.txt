@@ -1,0 +1,109 @@
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885080051&ref_=nav_em_elec_mob_0_2_11_8" -s CLOSESPIDER_ITEMCOUNT=100 -o electronic-mobile-phones.csv
+
+Computers (8 sub)
+https://www.amazon.com.au/gp/browse.html?node=4913311051&ref_=nav_em_pc_laptops_0_2_10_3
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913311051&ref_=nav_em_pc_laptops_0_2_10_3" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-laptops.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913308051&ref_=nav_em_pc_desktops_0_2_10_4
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913308051&ref_=nav_em_pc_desktops_0_2_10_4" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-desktops.csv
+
+Monitors
+https://www.amazon.com.au/s?rh=n%3A4913312051&fs=true&ref=lp_4913312051_sar
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s?rh=n%3A4913312051&fs=true&ref=lp_4913312051_sar" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-monitors.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913305051&ref_=nav_em_pc_acc_0_2_10_6
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913305051&ref_=nav_em_pc_acc_0_2_10_6" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-accessories.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913313051&ref_=nav_em_pc_networking_0_2_10_7
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913313051&ref_=nav_em_pc_networking_0_2_10_7" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-networking.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913307051&ref_=nav_em_pc_storage_0_2_10_8
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913307051&ref_=nav_em_pc_storage_0_2_10_8" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-storage.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913310051&ref_=nav_em_pc_parts_0_2_10_9
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913310051&ref_=nav_em_pc_parts_0_2_10_9" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-parts.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4913314051&ref_=nav_em_off_printers_0_2_10_10
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4913314051&ref_=nav_em_off_printers_0_2_10_10" -s CLOSESPIDER_ITEMCOUNT=100 -o computers-printers.csv
+
+Electronics (9 sub)
+https://www.amazon.com.au/gp/browse.html?node=4885075051&ref_=nav_em_cam_all_0_2_11_3
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885075051&ref_=nav_em_cam_all_0_2_11_3" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-camera.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885078051&ref_=nav_em_elec_cinema_0_2_11_4
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885078051&ref_=nav_em_elec_cinema_0_2_11_4" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-cinema.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885118051&ref_=nav_em_elec_speakers_0_2_11_5
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885118051&ref_=nav_em_elec_speakers_0_2_11_5" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-speakers.csv
+
+headphones-earphones
+https://www.amazon.com.au/s?rh=n%3A4885206051&fs=true&ref=lp_4885206051_sar
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s?rh=n%3A4885206051&fs=true&ref=lp_4885206051_sar" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-headphones-earphones.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885131051&ref_=nav_em_elec_tvs_0_2_11_7
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885131051&ref_=nav_em_elec_tvs_0_2_11_7" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-tvs.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885080051&ref_=nav_em_elec_mob_0_2_11_8
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885080051&ref_=nav_em_elec_mob_0_2_11_8" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-mobile-phones.csv
+
+smart-home
+https://www.amazon.com.au/s?i=specialty-aps&srs=5373356051&rh=n%3A5373356051&fs=true&ref=lp_5373356051_sar
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s?i=specialty-aps&srs=5373356051&rh=n%3A5373356051&fs=true&ref=lp_5373356051_sar" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-smart-home.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885086051&ref_=nav_em_wl_wear_tech_0_2_11_12
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885086051&ref_=nav_em_wl_wear_tech_0_2_11_12" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-wearable-tech.csv
+
+https://www.amazon.com.au/gp/browse.html?node=4885083051&ref_=nav_em_wl_gps_0_2_11_13
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=4885083051&ref_=nav_em_wl_gps_0_2_11_13" -s CLOSESPIDER_ITEMCOUNT=100 -o electronics-gps.csv
+
+Pets Supplies (5 sub)
+https://www.amazon.com.au/gp/browse.html?node=5581858051&ref_=nav_em__pets_birds_0_2_22_3
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5581858051&ref_=nav_em__pets_birds_0_2_22_3" -s CLOSESPIDER_ITEMCOUNT=100 -o petsCate/pets-birds.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5581859051&ref_=nav_em__pets_cat_0_2_22_4
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5581859051&ref_=nav_em__pets_cat_0_2_22_4" -s CLOSESPIDER_ITEMCOUNT=100 -o petsCate/pets-cats.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5581860051&ref_=nav_em__pets_dog_0_2_22_5
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5581860051&ref_=nav_em__pets_dog_0_2_22_5" -s CLOSESPIDER_ITEMCOUNT=100 -o petsCate/pets-dogs.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5581857051&ref_=nav_em__pets_fish_0_2_22_6
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5581857051&ref_=nav_em__pets_fish_0_2_22_6" -s CLOSESPIDER_ITEMCOUNT=100 -o petsCate/pets-fish.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5581863051&ref_=nav_em__pets_small_0_2_22_7
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5581863051&ref_=nav_em__pets_small_0_2_22_7" -s CLOSESPIDER_ITEMCOUNT=100 -o petsCate/pets-small.csv
+
+Toys & Games
+https://www.amazon.com.au/gp/browse.html?node=5030677051&ref_=nav_em_toys_arts_0_2_26_3
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5030677051&ref_=nav_em_toys_arts_0_2_26_3" -s CLOSESPIDER_ITEMCOUNT=100 -o toysCate/toys-arts.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5030679051&ref_=nav_em_toys_building_0_2_26_4
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5030679051&ref_=nav_em_toys_building_0_2_26_4" -s CLOSESPIDER_ITEMCOUNT=100 -o toysCate/toys-building.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5030698051&ref_=nav_em_toys_outdoor_0_2_26_5
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5030698051&ref_=nav_em_toys_outdoor_0_2_26_5" -s CLOSESPIDER_ITEMCOUNT=100 -o toysCate/toys-outdoors.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5030688051&ref_=nav_em_toys_learning_0_2_26_6
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5030688051&ref_=nav_em_toys_learning_0_2_26_6" -s CLOSESPIDER_ITEMCOUNT=100 -o toysCate/toys-learning.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5030765051&ref_=nav_em_toys_board_0_2_26_7
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5030765051&ref_=nav_em_toys_board_0_2_26_7" -s CLOSESPIDER_ITEMCOUNT=100 -o toysCate/toys-board.csv
+
+Video games (6 sub)
+https://www.amazon.com.au/gp/browse.html?node=5250869051&ref_=nav_em_vg_nintendo_0_2_27_5
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5250869051&ref_=nav_em_vg_nintendo_0_2_27_5" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-nintendo.csv
+
+https://www.amazon.com.au/s/?bbn=4852675051&rh=n%3A4852675051%2Cp_89%3APlayStation&ref_=nav_em_0_2_27_6
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s/?bbn=4852675051&rh=n%3A4852675051%2Cp_89%3APlayStation&ref_=nav_em_0_2_27_6" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-PlayStation.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5250879051&ref_=nav_em_vg_xbox_0_2_27_7
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5250879051&ref_=nav_em_vg_xbox_0_2_27_7" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-Xbox.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5393347051&ref_=nav_em_vg_consoles_0_2_27_8
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s?rh=n%3A5393347051&fs=true&ref=lp_5393347051_sar" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-console.csv
+
+https://www.amazon.com.au/gp/browse.html?node=5250870051&ref_=nav_em_vg_pc_0_2_27_9
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/gp/browse.html?node=5250870051&ref_=nav_em_vg_pc_0_2_27_9" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-pc.csv
+
+https://www.amazon.com.au/s?rh=n%3A5307353051&fs=true&ref=lp_5307353051_sar
+scrapy crawl amazon_categ_crawl -a domain="https://www.amazon.com.au/s?rh=n%3A5307353051&fs=true&ref=lp_5307353051_sar" -s CLOSESPIDER_ITEMCOUNT=100 -o videogamesCate/videogames-accessories.csv
+
