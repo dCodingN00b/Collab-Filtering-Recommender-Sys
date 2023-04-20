@@ -18,14 +18,13 @@
 	}
 
 	$userType = $_SESSION['userType'];
-	$pricePlan = $_SESSION['currentplan'];
-	$daysRemaining = $_SESSION['daysremaining'];
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="workspace_style.css?version21">
+<link rel="stylesheet" href="workspace_style.css?version25">
 <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
 <style>
@@ -35,83 +34,17 @@
 	margin-top: 3px;
 	z-index: 1;
 }
+
+li a[name='workspace'] {
+	border-bottom: 2px solid lightgreen !important;
+}
+
 </style>
 <script>
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-function openNav() {
-  var sidenav = document.getElementById("mySidenav");
-  var main = document.getElementById("main");
-  var menu = document.getElementById("menu");
-  var menuwords = document.getElementById("menuwords");
-  var adddataset = document.getElementById("adddataset");
-  var workspace = document.getElementById("workspace");
-  var uploadeddata = document.getElementById("uploadeddata");
-  var results = document.getElementById("results");
-  var id =<?php echo json_encode($id); ?>;
-  if (sidenav.style.width === "250px") {
-    sidenav.style.width = "50px";
-	main.style.marginLeft = "0px";
-	menu.style.marginLeft = "0px";
-	menuwords.innerHTML = "";
-	menu.style.transition = "all 0.5s";
-	menu.src = "images/menu.png";
-	document.getElementById("sidewords4").innerHTML="";
-	document.getElementById("sidewords5").innerHTML="";
-	if (id == ''){
-		workspace.style.transform = 'translate(-100px, 0px)';
-		workspace.style.transition = '0.5s';
-	}else if(id == 'adddata'){
-		adddataset.style.transform = 'translate(-100px, 0px)';
-		adddataset.style.transition = '0.5s';
-	}else if (id == 'uploadeddata'){
-		uploadeddata.style.transform = 'translate(-100px, 0px)';
-		uploadeddata.style.transition = '0.5s';
-	}else{
-		results.style.transform = 'translate(-100px, 0px)';
-		results.style.transition = '0.5s';
-	}
-	document.getElementById("sidewords1").innerHTML="";
-	document.getElementById("sidewords2").innerHTML="";
-	document.getElementById("sidewords3").innerHTML="";
-	
-
-  } else {
-    sidenav.style.width = "250px";
-	menuwords.innerHTML = "RECS";
-    main.style.marginLeft = "180px";
-	menuwords.innerHTML = " ";
-	menuwords.style.fontSize = 'x-large';
-	menu.src = "images/left.png";
-	menu.style.marginLeft = "0px";
-	menu.style.transition = "0.5s";
-	sleep(100).then(() => {
-    // Do something after the sleep!
-	document.getElementById("sidewords4").innerHTML="Generate Ratings / Recommendations (REC's Data)";
-	document.getElementById("sidewords5").innerHTML="Results";
-	document.getElementById("sidewords1").innerHTML="Add Data Set";
-	document.getElementById("sidewords2").innerHTML="Uploaded Data Set";
-	document.getElementById("sidewords3").innerHTML="Generate Ratings / Recommendations (Your Data)";
-	});
-	if (id == ''){
-		workspace.style.transform = 'translate(0px, 0px)';
-	}else if(id == 'adddata'){
-		adddataset.style.transform = 'translate(0px, 0px)';
-	}else if (id == 'uploadeddata'){
-		uploadeddata.style.transform = 'translate(0px, 0px)';
-	}else {
-		results.style.transform = 'translate(0px, 0px)';
-	}
-	
-  }
-}
-
 function currentLeftSideBarColor (){
 	var id =<?php echo json_encode($id); ?>;
 	
-	if (id == '' || id == 'intro'){
+	if (id == 'intro'){
 		document.getElementById("intro").style.backgroundColor = "#c7dbf0";
 	}
 	else if (id == 'adddata'){
@@ -129,6 +62,18 @@ function currentLeftSideBarColor (){
 	else if (id == 'generate-recommend-recs'){
 		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
 	}
+	else if (window.location.href.indexOf("generate-recommend-recs") != -1){
+		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	}
+	else if (window.location.href.indexOf("generate-recommend") != -1){
+		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
+	}
+	else if (window.location.href.indexOf("generate-ratings-recs") != -1){
+		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	}
+	else if (window.location.href.indexOf("generate-ratings") != -1){
+		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
+	}
 	else if (id == 'addlist'){
 		document.getElementById("addlist").style.backgroundColor = "#c7dbf0";
 	}
@@ -136,7 +81,6 @@ function currentLeftSideBarColor (){
 		document.getElementById("uploadedlist").style.backgroundColor = "#c7dbf0";
 	}
 }
-
 // Get the link element
 const link = document.querySelector('a[href="#bottom"]');
 
@@ -160,27 +104,10 @@ link.addEventListener('click', (event) => {
 </head>
 <body onload = 'currentLeftSideBarColor ()'>
 
-<header>
-		 <nav>
-			<ul class="nav-titles">
-				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
-				<li><a name = 'workspace' href="workspace.php">Workspace</a></li>
-				<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
-				Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
-			</ul>
-				
-			<div class="dropdown">
-				<button class="profile"><?=$_SESSION['name'][0]?></button>
-				<div class="profile-content">
-					<li><a class="logout" href="accountsettings.php">Account Settings</a></li>
-					<li><a class="logout" href="logout.php">Logout</a></li>
-				</div>
-			</div>        
-		</nav>		
-</header>
-
 
 <?php 
+include('navbar.php');
+
 # if organization
 if ($userType == '1'){ 
 	echo"
@@ -205,15 +132,15 @@ if ($userType == '1'){
 		<span style='font-size: 16px; font-weight:500;' id = 'sidewords4'>Generate Ratings / Recommendations (Your Data)</span>
 	  </a>
 	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>Our Data</p>";
-	  /*echo"
+	  echo"
 	  <a href='workspace.php?id=addlist#bottom' id = 'addlist'>
 		<img src='images/adddata.svg' alt='Image 1'>
-		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List</span>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List of URLs</span>
 	  </a>
 	  <a href='workspace.php?id=uploadedlist#bottom' id = 'uploadedlist'>
 		<img src='images/uploadeddata.svg' alt='Image 2'>
-		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List</span>
-	  </a>";*/
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List of URLs</span>
+	  </a>";
 	  echo"
 	  <a href='generate-recommend-recs.php#bottom' id = 'generaterecommendrecs'>
 	  <img src='images/recsdata3.svg' alt='Image 3'>
@@ -252,10 +179,10 @@ if ($userType == '1'){
 		echo"<div class='adddata-frame'>";
 		echo"<div class = 'adddataset' id ='adddataset' style='margin-left:250px'>";
 		echo"<h1 style='text-align: center'>Add Data Set</h1>";
-		echo"<p style='text-align: center'>Upload your data here</p></br>";
+		echo"<p style='text-align: center'>Upload your data here (.csv, .json):</p></br>";
 		echo"<div class = 'adddataform'>";
 		echo"<div class='drag-area'>
-    <form style='transform: translate(32%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
+    <form style='transform: translate(37%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
 			  <input style='background-color:whitesmoke;border:1px solid lightgrey;'type='file' name='fileToUpload' id='fileToUpload'>
 			  <input type='submit' value='Upload File' name='submit'>
 			</form>
@@ -271,8 +198,8 @@ if ($userType == '1'){
 	}else if ($id == 'addlist'){
 		echo"<title>Add List</title>";
 		echo"<div class = 'adddataset' id ='adddataset' style='margin-left:250px'>";
-		echo"<h1 style='text-align: center'>Add List</h1>";
-		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl:</p></br>";
+		echo"<h1 style='text-align: center'>Add List of URLs</h1>";
+		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl (.txt):</p></br>";
 		echo"<form style='transform: translate(32%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
 			  <input style='background-color:whitesmoke;border:1px solid lightgrey;'type='file' name='fileToUpload' id='fileToUpload'>
 			  <input type='submit' value='Upload File' name='submit'>
@@ -280,7 +207,7 @@ if ($userType == '1'){
 	}else if ($id == 'uploadedlist'){
 		echo"<title>Uploaded List</title>";
 		echo"<div class = 'uploadedlist' id ='uploadedlist' style='margin-left:250px'>";
-		echo"<h1 style='text-align: center'>Uploaded List</h1>";
+		echo"<h1 style='text-align: center'>Uploaded List of URLs</h1>";
 		echo "</div>";
 	}
 }
@@ -291,7 +218,7 @@ else if ($userType == '2'){
 	<div class='topsidenav'></div>
 	<p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px; background-color:whitesmoke; 'id = 'sidewords2'>Getting Started</p>
 	  <a href='workspace.php?id=intro' id = 'intro'>
-		<img src='images/adddata.svg' alt='Image 1'>
+		<img src='images/rocket.svg' alt='Image 1'>
 		<span style='font-size: 16px; font-weight:500;' id = 'sidewords1' >Introduction</span>
 	  </a>
 	  <p style='font-size: 20px; padding-left: 15px; padding-top: 20px; padding-bottom: 10px;'id = 'sidewords2'>Our Data</p>";
@@ -299,11 +226,11 @@ else if ($userType == '2'){
 	  echo"
 	  <a href='workspace.php?id=addlist' id = 'addlist'>
 		<img src='images/adddata.svg' alt='Image 1'>
-		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List</span>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List of URLs</span>
 	  </a>
 	  <a href='workspace.php?id=uploadedlist' id = 'uploadedlist'>
 		<img src='images/uploadeddata.svg' alt='Image 2'>
-		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List of URLs</span>
 	  </a>";
 	  echo"
 	  <a href='generate-recommend-recs.php#bottom' id = 'generaterecommendrecs'>
@@ -357,8 +284,8 @@ else if ($userType == '2'){
 	}else if ($id == 'addlist'){
 		echo"<title>Add Data</title>";
 		echo"<div class = 'adddataset' id ='adddataset' style='margin-left:250px'>";
-		echo"<h1 style='text-align: center'>Add List</h1>";
-		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl:</p></br>";
+		echo"<h1 style='text-align: center'>Add List of URLs</h1>";
+		echo"<p style='text-align: center'>Upload your list of URL here for us to crawl (.txt):</p></br>";
 		echo"<form style='transform: translate(32%, 0%); action='upload.php' method='post' enctype='multipart/form-data'>
 			  <input style='background-color:whitesmoke;border:1px solid lightgrey;'type='file' name='fileToUpload' id='fileToUpload'>
 			  <input type='submit' value='Upload File' name='submit'>
@@ -366,7 +293,7 @@ else if ($userType == '2'){
 	} else if ($id == 'uploadedlist'){
 		echo"<title>Uploaded List</title>";
 		echo"<div class = 'uploadedlist' id ='uploadedlist' style='margin-left:250px'>";
-		echo"<h1 style='text-align: center'>Uploaded List</h1>";
+		echo"<h1 style='text-align: center'>Uploaded List of URLs</h1>";
 		echo "</div>";
 	}
 }

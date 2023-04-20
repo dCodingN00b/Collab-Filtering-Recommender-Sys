@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 	0px 0px;
+	font-family: "Montserrat", sans-serif;
+	color: black;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+body{
+	height: 1200px;
+}
+
+h1 {
+	padding: 20px 20px;
+	color:black;
+}
+
+/*Website headers/categories*/
+header {
+	
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 1%;
+	background: aliceblue;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;	
+}
+
+/*nav titles customizations and animation*/
+
+.nav-titles{
+	list-style: none;
+	display: flex;
+	overflow:hidden;
+}
+
+.nav-titles li {
+	padding: 0px 30px;
+}
+
+.nav-titles li a {
+
+	float: left;
+	font-size: 16px;
+	color: black;
+	padding: 24px 0px;
+	text-decoration: none;
+	position:Relative;
+	z-index: 2;
+}
+.nav-titles li a:hover {
+	color: forestgreen;
+}
+
+
+li a[name='recs']{
+	letter-spacing: 2px;
+	color:black;
+	font-size: 22px;
+	padding: 20px 0px;
+	text-align: center;
+	float: left;
+	position:relative;
+}
+
+/*no color change*/
+.nav-titles li a[name='recs']:hover {
+	color: black;
+	border-bottom: None;
+}
+
+/* dropdown container */
+.dropdown {
+	right: 1px;
+
+	float: right;
+}
+
+/*Login and Sign up Customizations*/
+.dropdown {
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	
+}
+
+.dropdown  {
+	content: '';
+    position: absolute;
+    border: 0px solid #000;
+	cursor: pointer;
+	transform: translate(0%, -90%);
+	padding: 21px 7px;
+	z-index: 1;
+}
+
+
+/* Dropdown button */
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 2px solid black;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+/*Dropdown nav bar customization*/
+.dropdown:hover, .profile:hover {
+	color: black;
+	cursor:pointer;
+	background-color: lightgreen;
+}
+
+/* Dropdown content */
+.profile-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 180px;
+	border: 1px solid lightgrey;
+	z-index: 1;
+	left:auto;
+	right: -1em;
+	text-align:right;
+	transform: translate(-5%, 65%);
+	
+}
+
+/*inside the profile dropdown*/
+.profile-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+/*profile dropdown animation*/
+.dropdown:hover .profile-content {
+	display: block;
+}
+
+.profile-content a:hover {
+	background-color: lightgreen;
+	
+}
+
+h1{
+	text-align:center;
+	padding: 50px 0px;	
+}
+
+/*Form customization */
+.reg{
+ display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+
+}
+
+
+
+/*text field customizations*/
+.text_field{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+	padding: 15px;
+	   margin: 0.5%;
+}
+
+.interests_field{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+	padding: 15px;
+	margin-top: 0.5%;
+	   
+}
+
+.fields{
+	 margin: 0.5%;
+    width: 35%;
+    box-sizing: border-box;
+    height: 600px;
+    
+   
+
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+	
+}
+
+
+body {
+	height: 100px;
+}
+
+.interests{
+	width: 100%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	
+}
+
+.agegroup{
+	width: 100%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	
+}
+
+/*text field box*/
+.text_field input{
+	width: 100%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+}
+
+
+
+/*text field animation*/
+.text_field input:hover{
+	border: 1px solid green;
+}
+
+
+
+/*edit and cancel Button Customizations*/
+input[type="submit"]{
+	width: 46%;
+	height: 50px;
+	background: lightgreen;
+	border: 1px solid whitesmoke;
+	border-radius: 5px;
+	font-size: 20px;
+	color: whitesmoke;
+	font-weight: 700;
+	cursor: pointer;
+	transform: translate(20%, 0%);
+	outline: none;
+}
+
+input[type="button"]{
+	width: 40%;
+	height: 50px;
+	background: lightgreen;
+	border: 1px solid whitesmoke;
+	border-radius: 5px;
+	font-size: 20px;
+	color: whitesmoke;
+	font-weight: 700;
+	cursor: pointer;
+	transform: translate(10%, 0%);
+	outline: none;
+}
+
+/*Submit and Cancel Button Animations*/
+input[type="submit"]:hover{
+	border-color: whitesmoke;
+	background: MediumSeaGreen;
+    color: #fff;
+	transition: .2s;
+}
+
+input[type="button"]:hover{
+	border-color: whitesmoke;
+	background: MediumSeaGreen;
+    color: #fff;
+	transition: .2s;
+}
+
+
+
+span {
+	color:black;
+	font-size: 16px;
+	padding: 10px 0px;
+}
+
+.text_field p {
+	color: black;
+}

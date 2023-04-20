@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+}
+p{
+	color: black;
+}
+
+.wrapper{
+    background: rgb(0,36,0);
+	background:powderBlue;
+	background: radial-gradient(circle, rgba(0,36,0,0.5048144257703081) 0%, rgba(179,238,182,0.5664390756302521) 
+0%, rgba(114,200,110,1) 100%, rgba(200,229,201,0.4235819327731093) 100%);
+    padding: 0 20px 0 20px;
+	
+	transform: translate(0%, 0%);
+	
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.row{
+    width: 1200px;
+    height: 1000px;
+    border-radius: 0px;
+    background: white;
+ 
+}
+.side-image{
+    background-image: url("images/test.jpg");
+    background-position: -300px 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 5px 0 0 5px;
+	transform: translate(0%, 0%);
+	
+}
+
+.usertype{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+	transform: translate(0.1%, 0%);
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+img{
+    width: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.text p {
+	letter-spacing: 2px;
+	font-size: 25px;
+	padding: 10px 10px;
+	color:black;
+	font-weight: 600;
+}
+
+.reg{
+	width: 450px;
+	transform: translate(10%, 0%);
+}
+
+.reg h3 {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	
+	width: 140px;
+    display: inline-block;
+	transform: translate(44%, 0%);
+}
+
+.reg h3[name='orgregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 160px;
+    display: inline-block;
+	transform: translate(41%, 0%);
+}
+
+.reg h3[name='indregister'] {
+	color: black;
+	text-align: center;
+	padding: 14px 0px;
+	font-size: 20px;
+	border-bottom: 2px solid lavender;
+	width: 160px;
+    display: inline-block;
+	transform: translate(40%, 0%);
+}
+
+
+
+
+/*login and signup heading customization*/
+.reg h1 {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	
+	width: 222.5px;
+    display: inline-block;
+	
+}
+
+.reg h1[name='login'] {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+	transform:translate(3%, 0%);
+}
+
+.reg h1[name='register'] {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+	transform:translate(0%, 0%);
+}
+
+.reg a{
+	text-decoration: none;
+}
+
+
+
+.reg h1[name='register']{
+	border-bottom:2px solid lightgreen;
+	color:black;
+}
+
+.reg h1[name='login']:hover{
+	color: green;
+	border-bottom:2px solid lightgreen;
+}
+
+/*Form customization */
+.reg form{
+	padding: 0px 60px;
+	box-sizing: border-box;
+}
+
+/*text field customizations*/
+form .text_field{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+}
+
+/*text field box*/
+.text_field input{
+	
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+}
+
+a[name='recs']{
+	text-decoration:none;
+	color:black;
+}
+
+a[name='recs']:hover{
+	text-decoration:none;
+	color:black;
+}
+
+
+/*text field animation*/
+.text_field input:hover{
+	border: 1px solid green;
+}
+
+/*Forget Password text*/
+.pass{
+	margin: -5px 0 20px 5px;
+	color: black;
+	cursor: pointer;
+}
+
+/*Forget Password text animation*/
+.pass:hover{
+	text-decoration: underline;
+}
+
+a[name='ref'] {
+	position: absolute;
+    bottom: 0;
+}
+
+input.tickbox {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxes label {
+  display: block;
+  padding-right: 10px;
+  padding-left: 33px;
+  text-indent: -22px;
+}
+.checkboxes input {
+  vertical-align: middle;
+}
+.checkboxes label span {
+  vertical-align: middle;
+}
+
+/*Login Button Customizations*/
+input[type="submit"]{
+	width: 100%;
+	height: 50px;
+	background: lightgreen;
+	border: 1px solid whitesmoke;
+	border-radius: 5px;
+	font-size: 20px;
+	color: whitesmoke;
+	font-weight: 700;
+	cursor: pointer;
+	
+	outline: none;
+}
+
+/*Login Button Animations*/
+input[type="submit"]:hover{
+	border-color: whitesmoke;
+	background: MediumSeaGreen;
+    color: #fff;
+	transition: .2s;
+}
+
+/*Sign Up Link Customizations*/
+.signup_link{
+	margin: 30px 0;
+	text-align: center;
+	font-size: 16px;
+	color: black;
+}
+
+.signup_link a{
+	color: light blue;
+	text-decoration: none;
+}
+
+/*Sign Up link Animation*/
+.signup_link a:hover{
+	text-decoration: underline;
+}
+
+span {
+	color:black;
+	font-size: 16px;
+	padding: 10px 0px;
+}
+
+.text_field p {
+	color: black;
+}
+
+
+/*for unregister users to generate reco*/
+.container11 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 50px;
+	opacity: 0;
+}
+
+
+.container11.visible {
+	opacity: 1;
+}
+
+.row11 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.box11 {
+	color:#212121;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
+	border: 1px solid black;
+	display: flex;
+	border-radius: 30px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: white;
+}
+
+.box11.selected {
+	background-color: lightgreen;
+	font-weight: bold;
+	color: black;
+}
+
+.box11.visible.selected-box11 {
+	background-color: lightgreen;
+	font-weight: bold;
+	color: black;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+  
+}
+
+
+
+#next-btn {
+	padding: 15px 35px;	
+	background-color: lightgreen;
+	color: black;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	border: 1px solid black;
+	text-decoration: none;
+}
+
+#next-btn:hover {
+	padding: 16px 36px;	
+	transition: 0.2s;
+}
+
+
+.emailimg {
+	width: 35%;
+	margin-left: 120px;
+	margin-top: 200px;
+}
+
+
+@media only screen and (max-width: 768px){
+    .side-image{
+        border-radius: 10px 10px 0 0;
+    }
+    img{
+        width: 35px;
+        position: absolute;
+        top: 20px;
+        left: 47%;
+    }
+    .text{
+        position: absolute;
+        top: 70%;
+        text-align: center;
+    }
+    .text p,i{
+        font-size: 17px;
+    }
+    .row{
+        max-width: 420px;
+        width: 100%;
+    }
+}
+

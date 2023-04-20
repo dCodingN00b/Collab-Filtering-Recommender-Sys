@@ -1,0 +1,195 @@
+h1{
+	text-align:center;
+	padding: 50px 0px;
+}
+
+.generate-frame{
+	display:flex;
+	justify-content: center;
+	margin: 0 auto;
+	position: relative;
+	z-index: -2;
+	
+}
+
+input[name='product']{
+
+	padding: 0 5px;
+	height: 27px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid black;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	
+}
+
+.product {
+	transform: translate(28%, 200%);
+  
+
+}
+
+.generatebutton {
+		transform: translate(38%, 220%);
+}
+
+.generate {
+	position: absolute;
+	width: 100%;
+}
+
+.generate-title {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	transform: translate(-8%, 0%)
+}
+
+.generate-title h1 {
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+    display: inline-block;
+	
+}
+
+.generate-title h1[name='recommend']{
+	border-bottom:2px solid lightgreen;
+}
+
+.generate-title h1[name='ratings']{
+	color:grey;
+}
+
+.generate-title h1[name='ratings']:hover{
+	color:green;
+	border-bottom:2px solid lightgreen;
+	cursor:pointer;
+}
+
+/*hint customize*/
+input[name='generate']{
+	padding: 10px 10px;
+
+	background: lightgreen;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	color: black;
+	font-weight: 700;
+	cursor: pointer;
+	
+	outline: none;
+}
+
+input[type="submit"]:hover{
+	transform:scale(1.02);
+	border-color: black;
+	
+    color: black;
+	transition: .2s;
+}
+
+/* Style for select element */
+select {
+  padding: 0.5rem; /* Add some padding for better spacing */
+  font-size: 1rem; /* Set font size */
+  border-radius: 0.25rem; /* Add border radius for rounded corners */
+  border: 1px solid #ccc; /* Add a border */
+  width: 100%; /* Set width to 100% to fit the parent container */
+  max-width: 20rem; /* Set a maximum width */
+  box-sizing: border-box; /* Include border and padding in the element's total width */
+  background-color: #f2f2f2; /* Set a background color */
+  color: #333; /* Set text color */
+}
+
+/* Style for option elements */
+option {
+  padding: 0.5rem; /* Add some padding for better spacing */
+  font-size: 1rem; /* Set font size */
+  background-color: #f2f2f2; /* Set a background color */
+  color: #333; /* Set text color */
+}
+
+/*
+
+input[type='submit'] {
+  padding: 0.5rem 1rem; 
+  font-size: 1rem;
+  border-radius: 0.25rem; 
+  border: 1px solid #ccc; 
+ 
+  color: #333; 
+  cursor: pointer; 
+  transition: all 0.2s ease-in-out;
+}
+
+
+input[type='submit']:hover {
+  background-color: #c7c7c7; 
+  color: #fff; 
+}
+
+*/
+
+[data-tip] {
+	position:relative;
+	
+
+}
+[data-tip]:before {
+	content:'';
+	display:none;
+	content:'';
+	/*up arrow*/
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid lightblue;	
+	position:absolute;
+	
+	top:25px;
+	left:5px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:30px;
+	left:-60px;
+	padding:5px 8px;
+	background:lightblue;
+	color:black;
+	
+	z-index:9;
+	font-size: 0.75em;
+	height:110px;
+	width: 260px;
+	line-height:18px;
+
+	border-radius: 3px;
+	white-space: pre-wrap;
+	
+	
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+
+.hint:hover{
+	cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+	

@@ -276,10 +276,55 @@ h1{
 	cursor:pointer;
 }
 
-input[name='generate']{
-	padding: 10px 10px;
+
+input[name='user']{
+
+	padding: 0 5px;
+	height: 27px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid black;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
 	
 }
+
+input[name='product']{
+
+	padding: 0 5px;
+	height: 27px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid black;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	
+}
+
+input[name='generate']{
+	padding: 10px 10px;
+
+	background: lightgreen;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	color: black;
+	font-weight: 700;
+	cursor: pointer;
+	
+	outline: none;
+}
+
+input[type="submit"]:hover{
+	transform:scale(1.02);
+	border-color: black;
+	
+    color: black;
+	transition: .2s;
+}
+
 
 /*hint customize*/
 .tooltip1[data-tip] {
@@ -391,17 +436,20 @@ input[name='generate']{
 
 .user {
 	
-	transform: translate(19%, 200%);
+	transform: translate(16.8%, 200%);
 
 }
 
 .product{
 	
-	transform: translate(43%, 100%);
+	transform: translate(42%, 100%);
 	
 
 }
 
+.generatebutton {
+		transform: translate(38%, 215%);
+}
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}

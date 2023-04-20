@@ -10,7 +10,8 @@
 }
 
 body{
-	height: 1200px;
+	height: 800px;
+	overflow-x: hidden;
 }
 
 h1 {
@@ -161,25 +162,27 @@ h1{
 
 /*Form customization */
 .reg{
-	width: 450px;
-	margin: 0 auto;
-	height: 900px;
+ display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1500px;
 	
 }
 
-.reg form{
-	padding: 0px 60px;
-	box-sizing: border-box;
+.frame {
+	height:800px;
 }
 
-
 /*text field customizations*/
-form .text_field{
+.text_field{
 	position: relative;
 	margin: 34px 10px;
 	color:white;
+	padding: 15px;
+	   margin: 0.5%;
 }
-
 a[name='recs']{
 	text-decoration:none;
 	color:black;
@@ -190,7 +193,31 @@ a[name='recs']:hover{
 	color:black;
 }
 
+.fields-left{
+	 margin: 0.5%;
+    width: 30%;
+    box-sizing: border-box;
+    height: 800px;
+    
+   
 
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+	
+}
+
+.fields-right{
+	 margin: 0.5%;
+    width: 30%;
+    box-sizing: border-box;
+    height: 600px;
+ 
+
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
 
 /*text field box*/
 .text_field input{
@@ -243,33 +270,7 @@ a[name='recs']:hover{
 	cursor: pointer;
 }
 
-/*Forget Password text animation*/
-.pass:hover{
-	text-decoration: underline;
-}
 
-a[name='ref'] {
-	position: absolute;
-    bottom: 0;
-}
-
-input.tickbox {
-  width: 20px;
-  height: 20px;
-}
-
-.checkboxes label {
-  display: block;
-  padding-right: 10px;
-  padding-left: 33px;
-  text-indent: -22px;
-}
-.checkboxes input {
-  vertical-align: middle;
-}
-.checkboxes label span {
-  vertical-align: middle;
-}
 
 /*edit and cancel Button Customizations*/
 input[type="submit"]{
@@ -313,32 +314,4 @@ input[type="button"]:hover{
 	background: MediumSeaGreen;
     color: #fff;
 	transition: .2s;
-}
-
-/*Sign Up Link Customizations*/
-.signup_link{
-	margin: 30px 0;
-	text-align: center;
-	font-size: 16px;
-	color: black;
-}
-
-.signup_link a{
-	color: light blue;
-	text-decoration: none;
-}
-
-/*Sign Up link Animation*/
-.signup_link a:hover{
-	text-decoration: underline;
-}
-
-span {
-	color:black;
-	font-size: 16px;
-	padding: 10px 0px;
-}
-
-.text_field p {
-	color: black;
 }

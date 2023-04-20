@@ -22,6 +22,27 @@
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
  <link rel="stylesheet" href="edituser_style.css?version8">
+ <style>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>
 </head>
 <!-- change of button (all, admin, org, ind) based on current url-->
 <body onload = 'checkOrg();'>
@@ -35,8 +56,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-			    <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
-				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
+			    <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'margin-right: 60px;border-bottom: 2px solid lightgreen;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'margin-right: 60px;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>

@@ -6,7 +6,9 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-
+body {
+	overflow-x: hidden;
+}
 p{
 	color: black;
 }
@@ -87,7 +89,7 @@ img{
 	text-align: center;
 	padding: 14px 0px;
 	font-size: 20px;
-	border-bottom: 2px solid lavender;
+	
 	width: 140px;
     display: inline-block;
 	transform: translate(44%, 0%);
@@ -135,7 +137,7 @@ img{
 	text-align: center;
 	padding: 30px 20px;
 	font-size: 30px;
-	border-bottom: 2px solid lavender;
+	
 	width: 222.5px;
     display: inline-block;
 	
@@ -167,10 +169,7 @@ img{
 	text-decoration: none;
 }
 
-.indreg h1:hover{
-	color: green;
-	border-bottom:2px solid lightgreen;
-}
+
 
 .indreg h1[name='register']{
 	border-bottom:2px solid lightgreen;
@@ -309,6 +308,82 @@ span {
 .text_field p {
 	color: black;
 }
+
+
+/*for unregister users to generate reco*/
+.container11 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 50px;
+	opacity: 0;
+}
+
+
+.container11.visible {
+	opacity: 1;
+}
+
+.row11 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.box11 {
+	color:#212121;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
+	border: 1px solid black;
+	display: flex;
+	border-radius: 30px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: white;
+}
+
+.box11.selected {
+	background-color: lightgreen;
+	font-weight: bold;
+	color: black;
+}
+
+.box11.visible.selected-box11 {
+	background-color: lightgreen;
+	font-weight: bold;
+	color: black;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+  
+}
+
+
+
+#next-btn {
+	padding: 15px 35px;	
+	background-color: lightgreen;
+	color: black;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	border: 1px solid black;
+	text-decoration: none;
+}
+
+#next-btn:hover {
+	padding: 16px 36px;	
+	transition: 0.2s;
+}
+
+
 
 @media only screen and (max-width: 768px){
     .side-image{

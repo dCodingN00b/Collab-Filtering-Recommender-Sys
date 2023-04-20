@@ -1,0 +1,207 @@
+<style>
+body {
+  background-color: aliceblue;
+  
+}
+
+body{
+	
+}
+
+.filtering {
+	padding-left: 10px;
+	
+}
+.quotaimg {
+	height: 50px;
+	width: 50px;
+	margin-top: 45px;
+	margin-right: 10px;
+}
+
+.usageheader{
+	
+	background-color: aliceblue;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border: 1px solid transparent;
+	 height:80px;
+	 border-bottom: 2px solid #c7c7c7;
+	 
+}
+
+.usageheader h1{
+	 font-size: 26px;
+	 text-align: left;
+	 margin-left: 20px;
+}
+
+
+.currentplanheader{
+	
+	background-color: aliceblue;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border: 1px solid transparent;
+	 height:80px;
+	 border-bottom: 2px solid #c7c7c7;
+	 
+}
+
+.currentplanheader h1{
+	 font-size: 26px;
+	 text-align: left;
+	 margin-left: 20px;
+}
+
+.billingheader{
+	
+	background-color: aliceblue;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border: 1px solid transparent;
+	 height:80px;
+	 border-bottom: 3px solid #c7c7c7;
+	 
+}
+
+.billingheader h1{
+	 font-size: 26px;
+	 text-align: left;
+	 margin-left: 20px;
+}
+
+
+.currentplaninfo{
+  display: table-row;
+  font-weight: 500;
+	height: 25px;
+}
+
+b {
+  display: table-cell;
+  transform: translate(10%,000%);
+}
+
+.box {
+  background-color: white;
+  border-radius: 10px;
+ 
+
+ 
+  width: 75%;
+  
+  height: 230px;
+  margin: auto;
+  position: relative;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+}
+
+.billingimg {
+	height: 50px;
+	width: 50px;
+	margin-top: 40px;
+	margin-right: 10px;
+}
+
+.billingtable {
+	width: 75%;
+
+	margin: 0 auto;
+	
+	border-radius: 10px;
+}
+
+
+
+table {
+
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+th {
+	
+ background-color: whitesmoke;
+  color: white;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+ 
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+td {
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight:500;
+  color: 272727;
+}
+
+table, th, td {
+  border: none;
+}
+
+tr {
+	
+}
+
+
+
+.filterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+	
+}
+
+
+.filterButton button {
+	padding: 10px 30px;
+    border:none;
+	margin-right: 10px;
+	transform:translate(0%, 50%);
+}
+
+.filterButton button:hover{
+	background-color: #c7c7c7;
+	cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .box {
+    width: 90%;
+  }
+
+  .currentplanheader {
+    font-size: 24px;
+  }
+
+  .nextbillingdate p {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+</style>

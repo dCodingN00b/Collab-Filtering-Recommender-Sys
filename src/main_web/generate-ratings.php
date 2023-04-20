@@ -1,6 +1,10 @@
 <?php
 	// We need to use sessions, so you should always start sessions using the below code.
-	session_start();
+	 if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+	
 	// If the user is not logged in redirect to the login page...
 	if (!isset($_SESSION['loggedin'])) {
 		header('Location:login.php');
@@ -16,15 +20,13 @@
 	if (isset($_GET['option'])){
 		$option = $_GET['option'];
 	}
-	
-	$pricePlan = $_SESSION['currentplan'];
-	$daysRemaining = $_SESSION['daysremaining'];
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="generate-ratings_style.css?version11">
+<link rel="stylesheet" href="generate-ratings_style.css?version17">
 <style>
 #menu {
 	position: fixed;
@@ -32,60 +34,13 @@
 	margin-top: 3px;
 	z-index: 1;
 }
+
+li a[name='workspace'] {
+	border-bottom: 2px solid lightgreen !important;
+}
+
 </style>
 <script>
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-function openNav() {
-  var sidenav = document.getElementById("mySidenav");
-  var main = document.getElementById("main");
-  var menu = document.getElementById("menu");
-  var menuwords = document.getElementById("menuwords");
-  var adddataset = document.getElementById("adddataset");
-  var workspace = document.getElementById("workspace");
-  var uploadeddata = document.getElementById("uploadeddata");
-  var generate = document.getElementById('generate');
-  var id =<?php echo json_encode($id); ?>;
-  if (sidenav.style.width === "250px") {
-    sidenav.style.width = "50px";
-	main.style.marginLeft = "0px";
-	menu.style.marginLeft = "0px";
-	menuwords.innerHTML = "";
-	menu.style.transition = "all 0.5s";
-	menu.src = "images/menu.png";
-	document.getElementById("sidewords1").innerHTML="";
-	document.getElementById("sidewords2").innerHTML="";
-	document.getElementById("sidewords3").innerHTML="";
-	document.getElementById("sidewords4").innerHTML="";
-	document.getElementById("sidewords5").innerHTML="";
-	generate.style.transform = 'translate(-100px, 0px)';
-	generate.style.transition = '0.5s';
-	
-
-  } else {
-    sidenav.style.width = "250px";
-	menuwords.innerHTML = "RECS";
-    main.style.marginLeft = "180px";
-	menuwords.innerHTML = " ";
-	menuwords.style.fontSize = 'x-large';
-	menu.src = "images/left.png";
-	menu.style.marginLeft = "0px";
-	menu.style.transition = "0.5s";
-	sleep(100).then(() => {
-    // Do something after the sleep!
-	document.getElementById("sidewords1").innerHTML="Add Data Set";
-	document.getElementById("sidewords2").innerHTML="Uploaded Data Set";
-	document.getElementById("sidewords3").innerHTML="Generate Ratings / Recommendations (Your Data)";
-	document.getElementById("sidewords4").innerHTML="Generate Ratings / Recommendations (REC's Data)";
-	document.getElementById("sidewords5").innerHTML="Results";
-	});
-	generate.style.transform = 'translate(0px, 0px)';
-	
-  }
-}
-
 function currentLeftSideBarColor (){
 	var id =<?php echo json_encode($id); ?>;
 	
@@ -113,34 +68,24 @@ function currentLeftSideBarColor (){
 	else if (window.location.href.indexOf("generate-recommend") != -1){
 		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
 	}
+	else if (window.location.href.indexOf("generate-ratings-recs") != -1){
+		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	}
 	else if (window.location.href.indexOf("generate-ratings") != -1){
 		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
 	}
-	else if (window.location.href.indexOf("generate-rating-recs") != -1){
-		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	else if (id == 'addlist'){
+		document.getElementById("addlist").style.backgroundColor = "#c7dbf0";
+	}
+	else if (id == 'uploadedlist'){
+		document.getElementById("uploadedlist").style.backgroundColor = "#c7dbf0";
 	}
 }
 </script>
 </head>
 <body onload = 'currentLeftSideBarColor ()'>
-<header>
-		 <nav>
-			<ul class="nav-titles">
-				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
-				<li><a name = 'workspace' href="workspace.php">Workspace</a></li>
-				<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
-				Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
-			</ul>
-			<div class="dropdown">
-				<button class="profile"><?=$_SESSION['name'][0]?></button>
-				<div class="profile-content">
-					<a class="logout" href="accountsettings.php">Account Settings</a></li>
-					<a class="logout" href="logout.php">Logout</a></li>
-				</div>
-			  </div>        
-		</nav>		
-</header>
 <?php 
+include('navbar.php');
 echo"
 	<div id='mySidenav' class='sidenav' style='width: 250px; height: 530px;'>
 	<div class='topsidenav'></div>
@@ -166,11 +111,11 @@ echo"
 	  echo"
 	  <a href='workspace.php?id=addlist#bottom' id = 'addlist'>
 		<img src='images/adddata.svg' alt='Image 1'>
-		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List</span>
+		<span style='font-size: 16px; font-weight:500;'id = 'sidewords5'>Add List of URLs</span>
 	  </a>
 	  <a href='workspace.php?id=uploadedlist#bottom' id = 'uploadedlist'>
 		<img src='images/uploadeddata.svg' alt='Image 2'>
-		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List</span>
+		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List of URLs</span>
 	  </a>";
 	  echo"
 	  <a href='generate-recommend-recs.php#bottom' id = 'generaterecommendrecs'>
@@ -217,7 +162,11 @@ Alternatively, you can also pull the User ID from the Product URL in the Amazon 
 		<span style='font-size: 15px; color: white;'>?</span></div>
 	</div>
 </div>";
-echo"<p style='transform: translate(37%, 400%);'><input type='submit' name='generate' value='Generate'></p>";
+echo"<div style = 'margin-top: 55px;'> <span style = 'padding-left: 410px; font-size: 14px; color: #6e6d6d''>How to get <a href = 'http://localhost/fyp/documentation.php?part=howitworks&sub=userid#userid' 
+			style = 'text-decoration:underline; color: blue;'>User ID</a> and <a href = 'http://localhost/fyp/documentation.php?part=howitworks&sub=productid#productid' 
+			style = 'text-decoration:underline; color: blue;'>Product ID</a> ?</span></div>";
+
+echo"<div class = 'generatebutton' ><input type='submit' name='generate' value='Generate'></div>";
 echo"</form>";
 echo"</div></div></div>";
 ?>
