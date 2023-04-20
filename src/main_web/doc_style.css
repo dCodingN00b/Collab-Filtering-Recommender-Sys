@@ -5,21 +5,140 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
-.sidebar {
-	background-color: aliceblue;
-	color: black;
-	width: 20%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	overflow-y: auto;
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  
+  z-index: 9999;
 }
 
-.content {
-	margin-left: 30%;
-	padding: 20px;
-	width: 60%;
+
+
+
+
+
+/*Brand Name Customization*/
+header p {
+	 font-weight: 600;
+}
+
+/*Website headers/categories*/
+header {
+	 padding: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	padding: 0px 3%;
+	background: AliceBlue;
+	font-weight: 600;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	z-index:2;
+	position: relative;
+
+}
+
+
+/*nav titles customizations and animation*/
+.nav-titles{
+	list-style: none;
+	display: flex;
+	overflow: hidden;	
+	 
+}
+
+.nav-titles li a {
+
+	float: left;
+	font-size: 16px;
+	color: black;
+	text-align: center;
+	padding: 20px 33px;
+	text-decoration: none;
+
+}
+
+
+.nav-titles li a:hover {
+	color: MediumSeaGreen;
+}
+
+li a[name='recs']{
+	letter-spacing: 2px;
+	color:black;
+	font-size: 26px;
+	text-align: center;
+	float: left;
+	padding: 10px 50px;
+	transform: translate(-25%, 0%);
+}
+
+
+/*no color change*/
+.nav-titles li a[name='recs']:hover {
+	color: black;
+	border-bottom: None;
+}
+
+/*Login and Sign up Customizations*/
+.redirect{
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	margin-right: 120px;
+}
+
+
+
+.redirect li a {
+	padding: 10px 15px;
+	color:black;
+}
+
+.backtomain{
+	background-color: #a9fcb0;
+	width: 300px;
+	height: 100px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+}
+	
+.backtomain:hover {
+	background-color: lightGreen;
+	transition: 0.3s;
+}
+
+
+
+
+
+h2 {
+	font-size: 24px;
+	/**/
+	 padding-top: 130px;
+	margin-top: -80px;	
+}
+
+h1 {
+	
+	font-size: 40px;
+	text-align: left;
+}
+.sidebar {
+	position: fixed;
+	background-color: aliceblue;
+	color: black;
+	width:24%;
+	height: 100%;
+
+	top: 80;
+	left: 0;
+	overflow-y: auto;
+	border-right: 1px solid powderblue;
+
 }
 
 .sidebar ul {
@@ -31,17 +150,33 @@ body {
 .sidebar li a {
 	display: block;
 	color: black;
-	padding: 10px;
+	padding: 15px;
+	padding-left: 25px;
 	font-weight: 600;
 	text-decoration: none;
 }
 
 .sidebar li a:hover {
-	color: green;
+	color: forestgreen;
 }
 
-h1 {
-	margin-top: 0;
-	font-size: 40px;
-	text-align: left;
+#doctitle {
+	color: #272727;
+	background-color: transparent;
+	padding: 0;
 }
+
+
+
+.mainimg {
+	width: 550px;
+}
+
+.content{
+	width: 750px;
+	margin: 0 auto;
+	padding-left: 300px;
+	padding-top: 70px;
+}
+
+

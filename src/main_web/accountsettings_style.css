@@ -160,6 +160,10 @@ h1{
 	padding: 50px 0px;
 }
 
+body {
+	height: 100px;
+}
+
 /*Form customization */
 .reg{
  display: flex;
@@ -167,7 +171,7 @@ h1{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1500px;
 
 }
 
@@ -184,7 +188,7 @@ h1{
 
 .fields-left{
 	 margin: 0.5%;
-    width: 40%;
+    width: 35%;
     box-sizing: border-box;
     height: 600px;
     
@@ -230,6 +234,7 @@ a[name='recs']:hover{
 	background-color : AliceBlue;
 	border-radius: 5px;
 	outline: none;
+	
 }
 
 .text_field input[name='password'], .text_field input[name='orgname'], 

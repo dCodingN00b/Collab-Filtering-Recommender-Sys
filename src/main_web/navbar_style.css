@@ -9,14 +9,84 @@
 	font-weight: 600;
 }
 
-body{
-	height: 1200px;
-	font-family: "Montserrat", sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 }
 
-body{
-	overflow-x: hidden;
+/* Position the images within the links */
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 5;
+  left: 0;
+  background-color: whitesmoke;
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  z-index: 1;
+ 
 }
+
+.sidenav img{
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.main img {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+
+}
+
+.main img:hover{
+  cursor:pointer;
+}
+
+.topsidenav {
+	height: 10px;
+}
+
+.sidenav a {
+  padding: 20px 15px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+  display: flex; 
+  align-items: center;
+  background-color:#dedede;
+}
+
+.sidenav span:hover {
+ 
+}
+
+.sidenav a:hover{
+	background-color: #c7dbf0;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  z-index: 1;
+   
+}
+
+
 
 h1 {
 	padding: 20px 20px;
@@ -30,7 +100,7 @@ header {
 	align-items: center;
 	padding: 8px 1%;
 	background: aliceblue;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;	
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /*nav titles customizations and animation*/
@@ -53,13 +123,12 @@ header {
 	padding: 24px 0px;
 	text-decoration: none;
 	position:Relative;
-	z-index: 2;
+	border-bottom: 2px solid transparent;
 }
 .nav-titles li a:hover {
 	color: forestgreen;
 	border-bottom: 2px solid lightgreen;
 }
-
 
 li a[name='recs']{
 	letter-spacing: 2px;
@@ -68,7 +137,6 @@ li a[name='recs']{
 	padding: 20px 0px;
 	text-align: center;
 	float: left;
-	position:relative;
 }
 
 /*no color change*/
@@ -90,7 +158,6 @@ li a[name='recs']{
 	display: flex;
 	justify-content: space-between;
 	list-style: none;
-	
 }
 
 .dropdown  {
@@ -100,7 +167,6 @@ li a[name='recs']{
 	cursor: pointer;
 	transform: translate(0%, -90%);
 	padding: 21px 7px;
-	z-index: 1;
 }
 
 
@@ -126,6 +192,10 @@ li a[name='recs']{
 	background-color: lightgreen;
 }
 
+.dropdown:hover {
+	border-top: 2px solid lightgreen;
+}
+
 /* Dropdown content */
 .profile-content {
 	display: none;
@@ -133,11 +203,11 @@ li a[name='recs']{
 	background-color: #f9f9f9;
 	min-width: 180px;
 	border: 1px solid lightgrey;
-	z-index: 1;
+	z-index: 2;
 	left:auto;
 	right: -1em;
 	text-align:right;
-	transform: translate(-5%, 65%);
+	
 	
 }
 
@@ -151,6 +221,7 @@ li a[name='recs']{
 	text-align: left;
 }
 
+
 /*profile dropdown animation*/
 .dropdown:hover .profile-content {
 	display: block;
@@ -163,153 +234,74 @@ li a[name='recs']{
 h1{
 	text-align:center;
 	padding: 50px 0px;
-	font-family: "Montserrat", sans-serif !important;
 }
 
-table {
-	border-collapse: collapse;
-	margin: 50px auto;
-	width: 90%;
-	border:0;
-	border-spacing: 0px!important;
+/*workspace customization*/
+.workspace-frame {
+	display:flex;
+	justify-content: center;
+	margin: 0 auto;
+	position: relative;
+	z-index: -2;
 }
 
-table th {
-  background-color: aliceblue;
-  color: black;
-  padding: 10px;
-  font-weight: 1000;
+.workspace {
+	width: 100%;
+	position:absolute;
 }
 
-table td {
-  padding: 10px;
-  text-align: center;
-  color:black;
-  font-weight: normal;
-  
+.workspace p[name='workspace-description'] {
+	position: absolute;
+	font-weight: 500;
+	padding: 20px 0px;
+	width:100%;
+	border-bottom:1px solid silver;
+	top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 60%) 
 }
 
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-  
+.workspace p[name='workspace-title'] {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 40%)
 }
 
-table tr:hover {
-  background-color: #ddd;
+.workspace p[name='workspace-description2'] {
+	font-weight: 500;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 185%) 
 }
 
-td a {
-	text-decoration: underline;
+.workspace p[name='workspace-description3'] {
+	font-weight: 500;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 80%)
 }
 
-td a:hover{
-	color:red;
+/* workspace -> add data customizations*/
+.adddata-frame {
+	display:flex;
+	justify-content: center;
+	margin: 0 auto;
+	position: relative;
+	z-index: -2;
 }
 
-.pagenumber {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  margin-top: 20px;
+.adddataform {
+	position:absolute;
+	max-width: 500px;
+  width: 100%;
+  transform: translate(-50%, 80%)
 }
 
-.pagenumber a {
-  display: inline-block;
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 3px;
-  border: silver;
-  background-color: whitesmoke;
-  color: grey;
-  text-decoration: none;
-}
-
-.pagenumber a:hover {
-  background-color: silver;
-}
-
-.filterButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-	
-}
-
-
-.filterButton button {
-	padding: 10px 30px;
-    border:none;
-	margin-right: 10px;
-	transform:translate(0%, 50%);
-}
-
-.filterButton button:hover{
-	background-color: #c7c7c7;
-	cursor: pointer;
-}
-
-
-
-
-.edit-button {
-    position: relative;
-    background: none;
-    border: none;
-    cursor: pointer;
-	
-}
-
-.edit-icon {
-    font-size: 1.2rem;
-    color: #666;
-	
-}
-
-.edit-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	z-index:1;
-	transform:translate(60%, 0%);
-}
-
-.edit-options a {
-    display: block;
-    padding: 5px 0px;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.2s ease;
-	
-}
-
-.edit-options a:hover {
-    background: #f5f5f5;
-	color: blue;
-}
-
-
-form {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#search-input {
-	width: 510px;
-	height:30px;
-	padding: 0px 5px;
-	transform:translate(-1%, 0%);
-}
-
-#search-button{
-	height:30px;
-	padding: 0px 10px;
-	transform:translate(-5%, 0%);
-}

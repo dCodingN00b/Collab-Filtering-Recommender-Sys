@@ -240,6 +240,19 @@ h1{
 	
 }
 
+input[name='product']{
+
+	padding: 0 5px;
+	height: 27px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid black;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	
+}
+
 .generate {
 	position: absolute;
 	width: 100%;
@@ -281,7 +294,36 @@ input[name='generate']{
 
 /*product input customize*/
 .product {
-	transform: translate(30%, 200%);
+	transform: translate(28%, 200%);
+  
+
+}
+
+.generatebutton {
+		transform: translate(38%, 220%);
+}
+
+
+input[name='generate']{
+	padding: 10px 10px;
+
+	background: lightgreen;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	color: black;
+	font-weight: 700;
+	cursor: pointer;
+	
+	outline: none;
+}
+
+input[type="submit"]:hover{
+	transform:scale(1.02);
+	border-color: black;
+	
+    color: black;
+	transition: .2s;
 }
 
 /*hint customize*/

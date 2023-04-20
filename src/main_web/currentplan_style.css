@@ -1,0 +1,104 @@
+<style>
+body {
+  background-color: aliceblue;
+}
+
+
+
+.currentplanheader {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.nextbillingdate p {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+th {
+  background-color: lightgreen;
+  color: white;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #dedede;
+}
+
+td {
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight:500;
+  color: 272727;
+}
+
+table, th, td {
+  border: none;
+}
+
+tr {
+	
+}
+
+.filterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+	
+}
+
+
+.filterButton button {
+	padding: 10px 30px;
+    border:none;
+	margin-right: 10px;
+	transform:translate(0%, 50%);
+}
+
+.filterButton button:hover{
+	background-color: #c7c7c7;
+	cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .box {
+    width: 90%;
+  }
+
+  .currentplanheader {
+    font-size: 24px;
+  }
+
+  .nextbillingdate p {
+    font-size: 16px;
+  }
+
+  th {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+</style>

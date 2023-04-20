@@ -7,6 +7,11 @@
 	color: black;
 	text-decoration: none;
 	font-weight: 600;
+	
+}
+
+body{
+	overflow-x: hidden;
 }
 
 h1 {
@@ -47,6 +52,7 @@ header {
 	text-decoration: none;
 	position:Relative;
 	z-index: 2;
+	border-bottom: 2px solid transparent;
 }
 
 .nav-titles li a[name='currentplans'] {
@@ -73,6 +79,7 @@ header {
 
 .nav-titles li a:hover {
 	color: forestgreen;
+	border-bottom: 2px solid lightgreen;
 }
 
 
@@ -95,9 +102,7 @@ li a[name='recs']{
 
 /* dropdown container */
 .dropdown {
-	right: 1px;
-
-	float: right;
+	right:0;
 }
 
 /*Login and Sign up Customizations*/
@@ -117,6 +122,7 @@ li a[name='recs']{
 	transform: translate(0%, -90%);
 	padding: 21px 7px;
 	z-index: 1;
+	
 }
 
 
@@ -133,6 +139,7 @@ li a[name='recs']{
 	text-align: center;
 	font-size: 20px;
 	text-transform: uppercase;
+	
 }
 
 /*Dropdown nav bar customization*/
@@ -140,10 +147,16 @@ li a[name='recs']{
 	color: black;
 	cursor:pointer;
 	background-color: lightgreen;
+	
+}
+
+.dropdown:hover {
+	border-top: 2px solid lightgreen;
 }
 
 /* Dropdown content */
 .profile-content {
+	
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
@@ -228,28 +241,28 @@ img {
 }
 
 .activity {
-	font-size: 24px;
+	font-size: 22px;
 	font-weight: bold;
 	margin-right: 0px;
-	transform: translate(10%, 0%);
+	transform: translate(5%, 0%);
 }
 
 .activity-box button{
-	padding: 20px 20px;
+	padding: 20px 10px;
 	background-color: #c9deff;
 	border: none;
 	font-size: 20px;
 	border-radius: 5px;
-	transform: translate(-25%, 0%);
+	transform: translate(-14%, 0%);
 }
 
 .activity-box button:hover{
-	padding: 22px 22px;
+	
 	background-color: lightblue;
 	border: none;
 	font-size: 20px;
 	border-radius: 5px;
-	transform: translate(-23%, 0%);
+	
 	cursor: pointer;
 	transition: 0.3s;
 }
@@ -264,34 +277,35 @@ img {
   border-radius: 5px;
 	margin-top: 20px;
 	margin-right: 30px;
-	width: 54%;
+	width: 49%;
 transform: translate(0%, -20%);
  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .doc {
-	font-size: 24px;
+	font-size: 22px;
 	font-weight: bold;
 	margin-right: 0px;
-	transform: translate(6%, 0%);
+	transform: translate(10%, 0%);
 }
 
 .doc-box button{
-	padding: 20px 20px;
+	padding: 20px 10px;
 	background-color: #c9deff;
 	border: none;
 	font-size: 20px;
 	border-radius: 5px;
+	
 	transform: translate(-10%, 0%);
 }
 
 .doc-box button:hover{
-	padding: 22px 22px;
+
 	background-color: lightblue;
 	border: none;
 	font-size: 20px;
 	border-radius: 5px;
-	transform: translate(-8%, 0%);
+
 	cursor: pointer;
 	transition: 0.3s;
 }
@@ -300,12 +314,12 @@ transform: translate(0%, -20%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 5px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
 	margin-top: 20px;
-	width: 47%;
+	width: 58%;
 transform: translate(0%, -20%);
  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }

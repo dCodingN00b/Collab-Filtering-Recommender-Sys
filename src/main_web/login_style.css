@@ -6,64 +6,47 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-body {
-	overflow-x: hidden;
-}
 p{
 	color: black;
 }
 
+/*background color*/
 .wrapper{
     background: rgb(0,36,0);
-	background:powderBlue;
+	
 	background: radial-gradient(circle, rgba(0,36,0,0.5048144257703081) 0%, rgba(179,238,182,0.5664390756302521) 
 0%, rgba(114,200,110,1) 100%, rgba(200,229,201,0.4235819327731093) 100%);
+	background:powderBlue;
     padding: 0 20px 0 20px;
-	
-	transform: translate(0%, 0%);
-	
 }
 
+/*entire content's position*/
 .main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
+
+/*size of interface*/
 .row{
-    width: 1200px;
+    width: 1300px;
     height: 1000px;
     border-radius: 0px;
     background: white;
- 
+   
 }
+
+/*image customizations*/
 .side-image{
     background-image: url("images/test.jpg");
-    background-position: -300px 0px;
+    background-position: center;
+	background-position: -300px 0px;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    border-radius: 5px 0 0 5px;
-	transform: translate(0%, 0%);
-	
+    border-radius: 0px 0 0 0px;
 }
-
-.usertype{
-	position: relative;
-	margin: 34px 10px;
-	color:white;
-	transform: translate(0.1%, 0%);
-}
-
-/* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-}
-
 img{
     width: 35px;
     position: absolute;
@@ -71,6 +54,7 @@ img{
     left: 30px;
 }
 
+/*RECS*/
 .text p {
 	letter-spacing: 2px;
 	font-size: 25px;
@@ -79,71 +63,25 @@ img{
 	font-weight: 600;
 }
 
-.indreg{
+/*Move entire login box*/
+.login{
 	width: 450px;
 	transform: translate(10%, 0%);
 }
 
-.indreg h3 {
-	color: black;
-	text-align: center;
-	padding: 14px 0px;
-	font-size: 20px;
-	
-	width: 140px;
-    display: inline-block;
-	transform: translate(44%, 0%);
-}
-
-.indreg h3[name='orgregister'] {
-	color: black;
-	text-align: center;
-	padding: 14px 0px;
-	font-size: 20px;
-	border-bottom: 2px solid lavender;
-	width: 160px;
-    display: inline-block;
-	transform: translate(41%, 0%);
-}
-
-.indreg h3[name='indregister'] {
-	color: black;
-	text-align: center;
-	padding: 14px 0px;
-	font-size: 20px;
-	border-bottom: 2px solid lavender;
-	width: 160px;
-    display: inline-block;
-	transform: translate(40%, 0%);
-}
-
-.indreg h3[name='indivregister']{
-	border-bottom:2px solid lightgreen;
-}
-
-.indreg h3[name='orgregister']{
-	color: grey;
-}
-
-
-.indreg h3[name='orgregister']:hover{
-	color: green;
-	border-bottom:2px solid lightgreen;
-}
-
-/*login and signup heading customization*/
-.indreg h1 {
+/*Header 1 text (Login)*/
+.login h1 {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
 	font-size: 30px;
-	
+	border-bottom: 2px solid lavender;
 	width: 222.5px;
     display: inline-block;
 	
 }
 
-.indreg h1[name='login'] {
+.login h1[name='login'] {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
@@ -154,7 +92,7 @@ img{
 	transform:translate(3%, 0%);
 }
 
-.indreg h1[name='register'] {
+.login h1[name='register'] {
 	color: black;
 	text-align: center;
 	padding: 30px 20px;
@@ -165,24 +103,25 @@ img{
 	transform:translate(0%, 0%);
 }
 
-.indreg a{
+.login a{
 	text-decoration: none;
 }
 
-
-
-.indreg h1[name='register']{
+.login h1[name='login']{
 	border-bottom:2px solid lightgreen;
-	color:black;
 }
 
-.indreg h1[name='login']:hover{
+.login h1[name='register']{
+	color: grey;
+}
+
+.login h1[name='register']:hover{
 	color: green;
 	border-bottom:2px solid lightgreen;
 }
 
 /*Form customization */
-.indreg form{
+.login form{
 	padding: 0px 60px;
 	box-sizing: border-box;
 }
@@ -192,6 +131,16 @@ form .text_field{
 	position: relative;
 	margin: 34px 10px;
 	color:white;
+}
+
+a[name='recs']{
+	text-decoration:none;
+	color:black;
+}
+
+a[name='recs']:hover{
+	text-decoration:none;
+	color:black;
 }
 
 /*text field box*/
@@ -207,27 +156,36 @@ form .text_field{
 	outline: none;
 }
 
-a[name='recs']{
-	text-decoration:none;
-	color:black;
+.emailimg {
+	width: 35%;
+	margin-left: 120px;
+	margin-top: 140px;
 }
-
-a[name='recs']:hover{
-	text-decoration:none;
-	color:black;
-}
-
 
 /*text field animation*/
 .text_field input:hover{
 	border: 1px solid green;
 }
 
+.text_field_verification input{
+	width: 11%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+}
+
 /*Forget Password text*/
 .pass{
 	margin: -5px 0 20px 5px;
-	color: black;
+	color: Cornflowerblue;
 	cursor: pointer;
+	padding: 0px 5px;
 }
 
 /*Forget Password text animation*/
@@ -238,24 +196,6 @@ a[name='recs']:hover{
 a[name='ref'] {
 	position: absolute;
     bottom: 0;
-}
-
-input.tickbox {
-  width: 20px;
-  height: 20px;
-}
-
-.checkboxes label {
-  display: block;
-  padding-right: 10px;
-  padding-left: 33px;
-  text-indent: -22px;
-}
-.checkboxes input {
-  vertical-align: middle;
-}
-.checkboxes label span {
-  vertical-align: middle;
 }
 
 /*Login Button Customizations*/
@@ -269,8 +209,8 @@ input[type="submit"]{
 	color: whitesmoke;
 	font-weight: 700;
 	cursor: pointer;
-	
 	outline: none;
+	
 }
 
 /*Login Button Animations*/
@@ -290,7 +230,7 @@ input[type="submit"]:hover{
 }
 
 .signup_link a{
-	color: light blue;
+	color: green;
 	text-decoration: none;
 }
 
@@ -308,81 +248,6 @@ span {
 .text_field p {
 	color: black;
 }
-
-
-/*for unregister users to generate reco*/
-.container11 {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 50px;
-	opacity: 0;
-}
-
-
-.container11.visible {
-	opacity: 1;
-}
-
-.row11 {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.box11 {
-	color:#212121;
-	width: 140px;
-	height: 60px;
-	margin: 10px;
-	border: 1px solid black;
-	display: flex;
-	border-radius: 30px;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	background-color: white;
-}
-
-.box11.selected {
-	background-color: lightgreen;
-	font-weight: bold;
-	color: black;
-}
-
-.box11.visible.selected-box11 {
-	background-color: lightgreen;
-	font-weight: bold;
-	color: black;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 1s, opacity 1s linear;
-  
-}
-
-
-
-#next-btn {
-	padding: 15px 35px;	
-	background-color: lightgreen;
-	color: black;
-	border-radius: 5px;
-	cursor: pointer;
-	font-weight: 600;
-	border: 1px solid black;
-	text-decoration: none;
-}
-
-#next-btn:hover {
-	padding: 16px 36px;	
-	transition: 0.2s;
-}
-
 
 
 @media only screen and (max-width: 768px){

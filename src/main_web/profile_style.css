@@ -10,8 +10,7 @@
 }
 
 body{
-	height: 800px;
-	overflow-x: hidden;
+	height: 1200px;
 }
 
 h1 {
@@ -104,6 +103,7 @@ li a[name='recs']{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	border: 2px solid black;
 	background-color: transparent;
 	display: flex;
 	justify-content: center;
@@ -160,6 +160,10 @@ h1{
 	padding: 50px 0px;
 }
 
+body {
+	height: 100px;
+}
+
 /*Form customization */
 .reg{
  display: flex;
@@ -168,11 +172,7 @@ h1{
     align-items: center;
     margin: 0 auto;
     max-width: 1500px;
-	
-}
 
-.frame {
-	height:800px;
 }
 
 /*text field customizations*/
@@ -182,22 +182,14 @@ h1{
 	color:white;
 	padding: 15px;
 	   margin: 0.5%;
-}
-a[name='recs']{
-	text-decoration:none;
-	color:black;
-}
-
-a[name='recs']:hover{
-	text-decoration:none;
-	color:black;
+	 
 }
 
 .fields-left{
 	 margin: 0.5%;
-    width: 30%;
+    width: 35%;
     box-sizing: border-box;
-    height: 800px;
+    height: 600px;
     
    
 
@@ -209,7 +201,7 @@ a[name='recs']:hover{
 
 .fields-right{
 	 margin: 0.5%;
-    width: 30%;
+    width: 40%;
     box-sizing: border-box;
     height: 600px;
  
@@ -219,8 +211,57 @@ a[name='recs']:hover{
     overflow: hidden;
 }
 
+a[name='recs']{
+	text-decoration:none;
+	color:black;
+}
+
+a[name='recs']:hover{
+	text-decoration:none;
+	color:black;
+}
+
+
+
 /*text field box*/
 .text_field input{
+	width: 100%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	outline: none;
+
+}
+
+.text_field input[name='interestOne'], .text_field input[name='interestTwo'], 
+.text_field input[name='ageRange']{
+	width: 96%;
+	padding: 0 5px;
+	height: 35px;
+	font-size: 16px;
+	color: black;
+	border: 1px solid PowderBlue;
+	background-color : AliceBlue;
+	border-radius: 5px;
+	
+	outline: none;
+	vertical-align: middle;
+	   padding-right: 30px;
+}
+
+button[name = 'change']{
+	height: 35px;
+	padding: 0 5px;
+	vertical-align: middle;
+
+	   margin-left: -25px;
+}
+
+.userType {
 	width: 100%;
 	padding: 0 5px;
 	height: 35px;
@@ -238,31 +279,6 @@ a[name='recs']:hover{
 	border: 1px solid green;
 }
 
-/*dropdown account status list customization*/
-.accstatus {
-	width: 100%;
-	padding: 0 5px;
-	height: 35px;
-	font-size: 16px;
-	color: black;
-	border: 1px solid PowderBlue;
-	background-color : AliceBlue;
-	border-radius: 5px;
-	outline: none;
-}
-
-.priceplan {
-	width: 100%;
-	padding: 0 5px;
-	height: 35px;
-	font-size: 16px;
-	color: black;
-	border: 1px solid PowderBlue;
-	background-color : AliceBlue;
-	border-radius: 5px;
-	outline: none;
-}
-
 /*Forget Password text*/
 .pass{
 	margin: -5px 0 20px 5px;
@@ -270,7 +286,33 @@ a[name='recs']:hover{
 	cursor: pointer;
 }
 
+/*Forget Password text animation*/
+.pass:hover{
+	text-decoration: underline;
+}
 
+a[name='ref'] {
+	position: absolute;
+    bottom: 0;
+}
+
+input.tickbox {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxes label {
+  display: block;
+  padding-right: 10px;
+  padding-left: 33px;
+  text-indent: -22px;
+}
+.checkboxes input {
+  vertical-align: middle;
+}
+.checkboxes label span {
+  vertical-align: middle;
+}
 
 /*edit and cancel Button Customizations*/
 input[type="submit"]{
@@ -314,4 +356,32 @@ input[type="button"]:hover{
 	background: MediumSeaGreen;
     color: #fff;
 	transition: .2s;
+}
+
+/*Sign Up Link Customizations*/
+.signup_link{
+	margin: 30px 0;
+	text-align: center;
+	font-size: 16px;
+	color: black;
+}
+
+.signup_link a{
+	color: light blue;
+	text-decoration: none;
+}
+
+/*Sign Up link Animation*/
+.signup_link a:hover{
+	text-decoration: underline;
+}
+
+span {
+	color:black;
+	font-size: 16px;
+	padding: 20px 0px;
+}
+
+.text_field p {
+	color: black;
 }

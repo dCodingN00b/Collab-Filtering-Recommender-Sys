@@ -15,8 +15,7 @@
 		$userid = '';
 	}
 	
-	$pricePlan = $_SESSION['currentplan'];
-	$daysRemaining = $_SESSION['daysremaining'];
+	
 ?>
 <!DOCTYPE html>
 <html>	
@@ -24,85 +23,84 @@
 <title>Account Settings</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
- <link rel="stylesheet" href="accountsettings_style.css?version13">
+ <link rel="stylesheet" href="accountsettings_style.css?version18">
+ <style>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.success-box {
+	background-color: whitesmoke;
+	color: white;
+	padding: 20px;
+	left: 0;
+	width: 100%;
+	z-index: -9999;
+	vertical-align: middle;
+}
+
+.success-box .close-button {
+	color: black;
+	float: right;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
+	transform:translate(0%, -30%);
+}
+</style>
 </head>
 
 <body>
 <?php
 include ('inc_db_fyp.php');
-include ('user.php');
+
+include('navbar.php');
 
 if ($userType == '1' or $userType == '2' or $userType == '0') 
 {#header, top navbar
-	if ($userType == '1' or $userType == '2')
-	{
+
+#display success
+if (isset($_SESSION['successStatus'])){
+	echo"<div class='success-box'>
+		<span class='close-button'>&times;</span>
+			<p>{$_SESSION['successStatus']}</p>
+		</div>";
+	
+	unset($_SESSION['successStatus']);
+}
+
 ?>
-		<header>
-				 <nav>
-				<ul class="nav-titles">
-					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
-					<li><a name = 'workspace' href="workspace.php">Workspace</a></li>
-					<li style='margin-left: auto; transform: translate(-15%, 0%);'><a name = 'upgradeplans' href="upgradeplans.php" style = 'transform: translate(-55%, 0%);'>Upgrade Plan</a><a name = 'currentplans' href="#" >
-					Current Plan: <?php echo $pricePlan, ' [', $daysRemaining, ' Days Left]' ?></a></li>
-				</ul>
-					<div class="dropdown">
-						<button class="profile"><?=$_SESSION['name'][0]?></button>
-						<div class="profile-content">
-							<a class="logout" href="accountsettings.php">Account Settings</a></li>
-							<a class="logout" href="logout.php">Logout</a></li>
-						</div>
-					  </div>        
-				</nav>		
-		</header>
-	<?php 
-	}
-	else if ($userType == '0')
-	{
-	?>
-		<header>
-		 <nav>
-			<ul class="nav-titles">
-				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-			   <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
-				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
-			  </ul>
-			<div class="dropdown">
-				<button class="profile"><?=$_SESSION['name'][0]?></button>
-				<div class="profile-content">
-					<a class="logout" href="accountsettings.php">Account Settings</a></li>
-					<a class="logout" href="logout.php">Logout</a></li>
-				</div>
-			  </div>        
-		</nav>		
-	</header>
-	<?php 
-	}
-	?>
+	
 	<h1>Account Settings</h1>
 <?php 
-
 #get user info by calling user entity method and display info
 $user = new User();
 $row = $user-> getUserInfo ($userid);
+
 
 echo"
 <div class = 'reg'>
 		<div class = 'fields-left'>
 			<div class = 'text_field'>
 				<span>Email:</span></br><input type='email' name='email' value = '{$row["emailAddress"]}' style = 'color:grey; background-color:whitesmoke' disabled/>
-			</div>
-			<div class = 'text_field'>
-				<span>Password: </span></br><input type='password' name='password' value = '{$row["password"]}' disabled /><button name = 'change' >Edit</button>
 			</div>";
-			if ($userType == '1'){
-				echo"
-				<div class = 'text_field'>
-					<span>Organization Name: </span></br><input type='text' id = 'orgname' name='orgname' value = '{$row["Organization Name"]}'  disabled /><button name = 'change' >Edit</button>
-				</div>";
-			}
-		echo"
-		</div>
-		<div class = 'fields-right'>
+			echo"
 			<div class = 'text_field'>";
 				if ($row["userType"] == '1'){
 					echo"<span>User Type: </span></br><input type='text' name='userType' value = 'Organization' style = 'color:grey; background-color:whitesmoke' disabled />";
@@ -112,15 +110,32 @@ echo"
 				}else {
 					echo"<span>User Type: </span></br><input type='text' name='userType' value = 'Admin' style = 'color:grey; background-color:whitesmoke'  disabled />";
 				}
-			echo"
-			</div>
-			<div class = 'text_field'>
-				<span>Name: </span></br><input type='text' name='name' value = '{$row["name"]}' disabled /><button name = 'change' >Edit</button>
+				
+			
+				echo"
 			</div>";
+			echo"
+
+			<div class = 'text_field'>
+				<span>Name: </span></br><input type='text' name='name' value = '{$row["name"]}' disabled /><a href = 'editname.php'><button name = 'change' >Edit</button></a>
+			</div>";
+			echo"
+			<div class = 'text_field'>
+				<span>Password: </span></br><input type='password' name='password' value = '{$row["password"]}' disabled /><a href = 'editpassword.php'><button name = 'change' >Edit</button></a>
+			</div>";
+			if ($userType == '1'){
+				echo"
+				<div class = 'text_field'>
+					<span>Organization Name: </span></br><input type='text' id = 'orgname' name='orgname' value = '{$row["Organization Name"]}'  disabled /><a href = 'editorgname.php'><button name = 'change' >Edit</button></a>
+				</div>";
+			}
+
+			
+			
 			if ($userType == '1'){
 			echo"
 				<div class = 'text_field'>
-					<span>Organization Website: </span></br><input type='text' id = 'orgsite' name='orgsite' value = '{$row["Organization Website"]}'  disabled /><button name = 'change' >Edit</button>
+					<span>Organization Website: </span></br><input type='text' id = 'orgsite' name='orgsite' value = '{$row["Organization Website"]}'  disabled /><a href = 'editorgsite.php''><button name = 'change' >Edit</button></a>
 				</div>";
 			}
 			echo"
@@ -128,4 +143,10 @@ echo"
 </div>";
 }
 ?>
+<script>
+// to close the success box
+document.querySelector('.close-button').addEventListener('click', function() {
+			document.querySelector('.success-box').style.display = 'none';
+		});
+</script>
 </body>

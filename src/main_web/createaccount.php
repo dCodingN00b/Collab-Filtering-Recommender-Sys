@@ -19,26 +19,50 @@
 
 <title>Create Account</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
- <link rel="stylesheet" href="createaccount_style.css?version12">
+ <link rel="stylesheet" href="createaccount_style.css?version14">
 <style>
-	.success-box {
-		background-color: whitesmoke;
-		color: white;
-		padding: 20px;
-		left: 0;
-		width: 100%;
-		z-index: -9999;
-		vertical-align: middle;
-	}
+.success-box {
+	background-color: whitesmoke;
+	color: white;
+	padding: 20px;
+	left: 0;
+	width: 100%;
+	z-index: -9999;
+	vertical-align: middle;
+}
 
-	.success-box .close-button {
-		color: black;
-		float: right;
-		font-size: 30px;
-		font-weight: bold;
-		cursor: pointer;
-		transform:translate(0%, -30%);
-	}
+.success-box .close-button {
+	color: black;
+	float: right;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
+	transform:translate(0%, -30%);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+li a [name = 'admincreate']{
+	border-bottom: 2px solid lightgreen !important;
+}
 </style>
 </head>
 <body>
@@ -52,8 +76,8 @@ if ($userType == '0') #admin
 		 <nav>
 			<ul class="nav-titles">
 				<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>     
-			   <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'padding-right: 60px;'>Manage Accounts</a>
-				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'padding-right: 60px;'>Create Account</a></li>
+			   <li style='margin-left: auto;'><a name = 'adminmanage' href="manageaccounts.php" style = 'margin-right: 60px;'>Manage Accounts</a>
+				<a name = 'admincreate' href="createaccount.php?id=orgcreateacc" style = 'margin-right: 60px; border-bottom: 2px solid lightgreen;'>Create Account</a></li>
 			  </ul>
 			<div class="dropdown">
 				<button class="profile"><?=$_SESSION['name'][0]?></button>

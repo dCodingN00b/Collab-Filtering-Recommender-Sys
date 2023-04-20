@@ -50,6 +50,7 @@ header {
 }
 .nav-titles li a:hover {
 	color: forestgreen;
+	border-bottom: 2px solid lightgreen;
 }
 
 

@@ -41,12 +41,21 @@
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.bill img {
+.bill img[name='pro'] {
 	width: 20%;
 	height: auto;
     position: absolute;
     top: 10%;
     left: 20%;
+	overflow: hidden;
+}
+
+.bill img[name='standard'] {
+	width: 12%;
+	height: auto;
+    position: absolute;
+    top: 14%;
+    left: 16%;
 	overflow: hidden;
 }
 
@@ -67,20 +76,29 @@
     transform: translate(43%, 170%);
 }
 
+
+.bill h2[name = 'upgradetype2'] {
+	width: 100%;
+	height: auto;
+	font-size: 32px;
+    position: absolute;
+    transform: translate(31%, 170%);
+}
+
 .bill p[name = 'amount']{
 	width: 100%;
 	
 	height: auto;
 	font-size: 30px;
     position: absolute;
-    transform: translate(10%, 1050%);
+    transform: translate(10%, 1010%);
 }
 
 
 .bill p[name = 'benefits']{
 	width: 100%;
 	height: auto;
-	font-size: 18px;
+	font-size: 16px;
     position: absolute;
 	text-align: center;
     transform: translate(0%, 220%);

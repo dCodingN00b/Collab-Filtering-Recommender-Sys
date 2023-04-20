@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
-	<title>RECS</title>
-	<link rel="stylesheet" href="main_style.css?version96">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<style>
-	.main {
-		margin-top: -95px;
-	}
-	
-	.readmore {
-	display:none;
+<meta charset="utf-8">
+<title>RECS</title>
+<link rel="stylesheet" href="main_style.css?version144">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+.main {
+	margin-top: -95px;
+}
+
+.readmore {
+display:none;
 
 }
-	</style>
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.circle {
+	width: 50px;
+	height: 50px;
+	background-color: lightblue;
+	border-radius: 50%;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 850%);
+	animation: moveUpDown 2s ease-in-out infinite;
+}
+.arrow {
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 20px solid white;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+@keyframes moveUpDown {
+	0% {top: 65px;}
+	50% {top: 75px;}
+	100% {top: 65px;}
+}
+
+html {
+  scroll-behavior: smooth;
+}
+</style>
 </head>
 <!--changeHeight only takes place when howitworks page is loaded, changes height based on org or ind-->
 <body onload = 'changeHeight()'>
@@ -29,6 +81,7 @@
 					<div class="dropdown-content">
 					  <a href="main.php?id=features">Features</a>
 					  <a href="main.php?id=howitworks">How it works</a>
+					  <a href="documentation.php?part=introduction">Documentation</a>
 					</div>
 				</div>
 				<div class="dropdown2">
@@ -77,7 +130,7 @@
 			echo"
 				<div class='text'>
 					<p>	
-					<b>Recommenation System </br>
+					<b>Recommendation System </br>
 					for E-commerce Platforms</b></br></br>
 						
 					RECS offers our clients the ability to predict existing user’s rating</br> 
@@ -90,8 +143,22 @@
 					<a href = 'org_register.php'>Sign Up Now</a>
 					</p>
 					
-				</div>
-			
+				
+				</div>";
+				echo"<a href='main.php#bottom'>
+					<div class='circle'>
+						<div class='arrow'></div>
+					</div>
+					
+				</a>
+				<div style='margin-top: 60px;'><p><center>Try out our product here. Sign up not needed!<center></p></div>";
+				/*
+				<div style = 'transform: translate(0%, 2%);'>
+				<a href = 'main.php#bottom' style = 'color: blue; padding-left: 400px; font-size: 30px; text-decoration:underline;'>Click Here</a>
+				<span style = 'font-size: 30px;'> to try out our program</span
+				
+				</div>*/
+				echo"
 				<div class = 'main2'>
 					<h3>A platform that focuses heavily</br> on user experience, no matter if </br>it's organizations or individuals.</h3>
 					<img src='images/features2.svg	' alt=''>
@@ -103,9 +170,75 @@
 					<img src='images/howitworkmain.svg	' alt=''>
 					<p>Straightfoward, follow the instructions and</br> get your recommendations in a heartbeat</br>
 					using our recommendation engine.</br></br></br><a href = 'main.php?id=howitworks'>Check how it works</a></p>
+					
+				</div> 
+				 <div id='bottom'  style='transform:translate(0%, 800%);'><br /></div>
+				<div class = 'main4'>
+				
+				";
+				 echo'
+				
+				<h1 class = "heading11" id = "heading11"><center>Choose 1 of your favorite interests</center></h1>
+				  <div class="container11 visible">
+		<div id="interests" class="visible">
+			<div class="row11">
+				<div class="box11" onclick="selectInterest(this)">Computers</div>
+				<div class="box11" onclick="selectInterest(this)">Electronics</div>
+			</div>
+			<div class="row11">
+				<div class="box11" onclick="selectInterest(this)">Pets</div>
+				<div class="box11" onclick="selectInterest(this)">Toys</div>
+				<div class="box11" onclick="selectInterest(this)">Video Games</div>
+			</div>
+			
+			<div  style = "transform: translate(80%, 200%);">
+				<a id="next-btn" class="hidden" onclick="showResults()">Next</a>
+			</div>
+		</div>';
+		/*
+		<div id="age-group" class="hidden" >
+			<div class="row11">
+				<div class="box11" onclick="selectAgeGroup(this)">18-24</div>
+				<div class="box11" onclick="selectAgeGroup(this)">25-34</div>
+				<div class="box11" onclick="selectAgeGroup(this)">35-44</div>
+				<div class="box11" onclick="selectAgeGroup(this)">45+</div>
+			</div>
+			<div  style = "transform: translate(80%, 200%);">
+				<a id="next-btn-2" class="hidden" onclick="showResults()">Next</a>
+			</div>
+		</div>';*/
+		echo"<div class='hidden' id='generate' >";
+			/*echo"<div class = 'generate-title'>";
+				echo"<h1 name = 'recommend' style='font-size:30px'>Based on that, Generate Recommendations</h1>";
+			echo"</div></br>";*/
+			echo"<form action='' method='POST'>";
+			
+			echo 
+			"<div class = 'product' style = 'transform:translate(0%, 220%);'>
+				<label for='product'>Product ID: </label>
+				<select name = 'product' id='product' >
+				  <option value='B086FNYG8X'>Smart speaker with Alexa [B086FNYG8X]</option>
+				  <option value='B084YTCWL4'>Logitech G512 RGB Mechanical Gaming Keyboard [B084YTCWL4]</option>
+				  <option value='B01MRU5D56'>Champion Men's Classic Jersey T-Shirt [B01MRU5D56]</option>
+				  <option value='B07NVZBYBQ	'>Nautica Women's 5-Button 100% Cotton Polo Shirt [B07NVZBYBQ]</option>
+				</select>
+<div data-html='true' data-tip='The Product ID can be taken from the Product URL in the Amazon Web Store. 
+
+In this instance, we already provided it for you.
+' style='display: inline-block;'>
+				<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;'>
+			<span style='font-size: 15px; color: white;'>?</span></div>
 				</div>
-			
-			
+			</div>";
+			echo"<div style = 'margin-top: 80px;'> <span style = 'padding-left: 250px; font-size: 16px;'>How to get <a href = 'http://localhost/fyp/documentation.php?part=howitworks&sub=productid#productid' 
+			style = 'text-decoration:underline; color: blue;'>Product ID</a>?</span></div>";
+			echo"<div class = 'generatebutton'><input type='submit' name='generate' value='Generate'></div>";
+			echo"</form>";
+	echo"</div>";
+	echo'	
+	</div>';
+				 
+		echo"
 		</div>";
 	}
 	#About Us Page
@@ -214,12 +347,29 @@
 					There, you can</br> generate recommendations </br>or
 					ratings prediction based</br> on your uploaded data.</br></br>
 					Alternatively, you can also </br>click on the Generate</br> Recommendations button</br> (RECS's Data). There, 
-					you can</br> generate recommendations or</br>
-					ratings prediction based on</br> our data.</p>
+					you can</br> generate recommendations or
+					ratings prediction based on</br> the data we have web crawled. This includes the list of URLs</br>  that you have added. Our database will 
+					already have the required data, anything your</br> list have will be an add on.</br> Hence, it is optional. </p>
 				</div>
+			</div>
+			<div class 'howitworks-org' style='display: flex; justify-content: space-between;'> 
+				<div class= 'howitworks-org-5'>
+					<img name = 'addlist2' src='images/addlist2.svg' alt=''>
+					<h3 name = 'addlisttext'>Add List</h3>
+					<p name = 'addlisttext'>Click on the add list button.</br> Then, upload the text file with</br> URL links in the proper format. 
+					</br>RECS will use the links to crawl </br>the URLs of your choice.</p>
+					<img name = 'rightarrow' src='images/arrow3.svg' alt=''>
+				</div>
+				<div class= 'howitworks-org-6'>
+					<img name = 'uploadedlist' src='images/uploadedlist.svg' alt=''>
+					<h3 name = 'uploadeddatapagetext'>Uploaded List</h3>
+					<p name = 'uploadeddatapagetext'>Click on the uploaded list</br> button. There, you can</br> manage your uploaded text </br>file.</p>
+					<img name = 'rightarrow' src='images/arrow3.svg' alt=''>
+				</div>
+				
 			</div>";
 			echo"
-			<div class= 'howitworks-arrow'><img name = 'curvedarrow2' src='images/curvedarrow.svg' alt=''></div>
+			<div class= 'howitworks-arrow'><img name = 'curvedarrow3' src='images/curvedarrow.svg' alt=''></div>
 			<div class 'howitworks-org-nextline' style='display: flex; justify-content: space-between;'>
 				<div class= 'howitworks-org-4'>
 					<img name = 'results' src='images/results.svg' alt=''>
@@ -242,18 +392,34 @@
 			echo"
 			<div class 'howitworks-ind' style='display: flex; justify-content: space-between;'> 
 				<div class= 'howitworks-ind-1'>
-					<img name = 'generatereco' src='images/generate.svg' alt=''>
-					<h3 name = 'generaterecotext'>Generate</br> Recommendations</h3>
-					<p name = 'generaterecotext'>Click on the Generate</br> Recommendations button</br> (RECS's Data). There, 
-					you can</br> generate recommendations</br> or
-					ratings prediction based </br>on our data.</p>
+					<img name = 'addlist' src='images/addlist2.svg' alt=''>
+					<h3 name = 'addlisttext'>Add List</h3>
+					<p name = 'addlisttext'>Click on the add list button.</br> Then, upload the text file with</br> URL links in the proper format. 
+					</br>RECS will use the links to crawl </br>the URLs of your choice.</p>
 					<img name = 'rightarrow' src='images/arrow3.svg' alt=''>
 				</div>
 				<div class= 'howitworks-ind-2'>
+					<img name = 'uploadeddatapage' src='images/uploadedlist.svg' alt=''>
+					<h3 name = 'uploadeddatapagetext'>Uploaded List</h3>
+					<p name = 'uploadeddatapagetext'>Click on the uploaded list</br> button. There, you can</br> manage your uploaded text</br> file.</p>
+					<img name = 'rightarrow' src='images/arrow3.svg' alt=''>
+				</div>
+				<div class= 'howitworks-ind-3'>
+					<img name = 'generatereco' src='images/generate.svg' alt=''>
+					<h3 name = 'generaterecotext'>Generate</br> Recommendations</h3>
+					<p name = 'generaterecotext'>There, you can also click on the</br> Generate Recommendations</br> button (RECS's Data). There, 
+					you can generate recommendations or
+					ratings prediction based on</br> the data we have web crawled. This includes the list of URLs</br>  that you have added. Our database will 
+					already have the required data, anything your list</br>  have will be an add on. Hence, it</br> is optional. </p>
+				</div>
+			</div>";
+			echo"
+			<div class= 'howitworks-arrow'><img name = 'curvedarrow2' src='images/curvedarrow.svg' alt=''></div>
+			<div class 'howitworks-ind-nextline' style='display: flex; justify-content: space-between;'>
+				<div class= 'howitworks-ind-4'>
 					<img name = 'results' src='images/results.svg' alt=''>
 					<h3 name = 'resultstext'>Results</h3>
-					<p name = 'resultstext'>Click on the Results button.</br> 
-					There, you will be able check</br> the logs of your generated</br> results.</p>
+					<p name = 'resultstext'>Click on the Results button.</br> There, you will be able check</br> the logs of your generated</br> results.</p>
 				</div>
 			</div>";
 		}
@@ -355,7 +521,7 @@
 					<h2>Standard</h2>
 					<p name='intro'>Get more out of the</br> product.</p>
 					<p>2000 Recommendation Requests</p>
-					<h3>$4.90 / month</h3>
+					<h3>$9.90 / month</h3>
 					
 				</div>
 				<div class='pricing-box'>
@@ -363,7 +529,7 @@
 					<h2>Pro</h2>
 					<p name='intro'>Get the most out of</br> the product.</p>
 					<p>10000 Recommendation Requests</p>
-					<h3>$19.90 / month</h3>
+					<h3>$34.90 / month</h3>
 					
 				</div>
 			</div>
@@ -404,7 +570,7 @@
 				<div class="question" onclick="togglePanel(this)">
 					<h2 class="question-title">What do I have to do to create an account?<i style="float:right" class="fa fa-plus"></i></h2>
 					<div class="answer">
-						<p>Click on "Start Free", then register an account. You can choose between organization and individual. Then follow the instructions that will be stated after a successful creation of account.</p>
+						<p>Click on "Sign Up", then register an account. You can choose between organization and individual. Then follow the instructions that will be stated after a successful creation of account.</p>
 					</div>
 				</div>
 				<div class="question" onclick="togglePanel(this)">
@@ -464,19 +630,22 @@
 				<div class="question" onclick="togglePanel(this)">
 					<h2 class="question-title">Is there a free plan available?<i style="float:right" class="fa fa-plus"></i></h2>
 					<div class="answer">
-						<p>Yes, there is.</p>
+						<p>There is a 30 Days Free Trial for all who wants to try our product out.</p>
 					</div>
 				</div>
 				<div class="readmore" id = "readmore">
 					<div class="question" onclick="togglePanel(this)">
 					<h2 class="question-title">How do I upgrade my price plan?<i style="float:right" class="fa fa-plus"></i></h2>
 					<div class="answer">
-						<p>Once, you are logged in, you can upgrade your plan anytime, and it will be a button on the top right of your page. Just take note that
-						if you already have a previous paid plan that is active, you just need to top up the remaining amount.</p>
+						<p>Once, you are logged in, you can upgrade your plan anytime, and it will be a button on the top right of your page.</p>
 					</div>
 				</div>	
 				</div>
 				<div class = "readmorebutton"><button id = "readmorebtn" type="button" onclick = "readMore()">View More</button></div>';
+			}
+			else if ($option == 'documentation')
+			{
+				
 			}
 	echo'</div>
 	</div>';
@@ -588,26 +757,26 @@ function readMore(){
 	}
 }
 
-// Get the link element
-const link = document.querySelector('a[href="#bottom"]');
+	// Get the link element
+	const link = document.querySelector('a[href="#bottom"]');
 
-// Add a click event listener to the link
-link.addEventListener('click', (event) => {
-	// Prevent the default link behavior
-	event.preventDefault();
+	// Add a click event listener to the link
+	link.addEventListener('click', (event) => {
+		// Prevent the default link behavior
+		event.preventDefault();
 
-	// Get the anchor element
-	const anchor = document.querySelector('#bottom');
+		// Get the anchor element
+		const anchor = document.querySelector('#bottom');
 
-	// Scroll to the anchor element
-	anchor.scrollIntoView({ behavior: 'smooth' });
-});
+		// Scroll to the anchor element
+		anchor.scrollIntoView({ behavior: 'smooth' });
+	});
 
 function changeHeight() {
 	var option =<?php echo json_encode($option); ?>;
 	var frame = document.getElementById('howitworks-frame');
-	if (option == 'howitworksind'){
-		frame.style.height = '1500px';
+	if (option !== 'howitworksind'){
+		frame.style.height = '2200px';
 	}
 }
 
@@ -617,6 +786,82 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
+}
+
+var selectedInterests = [];
+var selectedAgeGroup = [];
+
+function selectInterest(box) {
+    let selectedBoxes = document.querySelectorAll(".selected");
+    if (selectedBoxes.length < 1 || box.classList.contains("selected")) {
+        box.classList.toggle("selected");
+      
+        selectedBoxes = document.querySelectorAll(".selected");
+        if (selectedBoxes.length === 1) {
+            document.getElementById("next-btn").classList.remove("hidden");
+			  selectedInterests = [];
+            selectedBoxes.forEach(box => {
+                selectedInterests.push(box.innerHTML);
+            });
+        } else {
+            document.getElementById("next-btn").classList.add("hidden");
+        }
+    }
+}
+
+
+function showAgeGroup() {
+    document.getElementById("interests").classList.add("hidden");
+	document.getElementById("heading11").classList.add("hidden");
+    setTimeout(() => {
+		
+		setTimeout(function() { document.getElementById("interests").style.display = "none"; }, 500);
+		setTimeout(function() { document.getElementById("age-group").classList.remove("hidden"); }, 500);
+        
+        let ageGroupBoxes = document.querySelectorAll("#age-group .row11 .box11");
+        ageGroupBoxes.forEach(box => {
+            box.classList.add("visible");
+        });
+        document.getElementById("next-btn").classList.add("hidden");
+		document.getElementById("heading11").innerHTML = 'Choose your age group';
+		document.getElementById("heading11").style.textAlign = "center";
+		setTimeout(function() { document.getElementById("heading11").classList.remove("hidden"); }, 500);
+		
+    }, 1000);
+	
+		
+}
+
+/*"Interests: " + selectedInterests[0] + ", "
+	+ selectedInterests[1] + "<br />Age group: " + selectedAgeGroup + */
+function showResults(){
+	//document.getElementById("age-group").classList.add("hidden");
+	document.getElementById("interests").classList.add("hidden");
+	document.getElementById("heading11").classList.add("hidden");
+	setTimeout(function() { document.getElementById("heading11").style.fontSize = "26px"; }, 1050);
+	setTimeout(function() { document.getElementById("heading11").style.textAlign = "center"; }, 1050);
+	setTimeout(function() { document.getElementById("heading11").innerHTML = "Choose a product from the list, then click generate.";
+ }, 1100);
+	setTimeout(function() { document.getElementById("interests").style.display = "none"; }, 1200);
+	setTimeout(function() { document.getElementById("heading11").classList.remove("hidden"); }, 2000);
+	setTimeout(function() { document.getElementById("generate").classList.remove("hidden"); }, 2000);
+}
+
+function selectAgeGroup(box) {
+  let selectedBoxes = document.querySelectorAll(".selected-box11");
+  if (selectedBoxes.length < 1 || box.classList.contains("selected-box11")) {
+    box.classList.toggle("selected-box11");
+	
+    selectedBoxes = document.querySelectorAll(".selected-box11");
+    if (selectedBoxes.length === 1) {
+		selectedBoxes.forEach(box => {
+                selectedAgeGroup = box.innerHTML;
+            });
+      document.getElementById("next-btn-2").classList.remove("hidden");
+    } else {
+      document.getElementById("next-btn-2").classList.add("hidden");
+    }
+  }
 }
 
 </script>

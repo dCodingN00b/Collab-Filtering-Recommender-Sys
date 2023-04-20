@@ -6,9 +6,69 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-
-body{
+body {
 	overflow-x: hidden;
+}
+p{
+	color: black;
+}
+
+.wrapper{
+    background: rgb(0,36,0);
+	background:powderBlue;
+	background: radial-gradient(circle, rgba(0,36,0,0.5048144257703081) 0%, rgba(179,238,182,0.5664390756302521) 
+0%, rgba(114,200,110,1) 100%, rgba(200,229,201,0.4235819327731093) 100%);
+    padding: 0 20px 0 20px;
+	
+	transform: translate(0%, 0%);
+	
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.row{
+    width: 1200px;
+    height: 1000px;
+    border-radius: 0px;
+    background: white;
+ 
+}
+.side-image{
+    background-image: url("images/test.jpg");
+    background-position: -300px 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 5px 0 0 5px;
+	transform: translate(0%, 0%);
+	
+}
+
+.usertype{
+	position: relative;
+	margin: 34px 10px;
+	color:white;
+	transform: translate(0.1%, 0%);
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+img{
+    width: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }
 
 .text p {
@@ -21,9 +81,7 @@ body{
 
 .reg{
 	width: 450px;
-	margin: 0 auto;
-	height: 900px;
-	
+	transform: translate(10%, 0%);
 }
 
 .reg h3 {
@@ -31,60 +89,85 @@ body{
 	text-align: center;
 	padding: 14px 0px;
 	font-size: 20px;
-	border-bottom: 2px solid lavender;
+	
 	width: 140px;
     display: inline-block;
-	transform: translate(50%, 0%);
+	transform: translate(44%, 0%);
 }
 
-.reg h3[name = 'orgregister']{
+.reg h3[name='orgregister'] {
 	color: black;
 	text-align: center;
 	padding: 14px 0px;
 	font-size: 20px;
 	border-bottom: 2px solid lavender;
-	width: 150px;
+	width: 160px;
     display: inline-block;
-	transform: translate(21%, 0%);
+	transform: translate(41%, 0%);
 }
 
-.reg h3[name = 'indivregister'] {
+.reg h3[name='indregister'] {
 	color: black;
 	text-align: center;
 	padding: 14px 0px;
 	font-size: 20px;
 	border-bottom: 2px solid lavender;
-	width: 130px;
+	width: 160px;
     display: inline-block;
-	transform: translate(19%, 0%);
+	transform: translate(40%, 0%);
 }
 
 
-.reg h3[name = 'adminregister'] {
-	color: black;
-	text-align: center;
-	padding: 14px 0px;
-	font-size: 20px;
-	border-bottom: 2px solid lavender;
-	width: 110px;
-    display: inline-block;
-	transform: translate(14%, 0%);
-}
 
 
-/*Header 1 text (Login)*/
+/*login and signup heading customization*/
 .reg h1 {
-	color: grey;
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	
+	width: 222.5px;
+    display: inline-block;
+	
+}
+
+.reg h1[name='login'] {
+	color: black;
 	text-align: center;
 	padding: 30px 20px;
 	font-size: 30px;
 	border-bottom: 2px solid lavender;
 	width: 222.5px;
     display: inline-block;
+	transform:translate(3%, 0%);
+}
+
+.reg h1[name='register'] {
+	color: black;
+	text-align: center;
+	padding: 30px 20px;
+	font-size: 30px;
+	border-bottom: 2px solid lavender;
+	width: 222.5px;
+    display: inline-block;
+	transform:translate(0%, 0%);
 }
 
 .reg a{
 	text-decoration: none;
+}
+
+
+
+.reg h1[name='register']{
+	border-bottom:2px solid lightgreen;
+	color:black;
+}
+
+.reg h1[name='login']:hover{
+	color: green;
+	border-bottom:2px solid lightgreen;
 }
 
 /*Form customization */
@@ -100,22 +183,9 @@ form .text_field{
 	color:white;
 }
 
-a[name='recs']{
-	text-decoration:none;
-	color:black;
-}
-
-a[name='recs']:hover{
-	text-decoration:none;
-	color:black;
-}
-
-
-
-
 /*text field box*/
 .text_field input{
-	width: 100%;
+	
 	padding: 0 5px;
 	height: 35px;
 	font-size: 16px;
@@ -124,6 +194,16 @@ a[name='recs']:hover{
 	background-color : AliceBlue;
 	border-radius: 5px;
 	outline: none;
+}
+
+a[name='recs']{
+	text-decoration:none;
+	color:black;
+}
+
+a[name='recs']:hover{
+	text-decoration:none;
+	color:black;
 }
 
 
@@ -218,163 +298,85 @@ span {
 	color: black;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
-*{
-	box-sizing: border-box;
-	margin: 0;
-	padding: 	0px 0px;
-	font-family: "Montserrat", sans-serif;
-	color: black;
-	text-decoration: none;
-	font-weight: 600;
-}
 
-h1 {
-	padding: 20px 20px;
-	color:black;
-}
-
-/*Website headers/categories*/
-header {
-	
-	justify-content: space-between;
+/*for unregister users to generate reco*/
+.container11 {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	padding: 8px 1%;
-	background: aliceblue;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;	
+	padding-top: 50px;
+	opacity: 0;
 }
 
-/*nav titles customizations and animation*/
 
-.nav-titles{
-	list-style: none;
+.container11.visible {
+	opacity: 1;
+}
+
+.row11 {
 	display: flex;
-	overflow:hidden;
-}
-
-.nav-titles li {
-	padding: 0px 30px;
-}
-
-.nav-titles li a {
-
-	float: left;
-	font-size: 16px;
-	color: black;
-	padding: 24px 0px;
-	text-decoration: none;
-	position:Relative;
-	z-index: 2;
-}
-.nav-titles li a:hover {
-	color: forestgreen;
-	border-bottom: 2px solid lightgreen;
-}
-
-
-li a[name='recs']{
-	letter-spacing: 2px;
-	color:black;
-	font-size: 22px;
-	padding: 20px 0px;
-	text-align: center;
-	float: left;
-	position:relative;
-}
-
-/*no color change*/
-.nav-titles li a[name='recs']:hover {
-	color: black;
-	border-bottom: None;
-}
-
-/* dropdown container */
-.dropdown {
-	right: 1px;
-
-	float: right;
-}
-
-/*Login and Sign up Customizations*/
-.dropdown {
-	font-weight: 600;
-	display: flex;
-	justify-content: space-between;
-	list-style: none;
-	
-}
-
-.dropdown  {
-	content: '';
-    position: absolute;
-    border: 0px solid #000;
-	cursor: pointer;
-	transform: translate(0%, -90%);
-	padding: 21px 7px;
-	z-index: 1;
-}
-
-
-/* Dropdown button */
-.profile {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 2px solid black;
-	background-color: transparent;
-	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
-	font-size: 20px;
-	text-transform: uppercase;
+	margin-bottom: 10px;
 }
 
-/*Dropdown nav bar customization*/
-.dropdown:hover, .profile:hover {
-	color: black;
-	cursor:pointer;
+.box11 {
+	color:#212121;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
+	border: 1px solid black;
+	display: flex;
+	border-radius: 30px;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background-color: white;
+}
+
+.box11.selected {
 	background-color: lightgreen;
-}
-
-/* Dropdown content */
-.profile-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 180px;
-	border: 1px solid lightgrey;
-	z-index: 1;
-	left:auto;
-	right: -1em;
-	text-align:right;
-	transform: translate(-5%, 65%);
-	
-}
-
-/*inside the profile dropdown*/
-.profile-content a {
-	float: none;
+	font-weight: bold;
 	color: black;
-	padding: 12px 16px;
+}
+
+.box11.visible.selected-box11 {
+	background-color: lightgreen;
+	font-weight: bold;
+	color: black;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+  
+}
+
+
+
+#next-btn {
+	padding: 15px 35px;	
+	background-color: lightgreen;
+	color: black;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	border: 1px solid black;
 	text-decoration: none;
-	display: block;
-	text-align: left;
 }
 
-/*profile dropdown animation*/
-.dropdown:hover .profile-content {
-	display: block;
+#next-btn:hover {
+	padding: 16px 36px;	
+	transition: 0.2s;
 }
 
-.profile-content a:hover {
-	background-color: lightgreen;
-	
-}
 
-h1{
-	text-align:center;
-	padding: 50px 0px;
+.emailimg {
+	width: 35%;
+	margin-left: 120px;
+	margin-top: 200px;
 }
 
 
