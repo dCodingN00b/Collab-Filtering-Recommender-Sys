@@ -8,9 +8,9 @@ import sys
 import os
 
 def rename_ID(x):
-    if len(x)>10:
+    if len(x)>13:
         return "userID"
-    if 4 <= len(x) <= 12:
+    if 7 <= len(x) <= 12:
         return "prodID"
     if x=='5.0' or x=='4.0' or x=='3.0' or x=='2.0' or x=='1.0':
         return "rating"
@@ -36,6 +36,16 @@ def start():
         arg_userID = sys.argv[3]
         arg_prodID = sys.argv[4]
         arg_no_of_reco = sys.argv[5]
+        
+        # check for arg_userID length less than 13
+        if not (len(arg_userID)>13):
+            print ("userID usage incorrect, please use another userID")
+            sys.exit(1)
+            
+        # check for arg_prodID length outside the range of 7 to 12
+        if not (len(arg_prodID)>=7 and len(arg_prodID)<=12):
+            print ("prodID usage incorrect, please use another prodID")
+            sys.exit(1)
         
         # Select the CSV files from the source folders
         csv_files = []
