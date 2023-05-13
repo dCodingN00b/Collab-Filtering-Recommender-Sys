@@ -67,16 +67,23 @@ def start_electronicscmds():
         # scrape gps sub menu links
         subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/gp/browse.html?node=4885083051&ref_=nav_em_wl_gps_0_2_11_13', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'electronicsCate/electronics-gps.csv'], cwd=dirspider)
         
-        print ("\n============ done with csv link scraping, merge next ==========")
-        
         # working directory of electronicsCate
-        dirspi_electronics = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\electronicsCate"
+        dirspiCate = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\electronicsCate"
         
         # run python csvmerge
-        subprocess.run(['python', 'electronicsCatecsvmerge.py'], cwd=dirspi_electronics)
+        subprocess.run(['python', 'electronicsCatecsvmerge.py'], cwd=dirspiCate)
         
-        # run scrapy to scrape pet links
-        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=electronics.csv', '-o', 'electronics/electronics_out.csv'], cwd=dirspider)
+        # run scrapy to scrape electronic links
+        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=electronics.csv', '-o', 'electronics-processing/electronics_out.csv'], cwd=dirspider)
+        
+        # run python specialcharfilter to remove unwanted special characters
+        subprocess.run(['python', 'specialcharfilter.py', r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\electronics-processing"], cwd=dirneural)
+        
+        # working directory of electronics-processing
+        dirspiProcess = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\electronics-processing"
+        
+        # copy processing output to electronics folder
+        subprocess.run(['python', 'copytoElectronics.py'], cwd=dirspiProcess)
         
     except Exception as e:
         print ("Exception: ", e)

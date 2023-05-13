@@ -32,10 +32,10 @@ def start_videogamescmds():
         subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/gp/browse.html?node=5250879051&ref_=nav_em_vg_xbox_0_2_27_7', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'videogamesCate/videogames-Xbox.csv'], cwd=dirspider)
                 
         # change the host and referer in settings.py
-        subprocess.run(['python', 'modify_settings.py', 'www.amazon.com.au', 'https://www.amazon.com.au/gp/browse.html?node=5393347051&ref_=nav_em_vg_consoles_0_2_27_8'], cwd=dirneural)
+        subprocess.run(['python', 'modify_settings.py', 'www.amazon.com.au', 'https://www.amazon.com.au/s?rh=n%3A5393347051&fs=true&ref=lp_5393347051_sar'], cwd=dirneural)
         
         # scrape console sub menu links
-        subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/gp/browse.html?node=5393347051&ref_=nav_em_vg_consoles_0_2_27_8', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'videogamesCate/videogames-console.csv'], cwd=dirspider)
+        subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/s?rh=n%3A5393347051&fs=true&ref=lp_5393347051_sar', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'videogamesCate/videogames-console.csv'], cwd=dirspider)
                 
         # change the host and referer in settings.py
         subprocess.run(['python', 'modify_settings.py', 'www.amazon.com.au', 'https://www.amazon.com.au/gp/browse.html?node=5250870051&ref_=nav_em_vg_pc_0_2_27_9'], cwd=dirneural)
@@ -50,13 +50,22 @@ def start_videogamescmds():
         subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/s?rh=n%3A5307353051&fs=true&ref=lp_5307353051_sar', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'videogamesCate/videogames-accessories.csv'], cwd=dirspider)
         
         # working directory of videogamesCate
-        dirspi_pets = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\videogamesCate"
+        dirspiCate = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\videogamesCate"
         
         # run python csvmerge
-        subprocess.run(['python', 'videogamesCatecsvmerge.py'], cwd=dirspi_pets)
+        subprocess.run(['python', 'videogamesCatecsvmerge.py'], cwd=dirspiCate)
         
         # run scrapy to scrape videogames links
-        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=videogames.csv', '-o', 'videogames/videogames_out.csv'], cwd=dirspider)
+        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=videogames.csv', '-o', 'videogames-processing/videogames_out.csv'], cwd=dirspider)
+        
+        # run python specialcharfilter to remove unwanted special characters
+        subprocess.run(['python', 'specialcharfilter.py', r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\videogames-processing"], cwd=dirneural)
+        
+        # working directory of videogames-processing
+        dirspiProcess = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\videogames-processing"
+        
+        # copy processing output to videogames folder
+        subprocess.run(['python', 'copytoVideogames.py'], cwd=dirspiProcess)
         
     except Exception as e:
         print ("Exception: ", e)

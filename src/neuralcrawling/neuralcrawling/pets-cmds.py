@@ -46,13 +46,22 @@ def start_petscmds():
         subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/gp/browse.html?node=5581863051&ref_=nav_em__pets_small_0_2_22_7', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'petsCate/pets-small.csv'], cwd=dirspider)
         
         # set the directory of petsCate
-        dirspi_pets = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\petsCate"
+        dirspiCate = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\petsCate"
         
         # run python csvmerge
-        subprocess.run(['python', 'petsCatecsvmerge.py'], cwd=dirspi_pets)
+        subprocess.run(['python', 'petsCatecsvmerge.py'], cwd=dirspiCate)
         
         # run scrapy to scrape pet links
-        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=pets.csv', '-o', 'pets/pets_out.csv'], cwd=dirspider)
+        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=pets.csv', '-o', 'pets-processing/pets_out.csv'], cwd=dirspider)
+        
+        # run python specialcharfilter to remove unwanted special characters
+        subprocess.run(['python', 'specialcharfilter.py', r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\pets-processing"], cwd=dirneural)
+        
+        # working directory of pets-processing
+        dirspiProcess = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\pets-processing"
+        
+        # copy processing output to toys folder
+        subprocess.run(['python', 'copytoPets.py'], cwd=dirspiProcess)
         
     except Exception as e:
         print ("Exception: ", e)

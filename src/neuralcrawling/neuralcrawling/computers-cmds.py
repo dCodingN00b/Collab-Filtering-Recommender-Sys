@@ -60,17 +60,24 @@ def start_computerscmds():
         
         # scrape printers sub menu links
         subprocess.run(['scrapy', 'crawl', 'amazon_categ_crawl', '-a', 'domain=https://www.amazon.com.au/gp/browse.html?node=4913314051&ref_=nav_em_off_printers_0_2_10_10', '-s', 'CLOSESPIDER_ITEMCOUNT=100', '-o', 'computersCate/computers-printers.csv'], cwd=dirspider)
-        
-        print ("\n============ done with csv link scraping, merge next ==========")
-        
+                
         # working directory of computersCate
-        dirspi_computers = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\computersCate"
+        dirspiCate = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\computersCate"
         
         # run python csvmerge
-        subprocess.run(['python', 'computersCatecsvmerge.py'], cwd=dirspi_computers)
+        subprocess.run(['python', 'computersCatecsvmerge.py'], cwd=dirspiCate)
         
-        # run scrapy to scrape pet links
-        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=computers.csv', '-o', 'computers/computers_out.csv'], cwd=dirspider)
+        # run scrapy to scrape computer links
+        subprocess.run(['scrapy', 'crawl', 'amazon_scraping', '-a' 'csv=computers.csv', '-o', 'computers-processing/computers_out.csv'], cwd=dirspider)
+        
+        # run python specialcharfilter to remove unwanted special characters
+        subprocess.run(['python', 'specialcharfilter.py', r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\computers-processing"], cwd=dirneural)
+        
+        # working directory of computers-processing
+        dirspiProcess = r"C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\computers-processing"
+        
+        # copy processing output to computers folder
+        subprocess.run(['python', 'copytoComputers.py'], cwd=dirspiProcess)
         
     except Exception as e:
         print ("Exception: ", e)
