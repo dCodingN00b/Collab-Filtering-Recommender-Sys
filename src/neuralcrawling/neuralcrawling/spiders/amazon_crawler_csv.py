@@ -72,26 +72,40 @@ class AmazonReview(scrapy.Spider):
         asin = response.meta['asin']
         url_amazon = response.meta['url']
         
-        # remember to remove all the printouts
-        print ("URL: ", url_amazon)
         # check product variation strip and extract the data.
-                                    #product-variation-strip
         typeSelection = response.css("div.product-variation-strip")
         for typeSelect in typeSelection:
             str_check = typeSelect.css("span::text").extract()
         
-        #print ("strcheck: ", str_check)
+        # create dom_url from the url_amazon
+        if "co.jp" in url_amazon:
+            dom_url = f'https://{url_amazon}/-/en'
+        else: 
+            dom_url = f'https://{url_amazon}'
+        
+        # extract image_url link
+        image_urls = response.css('img[data-hook="cr-product-image"]::attr(src)').extract()
+        for image_url in image_urls:
+            if "_AC_US60_" in image_url:
+                image_urls = image_url.replace("_AC_US60_", "_AC_US240_")
+        
+        # get name of prodID
+        nameProd = response.css("a.a-link-normal[data-hook=product-link] ::text").get()
+        
         review_elements = response.css("#cm_cr-review_list div.review")
         for review_element in review_elements:
             # get user_link from reviews website
             user_link = review_element.css('a.a-profile::attr(href)').get()
+            
             # check against product variation strip and if it is the same, scrape the info and user_link being available, and if product variation strip is None and user_link being available, we will scrape the data.
             if (review_element.css("*[data-hook*=format-strip] ::text").extract()==str_check and user_link) or ((review_element.css("*[data-hook*=format-strip] ::text").extract()) is None and user_link):
                 yield {
-                    # unable to scrape multiple (max 10 for certain items)
                     "userID": user_link,
                     "prodID": asin,
-                    "rating": review_element.css("*[data-hook*=review-star-rating] ::text").re(r'(\d\.*\d) out')[0]
+                    "rating": review_element.css("*[data-hook*=review-star-rating] ::text").re(r'(\d\.*\d) out')[0],
+                    "domain": dom_url,
+                    "image_urls": image_urls,
+                    "prodname": nameProd
                     }
                 
         # get next page url
