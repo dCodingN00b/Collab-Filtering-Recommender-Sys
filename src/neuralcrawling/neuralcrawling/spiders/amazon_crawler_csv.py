@@ -3,11 +3,6 @@ import re
 import pandas as pd
 from urllib.parse import urljoin
 
-# make sure to change directory
-# run command below in cmd:
-# cd C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\
-#scrapy crawl amazon_scraping -a csv="electronic-camera.csv" -o electronics/test.csv
-
 class AmazonReview(scrapy.Spider):
     name = 'amazon_scraping'
     csv_global = ''
@@ -16,7 +11,6 @@ class AmazonReview(scrapy.Spider):
         super(AmazonReview, self).__init__(*args, **kwargs)
         AmazonReview.csv_global = csv
         
-    # we need to find more asin on amazon to put in this list (electronic items if possible)
     def start_requests(self):
         # to extract useful information from url list
         try:
@@ -33,16 +27,15 @@ class AmazonReview(scrapy.Spider):
                 # pattern to match the product code
                 prodID_pattern = r"/dp/([A-Z0-9]+)"
                 
-                # extract the domain name and product code using regex
-                domain = re.search(domain_pattern, csvFile.iloc[url, 0]).group(2)
-                prodID = re.search(prodID_pattern, csvFile.iloc[url, 0]).group(1)
-                
-                #append to lists.
-                domain_ls.append(domain)
-                prodID_ls.append(prodID)
-           
-            #print ("domain_ls: ",domain_ls)
-            #print ("prodID_ls: ",prodID_ls)
+                # extract the domain name and product code using regex if it is available
+                if re.search(domain_pattern, csvFile.iloc[url, 0]) and re.search(prodID_pattern, csvFile.iloc[url, 0]):
+                    domain = re.search(domain_pattern, csvFile.iloc[url, 0]).group(2)
+                    prodID = re.search(prodID_pattern, csvFile.iloc[url, 0]).group(1)
+                    
+                    #append to lists.
+                    domain_ls.append(domain)
+                    prodID_ls.append(prodID)
+            
         except FileNotFoundError:
             print("File not found, please select another file type.\nExiting program")
             exit()
@@ -65,9 +58,6 @@ class AmazonReview(scrapy.Spider):
             # scrapy request from website url
             yield scrapy.Request(url=amazon_reviews_url, callback=self.parse_review, meta={'asin':asin,'url':amazon_site})
             
-        
-    # find out: run one at a time, to avoid being banned, already happen on amazon.com/ap/signin
-    # have to change header
     def parse_review(self, response):
         asin = response.meta['asin']
         url_amazon = response.meta['url']

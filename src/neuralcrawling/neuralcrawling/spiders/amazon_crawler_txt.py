@@ -2,13 +2,6 @@ import sys
 import scrapy
 import re
 from urllib.parse import urljoin
-import subprocess
-
-# run command below in cmd:
-# cd C:\Users\weeze\Documents\neuralcrawling\neuralcrawling\spiders\
-# change "-o (xx.json)" based on what user likes
-
-#scrapy crawl amazon_scraping_txt -a txt="links.txt" -o dataset/9mix.csv
 
 class AmazonReview(scrapy.Spider):
     name = 'amazon_scraping_txt' 
@@ -16,16 +9,16 @@ class AmazonReview(scrapy.Spider):
     
     def __init__(self, txt='', *args, **kwargs):
         super(AmazonReview, self).__init__(*args, **kwargs)
-        print ("txt: ", txt)
         AmazonReview.txt_global = txt
         
-    # start_requests will start the processing
     def start_requests(self): 
         # to extract useful information from url list
         try:
             # read txt file
             print ("In start requests txt: ", AmazonReview.txt_global)
             with open(AmazonReview.txt_global, 'r') as f:
+                # Ignore the first line
+                f.readline()
                 txtFile = [line.rstrip('\n') for line in f]
             
             # split the links into different position
@@ -39,16 +32,15 @@ class AmazonReview(scrapy.Spider):
                 # pattern to match the product code
                 prodID_pattern = r"/dp/([A-Z0-9]+)"
                 
-                # extract the domain name and product code using regex
-                domain = re.search(domain_pattern, url).group(2)
-                prodID = re.search(prodID_pattern, url).group(1)
-                
-                #append to lists.
-                domain_ls.append(domain)
-                prodID_ls.append(prodID)
-           
-            print ("domain_ls: ",domain_ls)
-            print ("prodID_ls: ",prodID_ls)
+                # extract the domain name and product code using regex if it is available
+                if re.search(domain_pattern, url) and re.search(prodID_pattern, url):
+                    domain = re.search(domain_pattern, url).group(2)
+                    prodID = re.search(prodID_pattern, url).group(1)
+                    
+                    #append to lists.
+                    domain_ls.append(domain)
+                    prodID_ls.append(prodID)
+            
         except FileNotFoundError:
             print("File not found, please select another file type.\nExiting program")
             exit()
