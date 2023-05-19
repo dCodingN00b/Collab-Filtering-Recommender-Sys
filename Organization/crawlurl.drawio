@@ -1,0 +1,85 @@
+<mxfile host="Electron" modified="2023-05-18T17:05:20.051Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="CtlXbvvvHNIbz87SE5Ed" version="21.2.8" type="device">
+  <diagram id="p1WFtV5cTaJLbCV86L4F" name="Page-1">
+    <mxGraphModel dx="1276" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-151" value=":amazon_crawler_txt.py" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="860" y="140" width="156.72" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-152" value="click Crawl" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;" parent="1" edge="1">
+          <mxGeometry x="-0.0586" y="3" width="80" relative="1" as="geometry">
+            <mxPoint x="210" y="223" as="sourcePoint" />
+            <mxPoint x="390" y="223" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-153" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;fontFamily=Helvetica;fontSize=12;fontColor=default;align=center;strokeColor=default;fillColor=default;size=50;" parent="1" vertex="1">
+          <mxGeometry x="155.1" y="175.14" width="46.09" height="404.86" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-154" value="Organization" style="text;html=1;align=center;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;container=0;movable=1;rotatable=1;deletable=1;editable=1;connectable=1;locked=0;" parent="1" vertex="1">
+          <mxGeometry x="140.1" y="140" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-155" value=":workspace.php" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="140" width="199.75" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-156" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="392.19" y="370" width="15.37" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-158" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="392.19" y="220" width="15.37" height="35.17" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-160" value=":execute_command_crawl.php" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="580" y="140" width="170" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-161" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&lt;u&gt;Crawl URLs&lt;/u&gt;&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="500.56000000000006" y="90" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-163" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="657.31" y="340" width="15.37" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Lrtluq5l5MD6FJIpUNIz-172" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="930.68" y="285.17" width="15.37" height="54.83" as="geometry" />
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-1" value="$.ajax({POST,&amp;nbsp;userid, fullfilename,&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;exitX=1.341;exitY=0.995;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="Lrtluq5l5MD6FJIpUNIz-158">
+          <mxGeometry x="-0.0586" y="3" width="80" relative="1" as="geometry">
+            <mxPoint x="450" y="254.17000000000002" as="sourcePoint" />
+            <mxPoint x="650" y="255" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" vertex="1" parent="1">
+          <mxGeometry x="657.31" y="255.17" width="15.37" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-4" value="filenamewithoutextension})" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="255.17" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-5" value="exec($crawlcommand, $out, $return)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;entryX=-0.383;entryY=0.03;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="Lrtluq5l5MD6FJIpUNIz-172">
+          <mxGeometry x="-0.0579" y="3" width="80" relative="1" as="geometry">
+            <mxPoint x="680" y="286" as="sourcePoint" />
+            <mxPoint x="905.31" y="285.17" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-9" value="&quot;Crawled&quot;" style="endArrow=open;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=1.164;entryY=0.047;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Lrtluq5l5MD6FJIpUNIz-151" target="Lrtluq5l5MD6FJIpUNIz-163">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="840" y="339" as="sourcePoint" />
+            <mxPoint x="720" y="339" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-10" value="&quot;Crawled&quot;" style="endArrow=open;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=1.164;entryY=0.047;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="666.04" y="370" as="sourcePoint" />
+            <mxPoint x="403.04" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h3t42DEGKsIVJYxI7nAV-11" value="&quot;Crawled&quot;" style="endArrow=open;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="403.09999999999997" y="400" as="sourcePoint" />
+            <mxPoint x="180" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
