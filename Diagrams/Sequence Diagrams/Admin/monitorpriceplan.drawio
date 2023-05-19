@@ -1,0 +1,88 @@
+<mxfile host="Electron" modified="2023-05-18T20:48:44.482Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="M6s1C7c_emF4GKEUkGOZ" version="21.2.8" type="device">
+  <diagram id="p1WFtV5cTaJLbCV86L4F" name="Page-1">
+    <mxGraphModel dx="1290" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rrxrWV5JKAd1Jxnc8wNa-6" value=":user.php" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="800.0020447666658" y="169.04761904761904" width="150.56795523333417" height="370.9523809523809" as="geometry" />
+        </mxCell>
+        <mxCell id="BHGGA8FH1MstIcf6RSHf-21" value="click manage&amp;nbsp;" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;" parent="1" edge="1" target="YUHKpsWy9Ua3jzbSFqYd-1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="230.00204446636653" y="250.06809523809525" as="sourcePoint" />
+            <mxPoint x="361.4306065720269" y="250.00476190476192" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mJ_MDuSwQOCXob1QKFZ1-4" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;fontFamily=Helvetica;fontSize=12;fontColor=default;align=center;strokeColor=default;fillColor=default;size=50;" parent="1" vertex="1">
+          <mxGeometry x="178.85000000000002" y="209.05" width="42.29" height="330.95" as="geometry" />
+        </mxCell>
+        <mxCell id="BHGGA8FH1MstIcf6RSHf-15" value="Admin" style="text;html=1;align=center;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;container=0;movable=1;rotatable=1;deletable=1;editable=1;connectable=1;locked=0;" parent="1" vertex="1">
+          <mxGeometry x="170" y="169.05" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rYsFrykJwClsn_a4E15--2" value=":navbar.php" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="549.9994328054793" y="169.04761904761904" width="191.90940240120906" height="370.9523809523809" as="geometry" />
+        </mxCell>
+        <mxCell id="rYsFrykJwClsn_a4E15--4" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="638.5706316968324" y="281.8209523809524" width="14.760043272127193" height="31.82047619047619" as="geometry" />
+        </mxCell>
+        <mxCell id="rrxrWV5JKAd1Jxnc8wNa-36" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="638.5706316968325" y="340.7847619047618" width="14.760043272127193" height="27.287619047619046" as="geometry" />
+        </mxCell>
+        <mxCell id="rrxrWV5JKAd1Jxnc8wNa-26" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" parent="1" vertex="1">
+          <mxGeometry x="867.9013333444071" y="313.64142857142855" width="14.760043272127193" height="27.142857142857142" as="geometry" />
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-1" value=":manageuser.php" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="310" y="169.05" width="191.90940240120906" height="370.9523809523809" as="geometry" />
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" vertex="1" parent="1">
+          <mxGeometry x="398.5711988913531" y="250.0033333333334" width="14.760043272127193" height="31.82047619047619" as="geometry" />
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;container=0;" vertex="1" parent="1">
+          <mxGeometry x="398.5711988913532" y="368.07714285714286" width="14.760043272127193" height="27.287619047619046" as="geometry" />
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-4" value="includes navbar.php" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;" edge="1" parent="1">
+          <mxGeometry x="0.0769" width="80" relative="1" as="geometry">
+            <mxPoint x="413.33" y="281.89" as="sourcePoint" />
+            <mxPoint x="630" y="282" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-5" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;redirect tomanageuser.php&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="240" y="251.82" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-6" value="$user-&amp;gt; getUserInfo ($userid)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;elbow=vertical;" edge="1" parent="1">
+          <mxGeometry x="0.0769" width="80" relative="1" as="geometry">
+            <mxPoint x="651.23" y="313.64" as="sourcePoint" />
+            <mxPoint x="867.9000000000001" y="313.75" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-7" value="return $row =&amp;nbsp;mysqli_fetch_array($result)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;elbow=vertical;" edge="1" parent="1">
+          <mxGeometry x="-0.0305" y="20" relative="1" as="geometry">
+            <mxPoint x="848.5699999999999" y="340.78" as="sourcePoint" />
+            <mxPoint x="660" y="341" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-8" value="echo $pricePlan,&amp;nbsp;$daysRemaining" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;elbow=vertical;entryX=1.262;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="YUHKpsWy9Ua3jzbSFqYd-3">
+          <mxGeometry x="-0.0305" y="20" relative="1" as="geometry">
+            <mxPoint x="638.5699999999999" y="368.07" as="sourcePoint" />
+            <mxPoint x="420" y="370" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUHKpsWy9Ua3jzbSFqYd-11" value="echo $pricePlan,&amp;nbsp;$daysRemaining" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;elbow=vertical;" edge="1" parent="1" target="mJ_MDuSwQOCXob1QKFZ1-4">
+          <mxGeometry x="-0.0305" y="20" relative="1" as="geometry">
+            <mxPoint x="413.33" y="395.43" as="sourcePoint" />
+            <mxPoint x="191.76000000000005" y="395.36" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
