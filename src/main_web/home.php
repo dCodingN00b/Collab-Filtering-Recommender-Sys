@@ -8,6 +8,7 @@
 	}
 	
 	$userType = $_SESSION['userType'];
+	
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +76,7 @@ if ($userType == '1') #org (client)
 ?>
 	<div class="landscape-container">
 		<div class="welcome-box">
-		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?> (Org)!</h1>
+		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?>!</h1>
 		  <img src="images/welcome.svg" alt="Landscape image">
 		</div>
 		<div class = "content-container">
@@ -87,7 +88,7 @@ if ($userType == '1') #org (client)
 			  <h1 class = 'doc' >Want to understand</br> RECS better?</h1>
 			  <div>
 			  <button style= 'transform:translate(-13%, 0%);'><a href ='main.php?id=howitworks'>How It Works</a></button>
-			  <button><a href ='http://localhost/fyp/documentation.php?part=introduction'>Documentation</a></button></div>
+			  <button><a href ='documentation.php?part=introduction'>Documentation</a></button></div>
 			</div>
 		</div>
 	<div>
@@ -99,7 +100,7 @@ if ($userType == '1') #org (client)
 	
 	<div class="landscape-container">
 		<div class="welcome-box">
-		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?> (Individual)!</h1>
+		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?>!</h1>
 		  <img src="images/welcome.svg" alt="Landscape image">
 		</div>
 		<div class = "content-container">
@@ -111,7 +112,7 @@ if ($userType == '1') #org (client)
 			  <h1 class = 'doc' >Want to understand</br> RECS better?</h1>
 			  <div>
 			  <button style= 'transform:translate(-13%, 0%);'><a href ='main.php?id=howitworks'>How It Works</a></button>
-			  <button><a href ='http://localhost/fyp/documentation.php?part=introduction'>Documentation</a></button></div>
+			  <button><a href ='documentation.php?part=introduction'>Documentation</a></button></div>
 			</div>
 		</div>
 	<div>
@@ -138,7 +139,7 @@ if ($userType == '1') #org (client)
 	</header>
 	<div class="landscape-container" style='transform:translate(0%, -18%)'>
 		<div class="welcome-box">
-		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?> (Admin)!</h1>
+		  <h1 class = 'welcome' >Welcome back, <?=$_SESSION['name']?>!</h1>
 		  <img src="images/welcome.svg" alt="Landscape image">
 		</div>
 	<div>

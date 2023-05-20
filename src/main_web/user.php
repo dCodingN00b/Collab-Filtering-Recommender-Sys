@@ -53,6 +53,10 @@ class User {
 		return $this -> dateTime;
 	}
 	
+	function getPassword(){
+		return $this -> password;
+	}
+	
 	//Mutator methods	
 	function setName($name){
 		$this->name = $name;
@@ -147,16 +151,17 @@ class User {
 	}
 	
 	//register user
-	public function registerUser($email, $userType, $name, $password, $orgName, $orgWeb, $category1){
+	public function registerUser($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5){
 		//Forming database connection
 		include("inc_db_fyp.php");
 		 
 		//Adding User
 		//Prepare statement
-		$statement = $conn->prepare("INSERT INTO users (userType, name, password, emailAddress, `Organization Name`, `Organization Website`, categoryOne) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$statement = $conn->prepare("INSERT INTO users (userType, name, password, emailAddress, `Organization Name`, `Organization Website`, categoryOne, 
+		categoryTwo, categoryThree, categoryFour, categoryFive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
 		//Bind parameters
-		$statement->bind_param("sssssss", $userType, $name, $password, $email, $orgName, $orgWeb, $category1);
+		$statement->bind_param("sssssssssss", $userType, $name, $password, $email, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
 	     
 
 		if ($statement->execute()){
@@ -200,15 +205,16 @@ class User {
 	}
 	
 	//admin edit account
-	function editUser ($email, $password, $name, $userType, $orgName, $orgWeb, $userid) {
+	function editUser ($email, $password, $name, $userType, $orgName, $orgWeb, $categoryOne, $categoryTwo, $categoryThree, $categoryFour, $categoryFive, $userid) {
 		//Forming database connection
 		include("inc_db_fyp.php");
 		
 		$sql = "UPDATE users 
-			SET emailAddress = ?, password = ?, name = ?, userType = ?,`Organization Name` = ?, `Organization Website` = ?
+			SET emailAddress = ?, password = ?, name = ?, userType = ?,`Organization Name` = ?, `Organization Website` = ?, 
+			categoryOne = ?, categoryTwo = ?, categoryThree = ?, categoryFour = ?, categoryFive = ?
 			WHERE userID = ?";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('sssssss', $email, $password, $name, $userType, $orgName, $orgWeb, $userid);
+		$stmt->bind_param('ssssssssssss', $email, $password, $name, $userType, $orgName, $orgWeb, $categoryOne, $categoryTwo, $categoryThree, $categoryFour, $categoryFive, $userid);
 		
 	
 		if ($stmt->execute()){
@@ -248,19 +254,32 @@ class User {
 		$conn->close();
 	}
 	
-	//admin create account
-	function createAccount ($email, $password, $name, $userType, $orgName, $orgWeb)
-	{
+	public function createAccount($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5){
 		//Forming database connection
 		include("inc_db_fyp.php");
+		 
+		//Adding User
+		//Prepare statement
+		$statement = $conn->prepare("INSERT INTO users (userType, name, password, emailAddress, `Organization Name`, `Organization Website`, categoryOne, 
+		categoryTwo, categoryThree, categoryFour, categoryFive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		
-		$stmt = $conn->prepare("INSERT INTO `users`(`userType`, `name`, `password`, `emailAddress`, `Organization Name`, `Organization Website`)
-								VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $userType, $name, $password, $email, $orgName, $orgWeb);
-		$stmt->execute();
-		$stmt->close();
-		$_SESSION['successStatus'] = "Account Successfully Created.";
+		//Bind parameters
+		$statement->bind_param("sssssssssss", $userType, $name, $password, $email, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
+	     
+
+		if ($statement->execute()){
+			$_SESSION['successStatus'] = "Account Successfully Created.";
+			return true;
+		}
+		else{
+			 return false;
+		}
+
+	
+		//Close connections
+		$statement->close();
 		$conn->close();
+		//----------------------------------------------------------------------------------
 	}
 	
 	//Check if email exist
@@ -285,7 +304,7 @@ class User {
 		$conn->close();
 		
 		if($result->num_rows > 0){
-			$_SESSION['successStatus'] = "Email already used.";
+			
 			return true;
 		}else{
 			return false;
@@ -613,35 +632,6 @@ class User {
 		$conn->close();
 	}
 	
-	//edit age group
-	public function editAgeGroup($ageRange, $userid){
-		//Forming database connection
-		include("inc_db_fyp.php");
-		
-		//Prepare statement
-		$statement = $conn->prepare("UPDATE users SET ageRange = ? WHERE userID = ?");
-		
-		//Bind parameters
-		$statement->bind_param("ss", $ageRange, $userid);
-		
-		
-		try{
-			if ($statement->execute()){
-				$_SESSION['successStatus'] = "User Information Successfully Updated.";
-			}
-			else{
-				  throw new Exception("error");
-			}
-		}
-		catch (Exception $e) {
-			$_SESSION['successStatus'] = $e->getMessage();
-		}
-		
-		//Close connections
-		$statement->close();
-		$conn->close();
-	}
-	
 	public function checkAndUpdateFreeTrial ($email){
 		//Forming database connection
 		include("inc_db_fyp.php");
@@ -676,5 +666,274 @@ class User {
 		$statement->close();
 		$conn->close();
 	}
+	
+	public function createResultsFromRating ($userID, $productID, $rating, $generatedType, $user_id){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("INSERT into results (userID, productID, rating, generatedType, user_id) values (?, ?, ?, ?, ?)");
+		
+		//Bind parameters
+		$statement->bind_param("sssis", $userID, $productID, $rating, $generatedType, $user_id);
+		
+		
+		$statement->execute();
+		$statement ->close();
+		//$_SESSION['successStatus'] = "Generated results stored in results.";
+		$conn->close();
+	}
+	
+	
+	public function createResultsFromReco ($productID, $reco1, $reco2, $reco3, $reco4, $reco5, $generatedType, $user_id){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("INSERT into results (productID, similarProductOne, similarProductTwo, similarProductThree, 
+		similarProductFour, similarProductFive, generatedType, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)");
+		
+		//Bind parameters
+		$statement->bind_param("ssssssis", $productID, $reco1, $reco2, $reco3, $reco4, $reco5, $generatedType, $user_id);
+		
+		
+		$statement->execute();
+		$statement ->close();
+		//$_SESSION['successStatus'] = "Generated results stored in results.";
+		$conn->close();
+	}
+
+
+
+	public function getResults ($userid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//prepare statement
+		$statement = $conn-> prepare ("SELECT * FROM results WHERE user_id = ?");
+		
+		//bind params
+		$statement-> bind_param("s", $userid);
+		
+		//Execute
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+
+		
+		
+		
+		return $result;
+		
+		//Close connections
+		$statement->close();
+		$conn->close();
+	}
+	
+	
+	public function getSpecificResult ($resultid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//prepare statement
+		$statement = $conn-> prepare ("SELECT * FROM results WHERE resultID = ?");
+		
+		//bind params
+		$statement-> bind_param("s", $resultid);
+		
+		//Execute
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+
+		
+		
+		
+		return $result;
+		
+		//Close connections
+		$statement->close();
+		$conn->close();
+	}
+	
+	
+	public function getRecentSearches($userid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//prepare statement
+		$statement = $conn-> prepare ("SELECT * FROM results WHERE user_id = ? ORDER BY generatedTime DESC");
+		
+		//bind params
+		$statement-> bind_param("s", $userid);
+		
+		//Execute
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		
+		return $result;
+		
+		//Close connections
+		$statement->close();
+		$conn->close();
+	}
+	
+	
+	public function updateCategories ($userid, $categoryOne, $categoryTwo, $categoryThree, $categoryFour, $categoryFive){
+
+		
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("UPDATE users SET categoryOne = ?, categoryTwo = ?, categoryThree = ?, categoryFour = ?, 
+		categoryFive = ? where userID = ?");
+		
+		//Bind parameters
+		$statement->bind_param("ssssss", $categoryOne, $categoryTwo, $categoryThree, $categoryFour, $categoryFive, $userid);
+		
+		
+		$statement->execute();
+		$statement ->close();
+		$_SESSION['successStatus'] = "Categories successfully updated.";
+		$conn->close();
+	}
+	
+	
+	public function getResultsForMonth ($userid, $startDate, $endDate) {
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("SELECT count(*) as total FROM results where user_id = ? AND (generatedTime >= ? AND generatedTime <= ?)");
+		
+		//Bind parameters
+		$statement->bind_param("sss", $userid, $startDate, $endDate);
+		
+		
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		
+		//Fetch the result into associative array
+		$info = $result->fetch_assoc();
+		
+		return $info;
+
+		$statement ->close();
+		$conn->close();
+	}
+	
+	public function updateSizeForMonth ($size, $userid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("SELECT * FROM users where userID = ?");
+		
+		$statement->bind_param("s", $userid);
+		
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		
+		//Fetch the result into associative array
+		$info = $result->fetch_assoc();
+		
+		$newSize = $size + $info['uploadSizePerMonth'];
+		
+		$statement = $conn->prepare("UPDATE users set uploadSizePerMonth = ? WHERE userID = ?");
+		
+		$statement->bind_param("is", $newSize, $userid);
+		$statement->execute();
+		
+		$statement ->close();
+		$conn->close();
+	}
+	
+	public function updateRecoForMonth ($userid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("SELECT * FROM users where userID = ?");
+		
+		$statement->bind_param("s", $userid);
+		
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		
+		//Fetch the result into associative array
+		$info = $result->fetch_assoc();
+		
+		$newInt = $info['recoPerMonth'] + 1;
+		
+		$statement = $conn->prepare("UPDATE users set recoPerMonth = ? WHERE userID = ?");
+		
+		$statement->bind_param("is", $newInt, $userid);
+		$statement->execute();
+		
+		$statement ->close();
+		$conn->close();
+	}
+	
+	public function updateUrlsForMonth ($urlCount, $userid){
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//Prepare statement
+		$statement = $conn->prepare("SELECT * FROM users where userID = ?");
+		
+		$statement->bind_param("s", $userid);
+		
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		
+		//Fetch the result into associative array
+		$info = $result->fetch_assoc();
+		
+		$newUrlCount = $info['urlsPerMonth'] + $urlCount;
+		
+		$statement = $conn->prepare("UPDATE users set urlsPerMonth = ? WHERE userID = ?");
+		
+		$statement->bind_param("is", $newUrlCount, $userid);
+		$statement->execute();
+		
+		$statement ->close();
+		$conn->close();
+	}
+	
+	public function getLatestOrderNumber (){
+		
+		//Forming database connection
+		include("inc_db_fyp.php");
+		
+		//prepare statement
+		$statement = $conn-> prepare ("SELECT transactionID FROM transactions ORDER BY transactionID DESC LIMIT 1");
+		
+		//Execute
+		$statement->execute();
+		
+		//Get result
+		$result = $statement->get_result();
+		$row = mysqli_fetch_array($result);
+		
+		
+		//Close connections
+		$statement->close();
+		$conn->close();
+		return $row;
+	}
+	
 }
 ?>

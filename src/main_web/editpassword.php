@@ -76,7 +76,7 @@ if ($userType == '1' or $userType == '2' or $userType == '0')
 		
 		#2nd check, check if old password is correct, if correct, return false
 		$user = new User();
-		$checkPassword = $user->checkPassword($_POST['oldpassword'], $userid);
+		$checkPassword = $user->checkPassword( hash('md5',$_POST['oldpassword']), $userid);
 		
 		if ($checkPassword) {
 			$DisplayForm = False;	
@@ -86,7 +86,7 @@ if ($userType == '1' or $userType == '2' or $userType == '0')
 		}
 		
 		if ($DisplayForm == False){
-			$user -> editPassword($_POST['newpassword'], $userid);
+			$user -> editPassword( hash('md5',$_POST['newpassword']), $userid);
 			header("location:accountsettings.php");
 		}
 	}

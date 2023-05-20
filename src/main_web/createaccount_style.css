@@ -377,6 +377,28 @@ h1{
 	padding: 50px 0px;
 }
 
+input[type="checkbox"]
+{
+	width: 20px;
+}
+
+input[type="checkbox"]:checked + label:before {
+  content: "\2713";
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+   width:50px;
+}
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 768px){
     .side-image{

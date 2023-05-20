@@ -56,6 +56,9 @@
 	
 	$DisplayForm = TRUE;
 	$userType = '';
+	unset($_SESSION['error']);
+	unset($_SESSION['passError']);
+	unset($_SESSION['emailError']);
 	if (isset($_POST['submit']) and ($_POST['submit'] == 'Continue')){
 		if ($_POST['userType'] == 'Organization'){			
 			$userType = 1;
@@ -67,20 +70,26 @@
 			$DisplayForm = False; 
 		}
 		if ($_POST['password'] != $_POST['cpassword']){
-			echo "<p> Password does not match </p>";
+			$_SESSION["passError"] = "Password does not match";
 			$DisplayForm = True; 
 		}else {
 			#call method inside user entity class to check if email already in database, return bool
+			unset($_SESSION['error']);
 			$user = new User();
 			$DisplayForm = $user -> checkEmail($_POST['email']);
+			
+			if ($DisplayForm)
+			{
+				$_SESSION['emailError'] = "Email already used.";
+			}
 		}
 		
-		#display error if email already taken
+		/*#display error if email already taken
 		if (isset($_SESSION['successStatus'])){
 			echo"<p>{$_SESSION['successStatus']}</p>";
 			
 			unset($_SESSION['successStatus']);
-		}
+		}*/
 	}else if (isset($_POST['submit']) and ($_POST['submit'] == 'Sign Up')){
 		$DisplayForm = False;
 	}
@@ -92,7 +101,7 @@
             <div class="row">
                 <div class="col-md-6 side-image">
                     <!-------Image-------->
-                    <img src="images/white.png" alt="">
+                    
                     <div class="text">
                         <p><a name='recs' href='main.php'>RECS</a></p>
 						<a name = 'ref' href="https://www.vecteezy.com/free-vector/helping-others">Helping Others Vectors by Vecteezy</a>
@@ -109,16 +118,47 @@
 						<form action = "indiv_register.php" method = "POST">
 							<div class = 'text_field'>
 								<span>Email: </span><input type="email" name="email" required />
+							
+							<?php
+									if(isset($_SESSION['emailError'])){
+										$error = $_SESSION["emailError"];
+										echo "<span style='color:red'>$error</span>";
+									}
+								?>
 							</div>
 							<div class = 'text_field'>
-								<span>Password: </span><input type="password" name="password" required />
+								<span>
+									Password: 
+									<div data-html='true' data-tip ='Min 8 characters
+																	At least 1 Uppercase
+																	At least 1 Lowercase
+																	At least 1 Number
+																	At least 1 Symbol' style='display: inline-block;'>
+										<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;'>
+											<span style='font-size: 15px; color: white;'>?</span>
+										</div>
+								</div>								
+								</span><input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" required />
+								
 							</div>
 							<div class = 'text_field'>
 								<span>Confirm Password: </span><input type="password" name="cpassword" required />
+								<?php
+									if(isset($_SESSION["passError"])){
+										$error = $_SESSION["passError"];
+										echo "<span style='color:red'>$error</span>";
+									}
+								?>
 							</div>
 							<input type="hidden" id="userType" name="userType" value="Individual">
 							<div class = 'text_field'>
 								<span>Name: </span><input type="text" name="name" required />
+								<?php
+								if(isset($_SESSION["error"])){
+									$error = $_SESSION["error"];
+									echo "<span style='color:red'>$error</span>";
+								}
+								?>
 							</div>
 							
 								<input type="hidden" name="orgname" value = "" required />
@@ -140,7 +180,8 @@
 	}
 	else{
 		if (isset($_POST['password'])){
-			$password = $_POST['password'];
+			$password = hash('md5', $_POST['password']);
+			//$password = $_POST['password'];
 			$_SESSION['password'] = $password;
 		}
 		
@@ -188,7 +229,10 @@
 		if (isset($_POST['submit']) and ($_POST['submit'] == 'Sign Up'))
 		{
 			$_SESSION['category1'] = $_POST['category1'];
-			//$_SESSION['category2'] = $_POST['category2'];
+			$_SESSION['category2'] = $_POST['category2'];
+			$_SESSION['category3'] = $_POST['category3'];
+			$_SESSION['category4'] = $_POST['category4'];
+			$_SESSION['category5'] = $_POST['category5'];
 			//$_SESSION['agerange'] = $_POST['agerange'];
 			$verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
 			$_SESSION['vCode'] = $verification_code;		
@@ -217,7 +261,7 @@
 					
 						<form action = "indiv_register.php" id = "indiv_register" name = "indiv_register" method = "POST">
 							<input type="hidden" id="userType" name="userType" value="Individual">
-					<div style = 'transform: translate(0%, 150%);'><h2 class = "heading11" id = "heading11" style = 'font-size: 20px;  text-align:center; font-weight: 600;'>Choose an interest</h2></div>
+					<div style = 'transform: translate(0%, 150%);'><h2 class = "heading11" id = "heading11" style = 'font-size: 20px;  text-align:center; font-weight: 600;'>Choose your interest(s)</h2></div>
 				  <div class="container11 visible">
 		<div id="interests" class="visible">
 			<div class="row11">
@@ -255,6 +299,9 @@
 							</div>-->	
 							<input type="hidden" name="category1" id="category1" value="">
 							<input type="hidden" name="category2" id="category2" value="">
+							<input type="hidden" name="category3" id="category3" value="">
+							<input type="hidden" name="category4" id="category4" value="">
+							<input type="hidden" name="category5" id="category5" value="">
 							<input type="hidden" name="agerange" id="agerange" value="">
 							</br><input type="submit" name = "submit" id = "next-btn-2" class="hidden" value="Sign Up" style = 'width: 70%; transform: translate(23%, 0%);'>
 						</form>
@@ -278,11 +325,11 @@ var selectedAgeGroup = '';
 function selectInterest(box) {
 
     let selectedBoxes = document.querySelectorAll(".selected");
-    if (selectedBoxes.length < 1 || box.classList.contains("selected")) {
+    if (selectedBoxes.length < 5 || box.classList.contains("selected")) {
         box.classList.toggle("selected");
       
         selectedBoxes = document.querySelectorAll(".selected");
-        if (selectedBoxes.length === 1) {
+        if (selectedBoxes.length >= 1) {
             document.getElementById("next-btn-2").classList.remove("hidden");
 			  selectedInterests = [];
             selectedBoxes.forEach(box => {
@@ -294,7 +341,21 @@ function selectInterest(box) {
     }
 			
 	 document.indiv_register.category1.value = selectedInterests[0];
-	 document.indiv_register.category2.value = selectedInterests[1];
+	  if (selectedInterests[1] !== undefined){
+		document.indiv_register.category2.value = selectedInterests[1];
+	  }
+	  
+	   if (selectedInterests[2] !== undefined){
+			document.indiv_register.category3.value = selectedInterests[2];
+	   }
+	   
+	    if (selectedInterests[3] !== undefined){
+			document.indiv_register.category4.value = selectedInterests[3];
+		}
+		
+		 if (selectedInterests[4] !== undefined){
+			document.indiv_register.category5.value = selectedInterests[4];
+		 }
 }
 
 

@@ -3,17 +3,9 @@ h1{
 	padding: 50px 0px;
 }
 
-.generate-frame{
-	display:flex;
-	justify-content: center;
-	margin: 0 auto;
-	position: relative;
-	z-index: -2;
-	
-}
+
 
 input[name='product']{
-
 	padding: 0 5px;
 	height: 27px;
 	font-size: 16px;
@@ -22,29 +14,19 @@ input[name='product']{
 	background-color : AliceBlue;
 	border-radius: 5px;
 	outline: none;
-	
-}
-
-.product {
-	transform: translate(28%, 200%);
-  
-
 }
 
 .generatebutton {
-		transform: translate(38%, 220%);
-}
-
-.generate {
-	position: absolute;
-	width: 100%;
+	text-align: center;
+	position: relative;
+		transform: translate(0%, 220%);
 }
 
 .generate-title {
 	position: relative;
 	text-align: center;
 	width: 100%;
-	transform: translate(-8%, 0%)
+	transform: translate(0%, 0%);
 }
 
 .generate-title h1 {
@@ -137,7 +119,7 @@ input[type='submit']:hover {
 
 [data-tip] {
 	position:relative;
-	
+	text-align: left;
 
 }
 [data-tip]:before {

@@ -1,307 +1,61 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
-*{
-	box-sizing: border-box;
-	margin: 0;
-	padding: 	0px 0px;
-	font-family: "Montserrat", sans-serif;
-	color: black;
-	text-decoration: none;
-	font-weight: 600;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  overflow-x: hidden;
-}
-
-/* Position the images within the links */
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 5;
-  left: 0;
-  background-color: whitesmoke;
-  overflow-x: hidden;
-  transition: 0.5s;
-
-  z-index: 1;
- 
-}
-
-.sidenav img{
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
-}
-
-.main img {
-  width: 20px;
-  height: 20px;
-  margin-right: 7px;
-
-}
-
-.main img:hover{
-  cursor:pointer;
-}
-
-
-.topsidenav {
-	height: 10px;
-}
-
-.sidenav a {
-  padding: 20px 15px;
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
-  display: block;
-  transition: 0.3s;
-  display: flex; 
-  align-items: center;
-  background-color:#dedede;
-}
-
-.sidenav span:hover {
- 
-}
-
-.sidenav a:hover{
-	background-color: #c7dbf0;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-#main {
-  transition: margin-left 0.5s;
-  padding: 16px;
-  z-index: 1;
-   
-}
-
-
-
-h1 {
-	padding: 20px 20px;
-	color:black;
-}
-
-/*Website headers/categories*/
-header {
-	
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 1%;
-	background: aliceblue;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-/*nav titles customizations and animation*/
-
-.nav-titles{
-	list-style: none;
-	display: flex;
-	overflow:hidden;
-}
-
-.nav-titles li {
-	padding: 0px 30px;
-}
-
-.nav-titles li a {
-
-	float: left;
-	font-size: 16px;
-	color: black;
-	padding: 24px 0px;
-	text-decoration: none;
-	position:Relative;
-}
-.nav-titles li a:hover {
-	color: forestgreen;
-}
-
-li a[name='recs']{
-	letter-spacing: 2px;
-	color:black;
-	font-size: 22px;
-	padding: 20px 0px;
-	text-align: center;
-	float: left;
-}
-
-/*no color change*/
-.nav-titles li a[name='recs']:hover {
-	color: black;
-	border-bottom: None;
-}
-
-/* dropdown container */
-.dropdown {
-	right: 1px;
-
-	float: right;
-}
-
-/*Login and Sign up Customizations*/
-.dropdown {
-	font-weight: 600;
-	display: flex;
-	justify-content: space-between;
-	list-style: none;
-}
-
-.dropdown  {
-	content: '';
-    position: absolute;
-    border: 0px solid #000;
-	cursor: pointer;
-	transform: translate(0%, -90%);
-	padding: 21px 7px;
-}
-
-
-/* Dropdown button */
-.profile {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 2px solid black;
-	background-color: transparent;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	font-size: 20px;
-	text-transform: uppercase;
-}
-
-/*Dropdown nav bar customization*/
-.dropdown:hover, .profile:hover {
-	color: black;
-	cursor:pointer;
-	background-color: lightgreen;
-}
-
-/* Dropdown content */
-.profile-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 180px;
-	border: 1px solid lightgrey;
-	z-index: 2;
-	left:auto;
-	right: -1em;
-	text-align:right;
-	
-	transform: translate(-5%, 55%);
-}
-
-/*inside the profile dropdown*/
-.profile-content a {
-	float: none;
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	text-align: left;
-}
-
-
-/*profile dropdown animation*/
-.dropdown:hover .profile-content {
-	display: block;
-}
-
-.profile-content a:hover {
-	background-color: lightgreen;
-}
-
 h1{
 	text-align:center;
 	padding: 50px 0px;
 }
 
-.generate-frame{
-	display:flex;
-	justify-content: center;
-	margin: 0 auto;
-	position: relative;
-	z-index: -2;
-	
+input[name='user'],
+input[name='product'] {
+  padding: 0 5px;
+  height: 27px;
+  font-size: 16px;
+  color: black;
+  border: 1px solid black;
+  background-color: AliceBlue;
+  border-radius: 5px;
+  outline: none;
+  flex: 1;
 }
 
-.generate {
-	position: absolute;
-	width: 100%;
+.container{
+  display: flex;
+}
+
+
+.generatebutton {
+	text-align: center;
+	position: relative;
+		transform: translate(0%, 220%);
 }
 
 .generate-title {
 	position: relative;
 	text-align: center;
 	width: 100%;
-	transform: translate(-8%, 0%)
+	transform: translate(0%, 0%);
 }
 
 .generate-title h1 {
-	color: black;
 	text-align: center;
 	padding: 30px 20px;
 	font-size: 30px;
 	border-bottom: 2px solid lavender;
     display: inline-block;
-}
-
-.generate-title  h1[name='ratings']{
-	border-bottom:2px solid lightgreen;
 	
 }
 
-.generate-title  h1[name='recommend']{
+.generate-title h1[name='recommend']{
+	
 	color:grey;
 }
 
-.generate-title  h1[name='recommend']:hover{
+.generate-title h1[name='ratings']{
+	border-bottom:2px solid lightgreen;
+}
+
+.generate-title h1[name='recommend']:hover{
 	color:green;
 	border-bottom:2px solid lightgreen;
 	cursor:pointer;
-}
-
-
-
-input[name='user']{
-
-	padding: 0 5px;
-	height: 27px;
-	font-size: 16px;
-	color: black;
-	border: 1px solid black;
-	background-color : AliceBlue;
-	border-radius: 5px;
-	outline: none;
-	
-}
-
-input[name='product']{
-
-	padding: 0 5px;
-	height: 27px;
-	font-size: 16px;
-	color: black;
-	border: 1px solid black;
-	background-color : AliceBlue;
-	border-radius: 5px;
-	outline: none;
-	
 }
 
 /*hint customize*/
@@ -327,13 +81,54 @@ input[type="submit"]:hover{
 	transition: .2s;
 }
 
-/*hint customize*/
-.tooltip1[data-tip] {
-	position:relative;
-
+/* Style for select element */
+select {
+  padding: 0.5rem; /* Add some padding for better spacing */
+  font-size: 1rem; /* Set font size */
+  border-radius: 0.25rem; /* Add border radius for rounded corners */
+  border: 1px solid #ccc; /* Add a border */
+  width: 100%; /* Set width to 100% to fit the parent container */
+  max-width: 20rem; /* Set a maximum width */
+  box-sizing: border-box; /* Include border and padding in the element's total width */
+  background-color: #f2f2f2; /* Set a background color */
+  color: #333; /* Set text color */
 }
 
-.tooltip1[data-tip]:before {
+/* Style for option elements */
+option {
+  padding: 0.5rem; /* Add some padding for better spacing */
+  font-size: 1rem; /* Set font size */
+  background-color: #f2f2f2; /* Set a background color */
+  color: #333; /* Set text color */
+}
+
+/*
+
+input[type='submit'] {
+  padding: 0.5rem 1rem; 
+  font-size: 1rem;
+  border-radius: 0.25rem; 
+  border: 1px solid #ccc; 
+ 
+  color: #333; 
+  cursor: pointer; 
+  transition: all 0.2s ease-in-out;
+}
+
+
+input[type='submit']:hover {
+  background-color: #c7c7c7; 
+  color: #fff; 
+}
+
+*/
+
+[data-tip] {
+	position:relative;
+	text-align: left;
+
+}
+[data-tip]:before {
 	content:'';
 	display:none;
 	content:'';
@@ -351,65 +146,13 @@ input[type="submit"]:hover{
 	width:0;
 	height:0;
 }
-.tooltip1[data-tip]:after {
+[data-tip]:after {
 	display:none;
 	content:attr(data-tip);
 	position:absolute;
 	top:30px;
-	left:-80px;
+	left:-100px;
 	padding:5px 8px;
-	background:lightblue;
-	background:lightblue;
-	color:black;
-	
-	z-index:9;
-	font-size: 0.75em;
-	height:110px;
-	width: 250px;
-	line-height:18px;
-
-	border-radius: 3px;
-	white-space: pre-wrap;
-	
-	
-}
-.tooltip1[data-tip]:hover:before,
-.tooltip1[data-tip]:hover:after {
-	display:block;
-}
-
-
-.tooltip2[data-tip] {
-	position:relative;
-
-}
-
-.tooltip2[data-tip]:before {
-	content:'';
-	display:none;
-	content:'';
-	/*up arrow*/
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-bottom: 5px solid lightblue;	
-	position:absolute;
-	
-	top:25px;
-	left:5px;
-	z-index:8;
-	font-size:0;
-	line-height:0;
-	width:0;
-	height:0;
-}
-.tooltip2[data-tip]:after {
-	display:none;
-	content:attr(data-tip);
-	position:absolute;
-	top:30px;
-	left:-80px;
-	padding:5px 8px;
-	background:lightblue;
 	background:lightblue;
 	color:black;
 	
@@ -424,8 +167,8 @@ input[type="submit"]:hover{
 	
 	
 }
-.tooltip2[data-tip]:hover:before,
-.tooltip2[data-tip]:hover:after {
+[data-tip]:hover:before,
+[data-tip]:hover:after {
 	display:block;
 }
 
@@ -433,26 +176,8 @@ input[type="submit"]:hover{
 	cursor: pointer;
 }
 
-
-
-.user {
-	
-	transform: translate(16.8%, 200%);
-
-}
-
-.product{
-	
-	transform: translate(42%, 100%);
-	
-
-}
-
-.generatebutton {
-		transform: translate(38%, 215%);
-}
-
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+	

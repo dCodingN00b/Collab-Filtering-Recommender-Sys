@@ -21,7 +21,7 @@
 <title>Edit User</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
- <link rel="stylesheet" href="edituser_style.css?version8">
+ <link rel="stylesheet" href="edituser_style.css?version10">
  <style>
 /* width */
 ::-webkit-scrollbar {
@@ -94,13 +94,19 @@ if (isset($_POST['submit'])) {
 			}
 		}
 	}
+	
+	if (!isset($_POST['categories']))
+	{
+		echo "<p> You must select at least 1 category</p>";
+		$DisplayForm = True; 
+	}
 }
 
 #check if update button is clicked and update user info accordingly (if email and password is fine)
 if (isset($_POST['submit']) and ($_POST['submit'] == 'Update') and ($DisplayForm == False)){
 	
 	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$password = hash('md5',$_POST['password']);
 	$name = $_POST['name'];
 	$userType = $_POST['userType'];
 	if (isset($_POST['orgname'])){
@@ -115,8 +121,44 @@ if (isset($_POST['submit']) and ($_POST['submit'] == 'Update') and ($DisplayForm
 		$orgSite = '';
 	}
 	
+	$categories = $_POST['categories'];
+		if (isset($categories[0])){
+			$category1 = $categories[0];
+		}
+		else {
+			$category1 = '';
+		}
+		
+		if (isset($categories[1])){
+			$category2 = $categories[1];
+		}
+		else {
+			$category2 = '';
+		}
+		
+		if (isset($categories[2])){
+			$category3 = $categories[2];
+		}
+		else {
+			$category3 = '';
+		}
+		
+		if (isset($categories[3])){
+			$category4 = $categories[3];
+		}
+		else {
+			$category4 = '';
+		}
+		
+		if (isset($categories[4])){
+			$category5 = $categories[4];
+		}
+		else {
+			$category5 = '';
+		}
+	
 	#call user entity method
-	$user-> editUser($email, $password, $name, $userType, $orgName, $orgSite, $userid);
+	$user-> editUser ($email, $password, $name, $userType, $orgName, $orgSite, $category1, $category2, $category3, $category4, $category5, $userid);
 	header("Location: manageaccounts.php");
 }
 
@@ -153,6 +195,33 @@ echo"
 		<div class = 'text_field'>
 			<span>Organization Website: </span><input type='text' id = 'orgsite' name='orgsite' value = '{$row["Organization Website"]}' required />
 		</div>
+	
+		<div style ='transform:translate(3%, 0%)'>
+			<span>Categories: </span></div>
+			<div style = 'width: 800px; transform:translate(1%, 20%);'>
+			
+			  <label ><input type='checkbox' name='categories[]' value='Electronics'" . (($row['categoryOne'] == 'Electronics' or 
+			  $row['categoryTwo'] == 'Electronics' or $row['categoryThree'] == 'Electronics' or $row['categoryFour'] == 'Electronics' 
+			  or $row['categoryFive'] == 'Electronics')? 'checked = "checked"' : '') . "> Electronics</label>
+			  
+			  <label><input type='checkbox' name='categories[]' value='Video Games'" . (($row['categoryOne'] == 'Video Games' or 
+			  $row['categoryTwo'] == 'Video Games' or $row['categoryThree'] == 'Video Games' or $row['categoryFour'] == 'Video Games' 
+			  or $row['categoryFive'] == 'Video Games')? 'checked = "checked"' : '') . "> Video Games</label>
+			  
+			  <label><input type='checkbox' name='categories[]' value='Pets'" . (($row['categoryOne'] == 'Pets' or 
+			  $row['categoryTwo'] == 'Pets' or $row['categoryThree'] == 'Pets' or $row['categoryFour'] == 'Pets' 
+			  or $row['categoryFive'] == 'Pets')? 'checked = "checked"' : '') . ">   Pets</label> <br>
+			  
+			  <label><input type='checkbox' name='categories[]' value='Computers'" . (($row['categoryOne'] == 'Computers' or 
+			  $row['categoryTwo'] == 'Computers' or $row['categoryThree'] == 'Computers' or $row['categoryFour'] == 'Computers' 
+			  or $row['categoryFive'] == 'Computers')? 'checked = "checked"' : '') . "> Computers</label>
+			  
+			  <label><input type='checkbox' name='categories[]' value='Toys'" . (($row['categoryOne'] == 'Toys' or 
+			  $row['categoryTwo'] == 'Toys' or $row['categoryThree'] == 'Toys' or $row['categoryFour'] == 'Toys' 
+			  or $row['categoryFive'] == 'Toys')? 'checked = "checked"' : '') . "> Toys</label><br>
+			  
+			</div>
+		<br><br>
 	
 
 		<input type='button' value='Cancel' onclick='history.go(-1)'>

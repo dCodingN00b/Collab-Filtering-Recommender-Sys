@@ -43,16 +43,43 @@
     if(isset($_POST["verifyEmail"])) {
         $user = new User();
         if($user->checkEmail($_POST['email'])){
-             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-            mail($_POST["email"], "Email  Verification", $verification_code);
+			$verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+			
+			$_SESSION["vCode"] = $verification_code;
+			//mail($_POST["email"], "Email  Verification", $verification_code);
+			//echo  $verification_code ;
+			$email = $_POST["email"];
+			 
+			require_once('C:/Users/Administrator/vendor/autoload.php');
+
+			$credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+			$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
+
+			$sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+				 'subject' => 'Email Verification',
+				 'sender' => ['name' => 'RECS', 'email' => 'fyprecs@gmail.com'],
+				 //'replyTo' => ['name' => 'Sendinblue', 'email' => 'contact@sendinblue.com'],
+				 'to' => [[ 'name' => "user", 'email' =>"$email"]],
+				 'htmlContent' => "<html><body><h1>$verification_code</h1></body></html>",
+				 'params' => ['bodyMessage' => 'made just for you!']
+			]);
+			
+			try {
+			$result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+			//print_r($result);
+			} catch (Exception $e) {
+				echo $e->getMessage(),PHP_EOL;
+			}
+			
 			//echo $verification_code;
-             $sql = "INSERT INTO otp (code) VALUES('$verification_code')";
-             mysqli_query($conn, $sql);
-             $success = 1;
-        }
+            $success = 1;
+        }else{
+			$_SESSION['error'] = "Email address not found";
+		}
     }
     if(isset($_POST["verifyCode"])){
         $code = $_POST['digit1'] . $_POST['digit2'] .  $_POST['digit3'] . $_POST['digit4'] .  $_POST['digit5'] .  $_POST['digit6'];
+		/*
         $sqlGetCode = "SELECT * FROM otp WHERE code = $code";
         $result = mysqli_query($conn, $sqlGetCode);
         $count = mysqli_num_rows($result);
@@ -64,11 +91,18 @@
             $_SESSION["error"] = "verification failed";
             $success = 1;
         }
+		*/
+		if ($code == $_POST['vCode']){
+			$success = 2;
+		}else{
+            $_SESSION["error"] = "verification failed";
+            $success = 1;
+        }
     }
     if(isset($_POST["updatePass"])) {
         if($_POST['Password']  ==  $_POST["Password2"]){
 			$user = new User();	
-            $user -> updatePassword($_POST['Password'], $_POST['email']);
+            $user -> updatePassword(hash('md5',$_POST['Password']), $_POST['email']);
 			  #display success
 			if (isset($_SESSION['successStatus'])){
 				echo"<div class='success-box'>
@@ -79,7 +113,8 @@
 			}
 			header("refresh:2; url=login.php");
         }else{
-            echo"<p> Password missmatch </p>";
+			$_SESSION["error"] = "Password missmatch";
+			$success = 2;
         }
     }
     
@@ -118,9 +153,16 @@
 		<input type="text" name="digit5" maxlength="1">
 		<input type="text" name="digit6" maxlength="1">
 		</div>
+		<?php
+			if(isset($_SESSION["error"])){
+				$error = $_SESSION["error"];
+				echo "<span style='color:red; margin-left:65px;'>$error</span>";
+			}
+		?>
 		
 		
 		<input type="hidden" name = "email" value = "<?php  echo $_POST['email']; ?>" >
+		<input type="hidden" name = "vCode" value = "<?php echo $verification_code; ?>" >
 		<input type="submit" name="verifyCode" value="Verify" style = 'margin-top: 30px;'>
 	</form>
 	<?php
@@ -128,10 +170,27 @@
     ?>
         <form action = "forgetPassword.php" method = "POST">
             <div class = 'text_field'>
-			    <span>Password: </span><input type="password" name="Password"required />
+			    <span>
+					Password: 
+					<div data-html='true' data-tip ='Min 8 characters
+													At least 1 Uppercase
+													At least 1 Lowercase
+													At least 1 Number
+													At least 1 Symbol' style='display: inline-block;'>
+					<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center;'>
+					<span style='font-size: 15px; color: white;'>?</span>
+					</div>
+					</div>
+					<input type="password" name="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" required />
 		    </div>
 		    <div class = 'text_field'>
 			    <span>Re-enter password: </span><input type="password" name="Password2"required />
+					<?php
+						if(isset($_SESSION["error"])){
+							$error = $_SESSION["error"];
+							echo "<span style='color:red'>$error</span>";
+						}
+					?>
 		    </div>
 		    <input type="hidden" name = "email" value = "<?php  echo $_POST['email']; ?>" >
 		    <input type="submit" name = "updatePass" value="update">
@@ -142,6 +201,12 @@
     <form action = "forgetPassword.php" method = "POST">
 		<div class = 'text_field'>
 			<span>Email: </span><input type="text" name="email"required />
+			<?php
+				if(isset($_SESSION["error"])){
+					$error = $_SESSION["error"];
+					echo "<span style='color:red'>$error</span>";
+				}
+			?>
 		</div>
 		<input type="submit" name = "verifyEmail" value="Verify">
 	</form>

@@ -1,6 +1,7 @@
 <?php
 	// We need to use sessions, so you should always start sessions using the below code.
 	session_start();
+
 	// If the user is not logged in redirect to the login page...
 	if (!isset($_SESSION['loggedin'])) {
 		header('Location:login.php');
@@ -50,6 +51,8 @@
 	}else {
 		$tab = '';
 	}
+	
+
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +128,10 @@ include('navbar.php');
 
 #get all transactions records of current user
 $user = new User();
-$result = $user->getAllTransactions($userid);
+$result = $user->getAllTransactions($userid);	
+$userinfo = $user -> getUserInfo($userid);
+
+	
 
 #calculate membership duration
 $membership = $user->calculateMemberDuration ($userid);
@@ -240,11 +246,63 @@ else if ($tab == 'quota' or $tab == ''){
 	echo"<div class = 'box' style='transform:translate(0%, 10%);'>
 		<div class = 'usageheader'><h1 style='transform:translate(0%, -20%);'>Monthly Usage<h1></div>";
 
-// Set the total number of recommendations
-$total_recommendations = 100;
+if ($_SESSION['pricePlan'] == '0'){
+	// Set the total number of recommendations
+	$total_recommendations = 50;
+	$total_url = 20;
+	
+	//find start and end date
+	$startDate = $userinfo['dateTimeOfCreation'];
+	$endDate = $userinfo['freeTrialExpiryDate'];
+	
+	// Set the total number of recommendations
+	$total_data = 15;
+}
+else if ($_SESSION['pricePlan'] == 'i1'){
+	// Set the total number of recommendations
+	$total_recommendations = 500;
+	$total_url = 50;
+	$startDate = $userinfo['startDate'];
+	$endDate = $userinfo['expiryDate'];
+}
+else if ($_SESSION['pricePlan'] == 'i2'){
+	// Set the total number of recommendations
+	$total_recommendations = 2500;
+	$total_url = 250;
+	$startDate = $userinfo['startDate'];
+	$endDate = $userinfo['expiryDate'];
+	
+}
+else if ($_SESSION['pricePlan'] == 'o1'){
+	// Set the total number of recommendations
+	$total_recommendations = 300;
+	$total_url = 40;
+	$startDate = $userinfo['startDate'];
+	$endDate = $userinfo['expiryDate'];
+	
+	// Set the total number of recommendations
+	$total_data = 1 * 250;
+}
+else if ($_SESSION['pricePlan'] == 'o2'){
+	// Set the total number of recommendations
+	$total_recommendations = 1500;
+	$total_url = 200;
+	$startDate = $userinfo['startDate'];
+	$endDate = $userinfo['expiryDate'];
+	// Set the total number of recommendations
+	$total_data = 5 * 250;
+}
+else {
+	// Set the total number of recommendations
+	$total_recommendations = 0;
+	$total_data = 0;
+	$total_url = 0;
+}
+
+
 
 // Get the current number of recommendations
-$current_recommendations = 80;
+$current_recommendations = $userinfo['recoPerMonth'];
 
 // Calculate the percentage of recommendations completed
 $percent_complete = ($current_recommendations / $total_recommendations) * 100;
@@ -257,39 +315,52 @@ $progress_width = $percent_complete . '%';
 
 // Output the progress bar
 echo '<div class="progress" style="transform:translate(0%, 40%); width: 95%;margin: 0 auto;">';
-echo '<h3>Recommendations: ' .  $current_recommendations . ' / ' . $total_recommendations . '</h3>';
+echo '<h3>Generated Recommendations or Ratings: ' .  $current_recommendations . ' / ' . $total_recommendations . '</h3>';
 echo '<div style = "width: 100%; background-color: whitesmoke; border: 0.1px solid black; transform:translate(0%, 20%);">';
 echo '<div class="progress-bar" role="progressbar" style="width: ' . $progress_width . ';" aria-valuenow="' . $percent_complete . '" aria-valuemin="0" aria-valuemax="100">' . $percent_complete . '%</div>';
-echo '</div></br>';
-
-
-
-// Set the total number of recommendations
-$total_data = 2 * 1024;
-
-// Get the current number of recommendations
-$current_data = 202;
-
-// Calculate the percentage of recommendations completed
-$percent_complete_data = ($current_data / $total_data) * 100;
-
-// Round the percentage to the nearest whole number
-$percent_complete_data = round($percent_complete_data);
-
-// Determine the width of the progress bar
-$progress_width_data = $percent_complete_data . '%';
-
-// Output the progress bar
-echo '<div class="progress" style="transform:translate(0%, 40%);margin: 0 auto;">';
-echo '<h3>Uploaded Data: ' .  $current_data . ' / ' . $total_data . ' MB</h3>';
-echo '<div style = "width: 100%; background-color: whitesmoke; border: 0.1px solid black; transform:translate(0%, 20%);">';
-echo '<div class="progress-bar" role="progressbar" style="width: ' . $progress_width_data . ';" aria-valuenow="' . $percent_complete_data . '" aria-valuemin="0" aria-valuemax="100">' . $percent_complete_data . '% </div>';
 echo '</div>';
 
+	if ($userType == '1'){
 
+	#convert to kb
+	$total_data *= 1024;
 
-echo '</div>';
+	// Get the current number of recommendations
+	$current_data = $userinfo['uploadSizePerMonth'] / 1024;
+
+	// Calculate the percentage of recommendations completed
+	$percent_complete_data = ($current_data / $total_data) * 100;
+
+	// Round the percentage to the nearest whole number
+	$percent_complete_data = round($percent_complete_data);
+
+	// Determine the width of the progress bar
+	$progress_width_data = $percent_complete_data . '%';
+
+	// Output the progress bar
+	echo '<div class="progress" style="transform:translate(0%, 40%);margin: 0 auto;">';
+	echo '<h3>Uploaded Data: ' .  round($current_data) . ' / ' . $total_data . ' KB (' . $total_data / 1024 . 'MB)</h3>';
+	echo '<div style = "width: 100%; background-color: whitesmoke; border: 0.1px solid black; transform:translate(0%, 20%);">';
+	echo '<div class="progress-bar" role="progressbar" style="width: ' . $progress_width_data . ';" aria-valuenow="' . $percent_complete_data . '" aria-valuemin="0" aria-valuemax="100">' . $percent_complete_data . '% </div>';
+	echo '</div><br/>';
+
+	}
+	
+	$current_url = $userinfo['urlsPerMonth'];
+	// Calculate the percentage of recommendations completed
+	$percent_complete_url = ($current_url / $total_url) * 100;
+	// Determine the width of the progress bar
+	$progress_width_url = $percent_complete_url . '%';
+	
+	// Output the progress bar
+	echo '<div class="progress" style="transform:translate(0%, 40%);margin: 0 auto;">';
+	echo '<h3>Uploaded URLs: ' .  $current_url . ' / ' . $total_url . '</h3>';
+	echo '<div style = "width: 100%; background-color: whitesmoke; border: 0.1px solid black; transform:translate(0%, 20%);">';
+	echo '<div class="progress-bar" role="progressbar" style="width: ' . $progress_width_url . ';" aria-valuenow="' . $percent_complete_url . '" aria-valuemin="0" aria-valuemax="100">' . $percent_complete_url . '% </div>';
+	echo '</div>';
+
 	echo" </div>";
+	echo '</div>';
 }
 echo"</div>";
 ?>

@@ -93,14 +93,53 @@ if (isset($_SESSION['successStatus'])){
 $user = new User();
 $row = $user-> getUserInfo ($userid);
 
+$categoryCount = 1;
+
+
+if ($userinfo['categoryTwo'] != ""){
+	$categoryCount += 1;
+}
+if ($userinfo['categoryThree'] != ""){
+	$categoryCount += 1;
+}
+if ($userinfo['categoryFour'] != ""){
+	$categoryCount += 1;
+}
+if ($userinfo['categoryFive'] != ""){
+	$categoryCount += 1;
+}
+
+$categories = '';
+if ($categoryCount == 1){
+	$categories = $row["categoryOne"];
+}
+else if ($categoryCount == 2) {
+	$categories = $row["categoryOne"] . ", " . $row["categoryTwo"];
+}
+else if ($categoryCount == 3) {
+	$categories = $row["categoryOne"] . ", " . $row["categoryTwo"] . ", " . $row["categoryThree"];
+}
+else if ($categoryCount == 4) {
+	$categories = $row["categoryOne"] . ", " . $row["categoryTwo"] . ", " . $row["categoryThree"] . ", " . $row["categoryFour"];
+}
+else if ($categoryCount == 5) {
+	$categories = $row["categoryOne"] . ", " . $row["categoryTwo"] . ", " . $row["categoryThree"] . ", " . $row["categoryFour"] . ", " . $row["categoryFive"];
+}
+
+
+
+
 	if ($userType == '2')
 	{
 	echo"
 		<div class = 'reg'>
 			<div class = 'fields-left'>
 				<div class = 'text_field'>
-					<span>Interest:</span></br><input type='text' name='interestOne' value = '{$row["categoryOne"]}'  disabled/><a href = 'editcategory.php'><button name = 'change' >Edit</button></a>
-				</div>";
+					<span>Interests:</span></br><input type='text' name='interestOne' value = '$categories'  disabled/><a href = 'editcategory.php'><button name = 'change' >Edit</button></a>
+				</div>
+				";
+				
+				
 				/*
 				<div class = 'text_field'>
 					<span>Age Group: </span></br><input type='text' name='ageRange' value = '{$row["ageRange"]}' disabled /><a href = 'editagegroup.php'><button name = 'change' >Edit</button></a>
@@ -115,7 +154,7 @@ $row = $user-> getUserInfo ($userid);
 		<div class = 'reg'>
 		<div class = 'fields-left'>
 				<div class = 'text_field'>
-					<span>Type of product sold:</span></br><input type='text' name='interestOne' value = '{$row["categoryOne"]}'  disabled/><a href = 'editcategory.php'><button name = 'change' >Edit</button></a>
+					<span>Types of product sold:</span></br><input type='text' name='interestOne' value = '$categories'  disabled/><a href = 'editcategory.php'><button name = 'change' >Edit</button></a>
 				</div>";
 				/*
 				<div class = 'text_field'>

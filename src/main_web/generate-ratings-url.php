@@ -33,7 +33,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="generate-ratings-recs_style.css?version22">
+<link rel="stylesheet" href="generate-ratings-recs_style.css?version23">
 <title>Workspace</title>
 <style>
 #menu {
@@ -103,6 +103,9 @@ function currentLeftSideBarColor (){
 	}
 	else if (window.location.href.indexOf("generate-recommend") != -1){
 		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
+	}
+	else if (window.location.href.indexOf("generate-ratings-url") != -1){
+		document.getElementById("generaterecommendurl").style.backgroundColor = "#c7dbf0";
 	}
 	else if (window.location.href.indexOf("generate-ratings-recs") != -1){
 		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
@@ -251,26 +254,25 @@ if ($userType == '1'){
 		<span id = 'menuwords'></span>
 		<img id = 'menu' src='images/left.png' alt='Image 4' onclick='openNav()'>
 	</div>";*/
-echo "<div style='display: flex; justify-content: center;'>";
+echo "<div style='display: flex; justify-content: center;'>";	
 	echo"<div class= 'generate-frame' style= 'margin-top: 35px;'>";
 	echo"<div class='generate' id='generate' style='margin-left:250px;' >";
 	echo"<div class = 'generate-title'>";
-	echo"<a href ='generate-recommend-recs.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
-	echo"<a href = 'generate-ratings-recs.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
+	echo"<a href ='generate-recommend-url.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
+	echo"<a href = 'generate-ratings-url.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
 	echo"</div></br>";
 	echo"<form action='' method='POST' id = 'generateratingrecsform'>";
-	echo"<div class = 'container'>";
+echo"<div class = 'container'>";
 echo"<div class = 'user' style='transform:translate(0%, 180%); text-align: center;'>";
 echo"User ID:  <input type='text' name = 'user' id = 'user' value = '{$_POST['user']}' required>";
 echo"<div class = 'tooltip1' data-html='true' data-tip='The User ID can be taken from the User Profile URL in the Amazon Web Store.' style='display: inline-block;'>
-	
 	<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; transform: translate(20%, 00%);'>
 		<span style='font-size: 15px; color: white;'>?</span></div>
 </div>";
 echo"</div>";
 echo "<div class = 'product' style='transform:translate(10%, 180%); text-align: center;'>
 Product ID: <input type='text' id='product' name='product' value = '{$_POST['product']}' required>
-<div class = 'tooltip2' data-html='true' data-tip='The Product ID can be taken from the Product URL in the Amazon Web Store.' style='display: inline-block;'>
+<div class = 'tooltip2' data-html='true' data-tip='The Product ID can be taken from your uploaded TXT file.' style='display: inline-block;'>
 	<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; transform: translate(0%, 00%);'>
 		<span style='font-size: 15px; color: white;'>?</span></div>
 	</div>
@@ -438,14 +440,15 @@ echo "<div style='display: flex; justify-content: center;'>";
 	echo"<div class= 'generate-frame' style= 'margin-top: 35px;'>";
 	echo"<div class='generate' id='generate' style='margin-left:250px;' >";
 	echo"<div class = 'generate-title'>";
-	echo"<a href ='generate-recommend-recs.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
-	echo"<a href = 'generate-ratings-recs.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
+	echo"<a href ='generate-recommend-url.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
+	echo"<a href = 'generate-ratings-url.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
 	echo"</div></br>";
 	echo"<form action='' method='POST' id = 'generateratingrecsform2'>";
 echo"<div class = 'container'>";
 	echo"<div class = 'user' style='transform:translate(0%, 180%); text-align: center;'>";
 echo"User ID:  <input type='text' name = 'user' id = 'user2' value = '{$_POST['user']}' required>";
 echo"<div class = 'tooltip1' data-html='true' data-tip='The User ID can be taken from the User Profile URL in the Amazon Web Store.' style='display: inline-block;'>
+	
 	<div class = 'hint' style='background-color: lightblue; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; transform: translate(20%, 00%);'>
 		<span style='font-size: 15px; color: white;'>?</span></div>
 </div>";
@@ -457,13 +460,13 @@ Product ID: <input type='text' id='product2' name='product' value = '{$_POST['pr
 		<span style='font-size: 15px; color: white;'>?</span></div>
 	</div>
 </div></div>";
-	echo"<div style = 'margin-top: 80px;text-align: center;'> <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=userid#userid' 
+	echo"<div style = 'margin-top: 80px;text-align: center;' > <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=userid#userid' 
 			style = 'text-decoration:underline; color: blue;'>User ID</a> and <a href = 'documentation.php?part=howitworks&sub=productid#productid' 
 			style = 'text-decoration:underline; color: blue;'>Product ID</a> ?</span></div>";
 	echo"<div class = 'generatebutton' style = 'text-align: center;'><input type='submit' name='generate' id = 'generatebutton2' value='Generate'></div>";
 	echo"</form>";
 	echo'<div id="resultv2" class = "result" name="result" style = "transform:translate(0%, 800%);"></div>
-			<div class="loader" id = "loader2" style = "margin-top: 120px; margin-left: 310px; text-align: center;" hidden></div>';
+			<div class="loader" id = "loader2" style = "margin-top: 120px; margin-left: 310px;" hidden></div>';
 	
 	if (file_exists("uploads/$user_id/crawled")){
 		$directory = "uploads/$user_id/crawled/";
@@ -585,10 +588,10 @@ $(document).ready(function() {
 		var user = $("#user").val();
 		
 		var command = '';
-		var type = 'recsdata';
+		var type = 'urldata';
 		
 		
-			command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_inputs_5csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/computers C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/electronics C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/toys C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/videogames C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/pets product " + product + " user " + user;
+			command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_inputs_5csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/computers/ C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/electronics C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/toys C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/videogames C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/pets product " + product + " user " + user;
 		/*if (fileExists == false){
 		}
 		else {
@@ -634,10 +637,10 @@ $(document).ready(function() {
 		var user = $("#user2").val();
 		
 		var command = '';
-		var type = 'recsdata';
+		var type = 'urldata';
 		
 		
-		command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_inputs_5csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/computers C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/electronics C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/toys C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/videogames C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/pets product " + product + " user " + user;
+			command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_inputs_5csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/computers/ C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/electronics C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/toys C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/videogames C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/pets product " + product + " user " + user;
 		/*if (fileExists == false){
 		}
 		else {
@@ -667,5 +670,6 @@ $(document).ready(function() {
 		});
 	});
 });
+
 </script>
 </body>

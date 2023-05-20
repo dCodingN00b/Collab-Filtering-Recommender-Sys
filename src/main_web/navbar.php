@@ -31,32 +31,34 @@
 	}
 	
 	$userType = $_SESSION['userType'];
+	$user = new User();
+	$userinfo = $user->getUserInfo($userid);
 	
 	#check price plan for display in navbar
-	if (isset($_SESSION['pricePlan'])){
-		if ($_SESSION['pricePlan'] == '0'){
+
+		if ($userinfo['pricePlan'] == '0'){
 			$pricePlan = 'Free Trial';
 		}
-		else if ($_SESSION['pricePlan'] == 'i1'){
+		else if ($userinfo['pricePlan'] == 'i1'){
 			$pricePlan = 'Standard';
 		}
-		else if ($_SESSION['pricePlan'] == 'i2'){
+		else if ($userinfo['pricePlan'] == 'i2'){
 			$pricePlan = 'Pro';
 		}
-		else if ($_SESSION['pricePlan'] == 'o1'){
+		else if ($userinfo['pricePlan'] == 'o1'){
 			$pricePlan = 'Standard';
 		}
-		else if ($_SESSION['pricePlan'] == 'o2'){
+		else if ($userinfo['pricePlan'] == 'o2'){
 			$pricePlan = 'Pro';
 		}
 		else{
 			$pricePlan = 'None';
 		}
-	}
-	$user = new User();
-	$userinfo = $user->getUserInfo($userid);
+
+	//$_SESSION['pricePlan'] = $userinfo['pricePlan'];
 	
-	if ($_SESSION['pricePlan'] == '0'){
+	
+	if ($userinfo['pricePlan'] == '0'){
 		#time now - time of creation
 		$creationDate = strtotime($userinfo['dateTimeOfCreation']);
 		$timeLeft = strtotime($userinfo['freeTrialExpiryDate']) - time();;
@@ -67,13 +69,13 @@
 		$_SESSION['daysremaining'] = $daysRemaining;
 		$planinfo = '';
 	}
-	else if(($_SESSION['pricePlan'] == 'o1') or ($_SESSION['pricePlan'] == 'o2') or ($_SESSION['pricePlan'] == 'i1') or ($_SESSION['pricePlan'] == 'i2')){
+	else if(($userinfo['pricePlan'] == 'o1') or ($userinfo['pricePlan'] == 'o2') or ($userinfo['pricePlan'] == 'i1') or ($userinfo['pricePlan'] == 'i2')){
 		
 		$endDate = strtotime($userinfo['expiryDate']);
 		$daysRemaining = floor( ($endDate - time()) / 86400);	
 	}
-	else {
-		
+	else if ($userinfo['pricePlan'] == 'None'){
+		//do nth
 	}
 
 	
@@ -113,7 +115,7 @@ body {
 if ($userType == '1' or $userType =='2')
 {
 ?>
-	<header>
+	<header style  = 'position:fixed; width: 100%; top: 0; z-index: 9999;'>
 			 <nav>
 				<ul class="nav-titles">
 					<li name = 'recs'><a name = 'recs' href="home.php">RECS</a></li>      
@@ -140,6 +142,7 @@ if ($userType == '1' or $userType =='2')
 				</div>        
 			</nav>		
 	</header>
+	<br/><br/><br/><br/>
 <?php 
 }
 else if ($userType == '0')

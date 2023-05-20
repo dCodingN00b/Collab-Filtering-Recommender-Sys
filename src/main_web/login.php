@@ -1,5 +1,6 @@
 <?php 
     session_start();
+	//unset($_SESSION["error"]);
 	// If the user is not logged in redirect to the login page...
 	if (isset($_SESSION['loggedin'])) {
 		header('Location:home.php');
@@ -44,34 +45,81 @@
     include("inc_db_fyp.php");
     include("user.php");
     $success = 0;
+	
+    unset($_SESSION["error"]);
+	unset($_SESSION["emailError"]);
+	unset($_SESSION["passError"]);
+	
+
+	
     
     if(isset($_POST["login"])) {
         $user = new User();
-        if($user->checkLogin($_POST['email'], $_POST['password'])){
-             $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-             mail($_POST["email"], "Email  Verification", $verification_code);
-			 //echo  $verification_code ;
-             $sql = "INSERT INTO otp (code) VALUES('$verification_code')";
-             mysqli_query($conn, $sql);
+        if($user->checkLogin($_POST['email'],  hash('md5',$_POST['password']))){
+			$verification_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);			
+			$_SESSION["vCode"] = $verification_code;
+			$email = $_POST["email"];
+			
+			require_once('C:/Users/Administrator/vendor/autoload.php');
+			
+			$message = "Dear User,<br/><br/>";
+			$message .= "We have detected an attempt to sign in to your account using Two-Factor Authentication (2FA). To ensure the security of your account, please complete the verification process by entering the following 6-digit verification code:<br/><br/>";
+			$message .= "Verification Code: <b>" . $verification_code . "</b><br/><br/>";
+			$message .= "If you did not initiate this sign-in attempt or believe this email was sent to you in error, please contact our support team immediately at fyprecs.service@gmail.com.<br/><br/>";
+			$message .= "Thank you for using our services!<br/><br/>";
+			$message .= "Best regards,<br/>";
+			$message .= "The RECS Development Team";
+
+			$credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+			$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
+
+			$sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+				 'subject' => 'Two-Factor Authentication (2FA) Verification Required',
+				 'sender' => ['name' => 'RECS', 'email' => 'fyprecs@gmail.com'],
+				 //'replyTo' => ['name' => 'Sendinblue', 'email' => 'contact@sendinblue.com'],
+				 'to' => [[ 'name' => "user", 'email' =>"$email"]],
+				 'htmlContent' => "<html><body>". $message ."</body></html>",
+				 'params' => ['bodyMessage' => 'made just for you!']
+			]);
+			
+			try {
+			$result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+			//print_r($result);
+			} catch (Exception $e) {
+				echo $e->getMessage(),PHP_EOL;
+			}
+			
+			//echo $verification_code;
+		
              $success = 1;
-        }
+        }	
+		else{
+			$user = new User();
+			if($user->checkEmail($_POST['email']) != TRUE){
+				$_SESSION["emailError"] = "Email doesn't exist";
+			}
+			else{
+				$_SESSION["passError"] = "Incorrect password";
+			}
+			//$_SESSION["error"]  =  "Invalid login details";
+			
+		}
     }
     if(isset($_POST["verify"])){
         $code = $_POST['digit1'] . $_POST['digit2'] .  $_POST['digit3'] . $_POST['digit4'] .  $_POST['digit5'] .  $_POST['digit6'];
-        $sqlGetCode = "SELECT * FROM otp WHERE code = $code";
-        $result = mysqli_query($conn, $sqlGetCode);
-        $count = mysqli_num_rows($result);
        
-        if($count > 0){
-            $sqlDel = "DELETE FROM otp where code = $code";
-            mysqli_query($conn, $sqlDel);
-           
-            $success = 2;
-           
-        }else{
-            $_SESSION["error"] = "verification failed";
+		if (isset($_SESSION["vCode"])){
+			$verification_code = $_SESSION["vCode"];
+		}
+	
+        if ($verification_code == $code){
+			$success = 2;
+		}
+		else {
+            $_SESSION["error"] = "Verification failed";
             $success = 1;
-        }
+		}
+       
     }
     ?>
    <div class="wrapper">
@@ -98,7 +146,7 @@
 							<a href="login.php"><h1 name = 'login'>LOGIN</h1></a>
 					        	<a href="org_register.php"><h1 name = 'register'>SIGN UP</h1></a>
 								<form action = "login.php" method = "POST">
-							    <p style = 'margin-left: 65px; font-size:24px; margin-top: 230px;'><b>Verify Your Email</b></p>
+							    <p style = 'margin-left: 60px; font-size:24px; margin-top: 230px;'><b>Verify that it's you</b></p>
 							    <p style = 'margin-left: 0px; font-size:16px; margin-top: 10px; text-align:center;'>Please enter in the six digit code which we sent to your email.</p>
 								
 								<div class = 'text_field_verification' style = 'margin-top:10px;margin-left:65px;'>
@@ -110,6 +158,12 @@
 									<input type="text" name="digit4" maxlength="1">
 									<input type="text" name="digit5" maxlength="1">
 									<input type="text" name="digit6" maxlength="1">
+									<?php
+									if(isset($_SESSION["error"])){
+									$error = $_SESSION["error"];
+									echo "<span style='color:red'>$error</span>";
+									}
+									?>
 								</div>
 								
 								
@@ -130,8 +184,12 @@
                         			$_SESSION['dateTimeOfCreation'] = $userinfo['dateTimeOfCreation'];
 									$_SESSION['freeTrialExpiryDate'] = $userinfo['freeTrialExpiryDate'];
                         			$_SESSION['pricePlan'] = $userinfo['pricePlan'];
-			
-                        			print_r($_SESSION);
+									$_SESSION['accountStatus'] = $userinfo['accountStatus'];
+                        			
+									if ($userinfo['accountStatus'] == 'Suspended'){
+										header('Location: accountsuspended.php');
+										exit();
+									}
                         			header('Location: home.php');
 						        }else{
 						    ?>
@@ -141,13 +199,19 @@
 					
 						<form action = "login.php" method = "POST">
 							<div class = 'text_field'>
-								<span>Email: </span><input type="text" name="email"required />
+								<span>Email: </span><input type="email" name="email"required />
+								<?php
+									if(isset($_SESSION["emailError"])){
+									$error = $_SESSION["emailError"];
+									echo "<span style='color:red'>$error</span>";
+									}
+									?>
 							</div>
 							<div class = 'text_field'>
 								<span>Password: </span><input type="password" name="password" required />
 								<?php
-								if(isset($_SESSION["error"])){
-									$error = $_SESSION["error"];
+								if(isset($_SESSION["passError"])){
+									$error = $_SESSION["passError"];
 									echo "<span style='color:red'>$error</span>";
 								}
 								?> 
@@ -170,6 +234,4 @@
 </body>
 </html>
 
-<?php
-    unset($_SESSION["error"]);
-?>
+

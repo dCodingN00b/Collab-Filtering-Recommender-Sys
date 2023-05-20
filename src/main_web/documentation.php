@@ -13,7 +13,7 @@ if (isset($_GET['sub'])){
 <!DOCTYPE html>
 <html>
 <head>
-	
+	<title>Documentation</title>
 	<link rel="stylesheet" type="text/css" href="doc_style.css?version24">
 	<script>
 
@@ -69,6 +69,12 @@ function currentLeftSideBarColor (){
 				else if (window.location.href.indexOf("generaterecsratingsprediction") > -1){
 				  document.getElementById("side-org-generaterecsratingsprediction").style.fontWeight = "600";		
 				}	
+				else if (window.location.href.indexOf("generateurlrecommendations") > -1){
+				  document.getElementById("side-org-generateurlrecommendations").style.fontWeight = "600";		
+				}	
+				else if (window.location.href.indexOf("generateurlratingsprediction") > -1){
+				  document.getElementById("side-org-generateurlratingsprediction").style.fontWeight = "600";		
+				}	
 				else if (window.location.href.indexOf("results") > -1){
 				  document.getElementById("side-org-results").style.fontWeight = "600";		
 				}	
@@ -89,6 +95,12 @@ function currentLeftSideBarColor (){
 				}	
 				else if (window.location.href.indexOf("generaterecsratingsprediction") > -1){
 				  document.getElementById("side-ind-generaterecsratingsprediction").style.fontWeight = "600";		
+				}	
+				else if (window.location.href.indexOf("generateurlrecommendations") > -1){
+				  document.getElementById("side-ind-generateurlrecommendations").style.fontWeight = "600";		
+				}	
+				else if (window.location.href.indexOf("generateurlratingsprediction") > -1){
+				  document.getElementById("side-ind-generateurlratingsprediction").style.fontWeight = "600";		
 				}	
 				else if (window.location.href.indexOf("results") > -1){
 				  document.getElementById("side-ind-results").style.fontWeight = "600";		
@@ -154,7 +166,25 @@ if (hash) {
 }
 	</script>
 	<style>
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 	</style>
 </head>
 
@@ -174,9 +204,9 @@ if (hash) {
 
 	<div class="wrapper">
 	
-  <div class="sidebar" >
+  <div class="sidebar" style = 'margin-top: 85px'>
     <ul>
-			<li style ='padding: 15px; padding-left: 25px; color: silver; font-weight: 600; font-size: 18px; margin-top: 90px;'><a href = 'documentation.php?part=introduction' id = 'doctitle'>RECS Documentation</a></li>
+			<li style ='padding: 15px; padding-left: 25px; color: silver; font-weight: 600; font-size: 18px;'><a href = 'documentation.php?part=introduction' id = 'doctitle'>RECS Documentation</a></li>
 			<br/>
 			<li><a href="documentation.php?part=introduction" id = 'introduction' style = 'font-weight: normal;font-size: 18px'>Introduction</a></li>
 			<li><a href="documentation.php?part=howitworks" id = 'howitworks' style = 'font-weight: normal;font-size: 18px'>How it works</a>
@@ -200,9 +230,15 @@ if (hash) {
 						<li style = 'padding-left: 10px;'><a href="#uploadedlist" onclick = "window.location.hash = '#uploadedlist';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
 						id = 'side-org-uploadedlist' >Uploaded List of URLs</a></li>
+						<li style = 'padding-left: 10px;'><a href="#generateurlrecommendations" onclick = "window.location.hash = '#generateurlrecommendations';
+						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
+						id = 'side-org-generateurlrecommendations' >Recommendations (URL Data)</a></li>
+						<li style = 'padding-left: 10px;'><a href="#generateurlratingsprediction" onclick = "window.location.hash = '#generateurlratingsprediction';
+						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
+						id = 'side-org-generateurlratingsprediction' >Ratings (URL Data)</a></li>
 						<li style = 'padding-left: 10px;'><a href="#generaterecsrecommendations" onclick = "window.location.hash = '#generaterecsrecommendations';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
-						id = 'side-org-generaterecsrecommendations' >Recommendations (RECS Data</a></li>
+						id = 'side-org-generaterecsrecommendations' >Recommendations (RECS Data)</a></li>
 						<li style = 'padding-left: 10px;'><a href="#generaterecsratingsprediction" onclick = "window.location.hash = '#generaterecsratingsprediction';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
 						id = 'side-org-generaterecsratingsprediction' >Ratings (RECS Data)</a></li>
@@ -219,9 +255,15 @@ if (hash) {
 						<li style = 'padding-left: 10px;'><a href="#uploadedlistind" onclick = "window.location.hash = '#uploadedlistind';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
 						id = 'side-ind-uploadedlist' >Uploaded List of URLs</a></li>
+						<li style = 'padding-left: 10px;'><a href="#generateurlrecommendationsind" onclick = "window.location.hash = '#generateurlrecommendationsind';
+						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
+						id = 'side-ind-generateurlrecommendations' >Recommendations (URL Data)</a></li>
+						<li style = 'padding-left: 10px;'><a href="#generateurlratingspredictionind" onclick = "window.location.hash = '#generateurlratingspredictionind';
+						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
+						id = 'side-ind-generateurlratingsprediction' >Ratings (URL Data)</a></li>
 						<li style = 'padding-left: 10px;'><a href="#generaterecsrecommendationsind" onclick = "window.location.hash = '#generaterecsrecommendationsind';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
-						id = 'side-ind-generaterecsrecommendations' >Recommendations (RECS Data</a></li>
+						id = 'side-ind-generaterecsrecommendations' >Recommendations (RECS Data)</a></li>
 						<li style = 'padding-left: 10px;'><a href="#generaterecsratingspredictionind" onclick = "window.location.hash = '#generaterecsratingspredictionind';
 						window.location.reload();" style = 'font-weight: normal;font-size: 14px;' 
 						id = 'side-ind-generaterecsratingsprediction' >Ratings (RECS Data)</a></li>
@@ -254,10 +296,10 @@ if (hash) {
 			 
 			  <li><a href="documentation.php?part=priceplan" style = 'font-weight: normal;font-size: 18px' id = 'priceplan'>Price Plans</a></li>
 			  
-			 
-			
-			
-			
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
+			<br/><br/>
 		</ul>
   </div>
 
@@ -321,12 +363,19 @@ if (hash) {
 		<br /><br />
 		<h2 id='adddata'>Add Data</h2>
 		<p>
-			Once login, access the workspace. There, you can add in data, either in CSV or JSON format.
+			Once login, access the workspace. There, you can add in data in CSV format.
 			<br/> <br />
-			Format of the files should be in UserID, ProductID, Ratings.
+			Format of the files should be in userID, prodID, rating, domain, image_urls and prodname. 
+
 		</p>
 		<br />
-		<img src = 'images/csvexample.jpg' alt = ''>
+		<img src = 'images/csvformat2.png' alt = '' style = 'width: 700px;'>
+		<p>
+		Each file should only be one type of category. 
+		Additionally, file name should include the category that it represents.
+		</p>
+		<br/>
+		<img src = 'images/filename.png' alt = '' style = 'width: 200px;'>
 		
 		<br /><br />
 		<br /><br />
@@ -335,7 +384,8 @@ if (hash) {
 			Once file has been uploaded, you will be able view in the uploaded data tab. Here is where you manage
 			the uploaded files, and you can choose to update or delete the files.
 		</p>
-
+		<br/>
+		<img src = 'images/uploadeddata3.png' alt = '' style = 'width: 700px;'>
 		<br /><br />
 		<br /><br />
 		<h2 id='generaterecommendations'>Generate Recommendations (Your Data)</h2>
@@ -362,19 +412,47 @@ if (hash) {
 		<br /><br />
 		<h2 id = 'addlist'>Add List of URLs</h2>
 		<p>
-			User have the choice to add in their list of URLs for us to web crawl and include those results into our prediction model.
-			Here, only .txt files are allowed. Just take note that this is optional and only done if there are any custom products that 
-			you wish for us to include in the data we have collected via web crawling.
-			
+			User have the choice to add in their list of URLs for us to web crawl and generate recommendations based on what they add in.
+			Here, only .txt files are allowed. 	
 		</p>
+		<p>
+		Take note that the file has a format to follow. The first line has to be the category, and every new line after that has to be the URLs.
+		User should add in at least 10 different products to ensure that there will be no error. 
+		</p>
+		<br/>
+		<img src = 'images/linksexample.png' alt = '' style = 'width: 310px;'>
 		<br /><br />
 		<br /><br />
 		<h2 id = 'uploadedlist'>Uploaded List of URLs</h2>
 		<p>
-			User have the choice to add in their list of URLs for us to web crawl and include those results into our prediction model.
-			Here, only .txt files are allowed.
+			Here, user can view their uploaded list. They can crawl their files from here.
+		</p>
+		<br/>
+		<img src = 'images/uploadedlist.png' alt = '' style = 'width: 710px;'>
+		<br /><br />
+		<br /><br />
+		<h2 id = 'generateurlrecommendations'>Generate Recommendations (URL Data)</h2>
+		<p>
+			For generating of recommendations based on URL data, just type in the product ID and click the generate button. 
+			The generated results will consist of recommendations that is most similar to the product that you typed in. 
+			Once generated, results will be shown right below the generate button. The results will be stored under the
+			results tab. 	<br /><br />
+			URL data is used to generate recommendations via the data that was web crawled through user's uploaded list of URLs.
 			
 		</p>
+		<img src = 'images/generateurl.png' alt = '' style = 'width: 710px;'>
+		<br /><br />
+		<br /><br />
+		<h2 id = 'generateurlratingsprediction'>Generate Ratings Prediction (URL Data)</h2>
+		<p>
+			For generating of ratings prediction based on URL data, just type in the product ID and click the generate button. 
+			The generated results will use our prediction model to predict what rating a selected user will most likely give 
+			the selected product. Once generated, results will be shown right below the generate button. The results will be stored under the
+			results tab.<br /><br />
+			URL data is used to generate the prediction of ratings via the data that was web crawled through user's uploaded list of URLs.
+			
+		</p>
+		<img src = 'images/generateurl2.png' alt = '' style = 'width: 710px;'>
 		<br /><br />
 		<br /><br />
 		<h2 id = 'generaterecsrecommendations'>Generate Recommendations (RECS Data)</h2>
@@ -383,11 +461,10 @@ if (hash) {
 			The generated results will consist of recommendations that is most similar to the product that you typed in. 
 			Once generated, results will be shown right below the generate button. The results will be stored under the
 			results tab. 	<br /><br />
-			RECS data which is used to generate recommendations is collected via web crawling, and it will include 
-			the URLs that you uploaded for us to customly web crawl.
+			RECS data is used to generate recommendations which uses RECS very own data that we have stored in our database.
 			
 		</p>
-		<img src = 'images/generaterecommendationsorgrecs.png' alt = '' style = 'width: 710px;'>
+		<img src = 'images/generaterecs1.png' alt = '' style = 'width: 710px;'>
 		<br /><br />
 		<br /><br />
 		<h2 id = 'generaterecsratingsprediction'>Generate Ratings Prediction (RECS Data)</h2>
@@ -396,10 +473,9 @@ if (hash) {
 			The generated results will use our prediction model to predict what rating a selected user will most likely give 
 			the selected product. Once generated, results will be shown right below the generate button. The results will be stored under the
 			results tab.<br /><br />
-			RECS data which is used to generate the prediction of ratings is collected via web crawling, and it will include 
-			the URLs that you uploaded for us to customly web crawl.		
+			RECS data is used to generate ratings prediction which uses RECS very own data that we have stored in our database.		
 		</p>
-		<img src = 'images/generatepredictionsorgrecs.png' alt = '' style = 'width: 710px;'>
+		<img src = 'images/generaterecs2.png' alt = '' style = 'width: 710px;'>
 		<br /><br />
 		<br /><br />
 		<h2 id = 'resultsorg'>Results</h2>
@@ -424,22 +500,50 @@ if (hash) {
 			<br /><br />
 			<br /><br />
 			<h2 id = 'addlistind'>Add List of URLs</h2>
-			<p>
-				User have the choice to add in their list of URLs for us to web crawl and include those results into our prediction model.
-				Here, only .txt files are allowed. Just take note that this is optional and only done if there are any custom products that 
-				you wish for us to include in the data we have collected via web crawling.
-				
-			</p>
+		<p>
+			User have the choice to add in their list of URLs for us to web crawl and generate recommendations based on what they add in.
+			Here, only .txt files are allowed. 	
+		</p>
+		<p>
+		Take note that the file has a format to follow. The first line has to be the category, and every new line after that has to be the URLs.
+		User should add in at least 10 different products to ensure that there will be no error. 
+		</p>
+		<br/>
+		<img src = 'images/linksexample.png' alt = '' style = 'width: 310px;'>
+		<br /><br />
 			<br /><br />
-			<br /><br />
-			<h2 id = 'uploadedlistind'>Uploaded List of URLs</h2>
-			<p>
-				User have the choice to add in their list of URLs for us to web crawl and include those results into our prediction model.
-				Here, only .txt files are allowed.
-				
-			</p>
-			<br /><br />
-			<br /><br />
+			<h2 id = 'uploadedlist'>Uploaded List of URLs</h2>
+		<p>
+			Here, user can view their uploaded list. They can crawl their files from here.
+		</p>
+		<br/>
+		<img src = 'images/uploadedlist.png' alt = '' style = 'width: 710px;'>
+		<br /><br />
+		<br /><br />
+			<h2 id = 'generateurlrecommendationsind'>Generate Recommendations (URL Data)</h2>
+		<p>
+			For generating of recommendations based on URL data, just type in the product ID and click the generate button. 
+			The generated results will consist of recommendations that is most similar to the product that you typed in. 
+			Once generated, results will be shown right below the generate button. The results will be stored under the
+			results tab. 	<br /><br />
+			URL data is used to generate recommendations via the data that was web crawled through user's uploaded list of URLs.
+			
+		</p>
+		<img src = 'images/generateurl.png' alt = '' style = 'width: 710px;'>
+		<br /><br />
+		<br /><br />
+		<h2 id = 'generateurlratingspredictionind'>Generate Ratings Prediction (URL Data)</h2>
+		<p>
+			For generating of ratings prediction based on URL data, just type in the product ID and click the generate button. 
+			The generated results will use our prediction model to predict what rating a selected user will most likely give 
+			the selected product. Once generated, results will be shown right below the generate button. The results will be stored under the
+			results tab.<br /><br />
+			URL data is used to generate the prediction of ratings via the data that was web crawled through user's uploaded list of URLs.
+			
+		</p>
+		<img src = 'images/generateurl2.png' alt = '' style = 'width: 710px;'>
+		<br /><br />
+		<br /><br />
 			<h2 id = 'generaterecsrecommendationsind'>Generate Recommendations (RECS Data)</h2>
 			<p>
 				For generating of recommendations based on RECS data, just type in the product ID and click the generate button. 
@@ -568,13 +672,13 @@ if (hash) {
 		Every new user will get a 30 days free trial, where they will have limited quota in terms of what they can do.
 		</p>
 		<p>
-		<b>Individual</b> - 200 Recommendations
+		<b>Individual</b> - 50 Recommendations, 20 URL Links to crawl.
 		<br /><br />
-		<b>Organizations</b> - 100 Recommendations, 1GB Uploadable Data
+		<b>Organizations</b> - 50 Recommendations, 20 URL Links to crawl, 15MB Uploadable Data
 		</p>
 		
-		<img src='images/freetrialorg2.png' alt='' style='width: 365px;'>
-		<img src='images/freetrialind.png' alt='' style='width: 365px;'>
+		<img src='images/org1.png' alt='' style='width: 365px; transform:translate(0%, 2%);'>
+		<img src='images/ind0.png' alt='' style='width: 365px;'>
 		<br /><br />
 		<br /><br />
 		<h1 id = 'standardplan' style = 'font-size: 34px;'>Standard Plan</h2>
@@ -582,12 +686,12 @@ if (hash) {
 		Standard Plan is when want to get more out of the product.
 		</p>
 		<p>
-		<b>Individual</b> - 2000 Recommendations
+		<b>Individual</b> - 500 Recommendations, 50 URL Links to crawl
 		<br /><br />
-		<b>Organizations</b> - 1000 Recommendations, 10GB Uploadable Data
+		<b>Organizations</b> - 300 Recommendations, 40 URL Links to crawl, 250MB Uploadable Data
 		</p>
-			<img src='images/standardorg.png' alt='' style='width: 365px;;'>
-		<img src='images/standardind.png' alt='' style='width: 365px;'>
+			<img src='images/org2.png' alt='' style='width: 365px;;'>
+		<img src='images/ind1.png' alt='' style='width: 365px;'>
 		<br /><br />
 		<br /><br />
 		
@@ -596,12 +700,12 @@ if (hash) {
 		Pro Plan is when want to get the most out of the product.
 		</p>
 		<p>
-		<b>Individual</b> - 10000 Recommendations
+		<b>Individual</b> - 2500 Recommendations, 250 URL Links to crawl
 		<br /><br />
-		<b>Organizations</b> - 5000 Recommendations, 50GB Uploadable Data
+		<b>Organizations</b> - 1500 Recommendations, 200 URL Links to crawl, 1250MB Uploadable Data
 		</p>
-			<img src='images/proorg.png' alt='' style='width: 365px;'>
-		<img src='images/proind.png' alt='' style='width: 365px;;'>
+			<img src='images/org3.png' alt='' style='width: 365px; transform:translate(0%, 3%);'>
+		<img src='images/ind2.png' alt='' style='width: 365px;;'>
 		<br /><br />
 		<br /><br />
 	<?php 

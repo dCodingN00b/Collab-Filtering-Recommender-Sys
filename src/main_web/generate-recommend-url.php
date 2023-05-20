@@ -64,14 +64,15 @@ li a[name='workspace'] {
  
 }
 
-.error {
-	text-align: center;
-	transform:translate(0%, 0%);
-}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.error {
+	text-align: center;
+	transform:translate(0%, 0%);
 }
 
 .image-grid {
@@ -150,11 +151,11 @@ function currentLeftSideBarColor (){
 	else if (id == 'generate-recommend'){
 		document.getElementById("generaterecommend").style.backgroundColor = "#c7dbf0";
 	}
-	else if (window.location.href.indexOf("generate-recommend-url") != -1){
-		document.getElementById("generaterecommendurl").style.backgroundColor = "#c7dbf0";
-	}
 	else if (id == 'generate-recommend-recs'){
 		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
+	}
+	else if (window.location.href.indexOf("generate-recommend-url") != -1){
+		document.getElementById("generaterecommendurl").style.backgroundColor = "#c7dbf0";
 	}
 	else if (window.location.href.indexOf("generate-recommend-recs") != -1){
 		document.getElementById("generaterecommendrecs").style.backgroundColor = "#c7dbf0";
@@ -354,8 +355,8 @@ echo "<div style='display: flex; justify-content: center;'>";
 	echo"<div class= 'generate-frame' style= 'margin-top: 35px;'>";
 		echo"<div class='generate' id='generate' style='margin-left:250px;' >";
 			echo"<div class = 'generate-title'>";
-				echo"<a href ='generate-recommend-recs.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
-				echo"<a href = 'generate-ratings-recs.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
+				echo"<a href ='generate-recommend-url.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
+				echo"<a href = 'generate-ratings-url.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
 			echo"</div></br>";
 			echo"<form action='' method='POST' id = 'generaterecommendrecsform'>";
 			echo 
@@ -367,9 +368,9 @@ echo "<div style='display: flex; justify-content: center;'>";
 			<span style='font-size: 15px; color: white;'>?</span></div>
 				</div>
 			</div>";
-			echo"<div style = 'margin-top: 80px;text-align: center'> <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=productid#productid' 
+			echo"<div style = 'margin-top: 80px; text-align: center'> <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=productid#productid' 
 			style = 'text-decoration:underline; color: blue;'>Product ID</a>?</span></div>";
-			echo"<div class = 'generatebutton'><input type='submit' name='generate' id = 'generatebutton' value='Generate'></div>";
+			echo"<div class = 'generatebutton'><input type='submit' name='generate' id = 'generatebutton' value='Generate' style=' text-align: center;'></div>";
 			echo"</form>";
 			echo'
 			<div class="loader" id = "loader" style = "margin-top: 120px; margin-left: 310px;" hidden></div>';
@@ -637,7 +638,7 @@ else if ($userType == '2'){
 		<span style='font-size: 16px; font-weight:500;' id = 'sidewords6'>Uploaded List of URLs</span>
 	  </a>";
 	  echo"
-	   <a href='generate-recommend-url.php#bottom' id = 'generaterecommendurl'>
+	    <a href='generate-recommend-url.php#bottom' id = 'generaterecommendurl'>
 	  <img src='images/urllist.svg' alt='Image 3'>
 		<span style='font-size: 16px; font-weight:500;' id = 'sidewords8'>Generate Ratings / Recommendations (Uploaded URL)</span>
 	  </a>
@@ -664,8 +665,8 @@ echo "<div style='display: flex; justify-content: center;'>";
 	echo"<div class= 'generate-frame' style= 'margin-top: 35px;'>";
 		echo"<div class='generate' id='generate' style='margin-left:250px;' >";
 			echo"<div class = 'generate-title'>";
-				echo"<a href ='generate-recommend-recs.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
-				echo"<a href = 'generate-ratings-recs.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
+				echo"<a href ='generate-recommend-url.php#bottom'> <h1 name = 'recommend' style='font-size:30px'> Recommendations</h1></a>";
+				echo"<a href = 'generate-ratings-url.php#bottom'><h1 name = 'ratings' style='font-size:30px'>Ratings Prediction</h1></a>";
 			echo"</div></br>";
 			echo"<form action='' method='POST' id = 'generaterecommendrecsform2'>";
 			echo 
@@ -677,12 +678,11 @@ echo "<div style='display: flex; justify-content: center;'>";
 			<span style='font-size: 15px; color: white;'>?</span></div>
 				</div>
 			</div>";
-			echo"<div style = 'margin-top: 80px;text-align: center;'> <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=productid#productid' 
+			echo"<div style = 'margin-top: 80px; text-align: center;'> <span style = 'font-size: 14px; color: #6e6d6d''>How to get <a href = 'documentation.php?part=howitworks&sub=productid#productid' 
 			style = 'text-decoration:underline; color: blue;'>Product ID</a>?</span></div>";
-			echo"<div class = 'generatebutton'><input type='submit' name='generate' id = 'generatebutton2' value='Generate'></div>";
+			echo"<div class = 'generatebutton'><input type='submit' name='generate' id = 'generatebutton2' value='Generate' style = 'text-align: center;'></div>";
 			echo"</form>";
-			echo'
-			<div class="loader" id = "loader" style = "margin-top: 120px; margin-left: 310px;" hidden></div>';
+			echo'<div class="loader" id = "loader" style = "margin-top: 120px; margin-left: 310px;" hidden></div>';
 			
 			echo"
 				<div class='recotitle' id = 'result' style ='margin-top: 150px;'></div>
@@ -840,7 +840,7 @@ $(document).ready(function() {
 			
 			var userid = <?php echo json_encode($user_id); ?>; 
 			var categoryCount = <?php echo json_encode($categoryCount); ?>;
-			var fileExists = <?php echo json_encode($fileExists); ?>;
+			
 			var categoryOne = <?php echo json_encode($categoryOne); ?>; 	
 			var categoryTwo = <?php echo json_encode($categoryTwo); ?>; 	
 			var categoryThree = <?php echo json_encode($categoryThree); ?>; 	
@@ -853,7 +853,7 @@ $(document).ready(function() {
 			$("#generatebutton").hide();
 			// Get the command from the input field
 			var product = $("#product").val();
-			var type = 'recsdata';
+			var type = 'urldata';
 				//console.log(fileExists);
 //			var command = 'C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/' + userid + '/data product ' + product + ' 5';
 			var command = "";
@@ -864,33 +864,33 @@ $(document).ready(function() {
 		
 			
 			if (categoryCount == 1){
-						
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
+					
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 2){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";				
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
 			}
 			else if (categoryCount == 3){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 4){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
-				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFour + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
+				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFour + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 5){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
-				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFour + "/ product " + product + " 5";
-				command5 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFive + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
+				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFour + "/ product " + product + " 5";
+				command5 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFive + "/ product " + product + " 5";
 				
 			}
 			/*else if (categoryCount == 1 && fileExists == true){
@@ -933,19 +933,23 @@ $(document).ready(function() {
 					{
 					$("#result").html("<h3><u>Recommendations: </u></h3>");
 					
-					//output the results depending on number of categories
 					
+					//output the results depending on number of categories
 					//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
+					
+					
 					if (output[0].includes("usage")){
 						$("#error0").html(output[0]);
+						
 					}
 					else if (output[0].includes("upload"))
 					{
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");	
 						$("#error0").html(output[0]);
 					}
 					else if (output.length == 32)
 					{
-						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");						
 						$("#result1").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output[12] + "'>"+ output[14] +"</a><span class='tooltiptext'>" + output[15] + "</span></div><img src='" + output[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						$("#result2").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[16] + "'>"+ output[18] +"</a><span class='tooltiptext'>" + output[19] + "</span></div><img src='" + output[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						$("#result3").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[20] + "'>"+ output[22] +"</a><span class='tooltiptext'>" + output[23] + "</span></div><img src='" + output[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -953,15 +957,17 @@ $(document).ready(function() {
 						$("#result5").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[28] + "'>"+ output[30] +"</a><span class='tooltiptext'>" + output[31] + "</span></div><img src='" + output[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 					}
 					else {
-						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");					
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");	
+						//$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");					
 						$("#error0").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 					}
 					
 					if (categoryCount > 1) {
 						var output2 = result['data2'];
 						
+						$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
 						if (output2[0].includes("usage")){
-						$("#error2").html(output2[0]);
+							$("#error2").html(output2[0]);
 						}
 						else if (output2[0].includes("upload"))
 						{
@@ -969,25 +975,25 @@ $(document).ready(function() {
 						}
 						else if (output2.length == 32)
 						{
-						$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
-						$("#result12").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output2[12] + "'>"+ output2[14] +"</a><span class='tooltiptext'>" + output2[15] + "</span></div><img src='" + output2[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result22").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[16] + "'>"+ output2[18] +"</a><span class='tooltiptext'>" + output2[19] + "</span></div><img src='" + output2[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result32").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[20] + "'>"+ output2[22] +"</a><span class='tooltiptext'>" + output2[23] + "</span></div><img src='" + output2[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result42").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[24] + "'>"+ output2[26] +"</a><span class='tooltiptext'>" + output2[27] + "</span></div><img src='" + output2[25] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result52").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[28] + "'>"+ output2[30] +"</a><span class='tooltiptext'>" + output2[31] + "</span></div><img src='" + output2[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-					
+							
+							$("#result12").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output2[12] + "'>"+ output2[14] +"</a><span class='tooltiptext'>" + output2[15] + "</span></div><img src='" + output2[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result22").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[16] + "'>"+ output2[18] +"</a><span class='tooltiptext'>" + output2[19] + "</span></div><img src='" + output2[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result32").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[20] + "'>"+ output2[22] +"</a><span class='tooltiptext'>" + output2[23] + "</span></div><img src='" + output2[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result42").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[24] + "'>"+ output2[26] +"</a><span class='tooltiptext'>" + output2[27] + "</span></div><img src='" + output2[25] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result52").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[28] + "'>"+ output2[30] +"</a><span class='tooltiptext'>" + output2[31] + "</span></div><img src='" + output2[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result02").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");					
-							$("#error2").html("There was an error in RECS' database, please try again later." );
+							//$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
+							$("#error2").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 					
 					if (categoryCount > 2) {
 						var output3 = result['data3'];
+						$("#result03").html("<h3>" + (categoryThree == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");
 						
 						if (output3[0].includes("usage")){
-							$("#error3").html(output3[0]);
+						$("#error3").html(output3[0]);
 						}
 						else if (output3[0].includes("upload"))
 						{
@@ -1003,13 +1009,15 @@ $(document).ready(function() {
 							$("#result53").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output3[28] + "'>"+ output3[30] +"</a><span class='tooltiptext'>" + output3[31] + "</span></div><img src='" + output3[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result03").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");					
-							$("#error3").html("There was an error in RECS' database, please try again later." );
+							//$("#result03").html("<h3>" + (categoryThree == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");
+							$("#error3").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 	
 					if (categoryCount > 3) {
 						var output4 = result['data4'];
+						
+						$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
 						if (output4[0].includes("usage")){
 							$("#error4").html(output4[0]);
 						}
@@ -1019,7 +1027,7 @@ $(document).ready(function() {
 						}
 						else if (output4.length == 32)
 						{
-							$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
+							//$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
 							$("#result14").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output4[12] + "'>"+ output4[14] +"</a><span class='tooltiptext'>" + output4[15] + "</span></div><img src='" + output4[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result24").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[16] + "'>"+ output4[18] +"</a><span class='tooltiptext'>" + output4[19] + "</span></div><img src='" + output4[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result34").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[20] + "'>"+ output4[22] +"</a><span class='tooltiptext'>" + output4[23] + "</span></div><img src='" + output4[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -1027,13 +1035,16 @@ $(document).ready(function() {
 							$("#result54").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[28] + "'>"+ output4[30] +"</a><span class='tooltiptext'>" + output4[31] + "</span></div><img src='" + output4[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result04").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");					
-							$("#error4").html("There was an error in RECS' database, please try again later." );
+							
+							$("#error4").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 						
 					if (categoryCount > 4) {
 						var output5 = result['data5'];
+						
+						$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
+						//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
 						if (output5[0].includes("usage")){
 							$("#error5").html(output5[0]);
 						}
@@ -1043,8 +1054,7 @@ $(document).ready(function() {
 						}
 						else if (output5.length == 32)
 						{
-							$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
-							//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
+							
 							$("#result15").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output5[12] + "'>"+ output5[14] +"</a><span class='tooltiptext'>" + output5[15] + "</span></div><img src='" + output5[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result25").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[16] + "'>"+ output5[18] +"</a><span class='tooltiptext'>" + output5[19] + "</span></div><img src='" + output5[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result35").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[20] + "'>"+ output5[22] +"</a><span class='tooltiptext'>" + output5[23] + "</span></div><img src='" + output5[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -1052,10 +1062,11 @@ $(document).ready(function() {
 							$("#result55").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[28] + "'>"+ output5[30] +"</a><span class='tooltiptext'>" + output5[31] + "</span></div><img src='" + output5[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result05").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");					
-							$("#error5").html("There was an error in RECS' database, please try again later." );
+							//$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
+							$("#error5").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
+					
 					}
 					
 				},
@@ -1078,7 +1089,7 @@ $(document).ready(function() {
 			
 			var userid = <?php echo json_encode($user_id); ?>; 
 			var categoryCount = <?php echo json_encode($categoryCount); ?>;
-			
+			var fileExists = <?php echo json_encode($fileExists); ?>;
 			var categoryOne = <?php echo json_encode($categoryOne); ?>; 	
 			var categoryTwo = <?php echo json_encode($categoryTwo); ?>; 	
 			var categoryThree = <?php echo json_encode($categoryThree); ?>; 	
@@ -1091,7 +1102,7 @@ $(document).ready(function() {
 			$("#generatebutton2").hide();
 			// Get the command from the input field
 			var product = $("#product2").val();
-			var type = 'recsdata';
+			var type = 'urldata';
 				//console.log(fileExists);
 //			var command = 'C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/' + userid + '/data product ' + product + ' 5';
 			var command = "";
@@ -1099,37 +1110,36 @@ $(document).ready(function() {
 			var command3 = "";
 			var command4 = "";
 			var command5 = "";
-			console.log(userid);
+		
 			console.log(categoryCount);
-			
 			if (categoryCount == 1){
 						
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 2){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";				
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
 			}
 			else if (categoryCount == 3){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 4){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
-				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFour + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
+				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFour + "/ product " + product + " 5";
 				
 			}
 			else if (categoryCount == 5){
-				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryOne + "/ product " + product + " 5";
-				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryTwo + "/ product " + product + " 5";
-				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryThree + "/ product " + product + " 5";
-				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFour + "/ product " + product + " 5";
-				command5 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/spiders/" + categoryFive + "/ product " + product + " 5";
+				command = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryOne + "/ product " + product + " 5";
+				command2 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryTwo + "/ product " + product + " 5";
+				command3 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryThree + "/ product " + product + " 5";
+				command4 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFour + "/ product " + product + " 5";
+				command5 = "C:/Users/Administrator/AppData/Local/Programs/Python/Python311/python C:/xampp/htdocs/dashboard/FYP/neuralcrawling/neuralcrawling/svdpp_input_csv.py C:/xampp/htdocs/dashboard/FYP/uploads/" + userid + "/crawled/" + categoryFive + "/ product " + product + " 5";
 				
 			}
 			/*else if (categoryCount == 1 && fileExists == true){
@@ -1172,19 +1182,23 @@ $(document).ready(function() {
 					{
 					$("#result").html("<h3><u>Recommendations: </u></h3>");
 					
-					//output the results depending on number of categories
 					
+					//output the results depending on number of categories
 					//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
+					
+					
 					if (output[0].includes("usage")){
 						$("#error0").html(output[0]);
+						
 					}
 					else if (output[0].includes("upload"))
 					{
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");	
 						$("#error0").html(output[0]);
 					}
 					else if (output.length == 32)
 					{
-						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");						
 						$("#result1").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output[12] + "'>"+ output[14] +"</a><span class='tooltiptext'>" + output[15] + "</span></div><img src='" + output[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						$("#result2").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[16] + "'>"+ output[18] +"</a><span class='tooltiptext'>" + output[19] + "</span></div><img src='" + output[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						$("#result3").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[20] + "'>"+ output[22] +"</a><span class='tooltiptext'>" + output[23] + "</span></div><img src='" + output[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -1192,15 +1206,17 @@ $(document).ready(function() {
 						$("#result5").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output[28] + "'>"+ output[30] +"</a><span class='tooltiptext'>" + output[31] + "</span></div><img src='" + output[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 					}
 					else {
-						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");					
+						$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");	
+						//$("#result0").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryOne)) + ": </h3>");					
 						$("#error0").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 					}
 					
 					if (categoryCount > 1) {
 						var output2 = result['data2'];
 						
+						$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
 						if (output2[0].includes("usage")){
-						$("#error2").html(output2[0]);
+							$("#error2").html(output2[0]);
 						}
 						else if (output2[0].includes("upload"))
 						{
@@ -1208,25 +1224,25 @@ $(document).ready(function() {
 						}
 						else if (output2.length == 32)
 						{
-						$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
-						$("#result12").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output2[12] + "'>"+ output2[14] +"</a><span class='tooltiptext'>" + output2[15] + "</span></div><img src='" + output2[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result22").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[16] + "'>"+ output2[18] +"</a><span class='tooltiptext'>" + output2[19] + "</span></div><img src='" + output2[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result32").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[20] + "'>"+ output2[22] +"</a><span class='tooltiptext'>" + output2[23] + "</span></div><img src='" + output2[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result42").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[24] + "'>"+ output2[26] +"</a><span class='tooltiptext'>" + output2[27] + "</span></div><img src='" + output2[25] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-						$("#result52").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[28] + "'>"+ output2[30] +"</a><span class='tooltiptext'>" + output2[31] + "</span></div><img src='" + output2[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
-					
+							
+							$("#result12").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output2[12] + "'>"+ output2[14] +"</a><span class='tooltiptext'>" + output2[15] + "</span></div><img src='" + output2[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result22").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[16] + "'>"+ output2[18] +"</a><span class='tooltiptext'>" + output2[19] + "</span></div><img src='" + output2[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result32").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[20] + "'>"+ output2[22] +"</a><span class='tooltiptext'>" + output2[23] + "</span></div><img src='" + output2[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result42").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[24] + "'>"+ output2[26] +"</a><span class='tooltiptext'>" + output2[27] + "</span></div><img src='" + output2[25] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
+							$("#result52").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output2[28] + "'>"+ output2[30] +"</a><span class='tooltiptext'>" + output2[31] + "</span></div><img src='" + output2[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result02").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");					
-							$("#error2").html("There was an error in RECS' database, please try again later." );
+							//$("#result02").html("<h3>" + (categoryTwo == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryTwo)) + ": </h3>");
+							$("#error2").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 					
 					if (categoryCount > 2) {
 						var output3 = result['data3'];
+						$("#result03").html("<h3>" + (categoryThree == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");
 						
 						if (output3[0].includes("usage")){
-							$("#error3").html(output3[0]);
+						$("#error3").html(output3[0]);
 						}
 						else if (output3[0].includes("upload"))
 						{
@@ -1242,13 +1258,15 @@ $(document).ready(function() {
 							$("#result53").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output3[28] + "'>"+ output3[30] +"</a><span class='tooltiptext'>" + output3[31] + "</span></div><img src='" + output3[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result03").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");					
-							$("#error3").html("There was an error in RECS' database, please try again later." );
+							//$("#result03").html("<h3>" + (categoryThree == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryThree)) + ": </h3>");
+							$("#error3").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 	
 					if (categoryCount > 3) {
 						var output4 = result['data4'];
+						
+						$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
 						if (output4[0].includes("usage")){
 							$("#error4").html(output4[0]);
 						}
@@ -1258,7 +1276,7 @@ $(document).ready(function() {
 						}
 						else if (output4.length == 32)
 						{
-							$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
+							//$("#result04").html("<h3>" + (categoryFour == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");
 							$("#result14").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output4[12] + "'>"+ output4[14] +"</a><span class='tooltiptext'>" + output4[15] + "</span></div><img src='" + output4[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result24").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[16] + "'>"+ output4[18] +"</a><span class='tooltiptext'>" + output4[19] + "</span></div><img src='" + output4[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result34").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[20] + "'>"+ output4[22] +"</a><span class='tooltiptext'>" + output4[23] + "</span></div><img src='" + output4[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -1266,13 +1284,16 @@ $(document).ready(function() {
 							$("#result54").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output4[28] + "'>"+ output4[30] +"</a><span class='tooltiptext'>" + output4[31] + "</span></div><img src='" + output4[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result04").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFour)) + ": </h3>");					
-							$("#error4").html("There was an error in RECS' database, please try again later." );
+							
+							$("#error4").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
 						
 					if (categoryCount > 4) {
 						var output5 = result['data5'];
+						
+						$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
+						//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
 						if (output5[0].includes("usage")){
 							$("#error5").html(output5[0]);
 						}
@@ -1282,8 +1303,7 @@ $(document).ready(function() {
 						}
 						else if (output5.length == 32)
 						{
-							$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
-							//$("#result").html( "<p style='display: inline-block; vertical-align: middle;'>" + output[1] + "</p><iframe src='" + output[12] + "' style='border:0px #ffffff none; display: inline-block; vertical-align: middle;margin-left: 70px;' scrolling='no' ></iframe>");
+							
 							$("#result15").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue;' href = '" + output5[12] + "'>"+ output5[14] +"</a><span class='tooltiptext'>" + output5[15] + "</span></div><img src='" + output5[13] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result25").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[16] + "'>"+ output5[18] +"</a><span class='tooltiptext'>" + output5[19] + "</span></div><img src='" + output5[17] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 							$("#result35").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[20] + "'>"+ output5[22] +"</a><span class='tooltiptext'>" + output5[23] + "</span></div><img src='" + output5[21] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
@@ -1291,12 +1311,12 @@ $(document).ready(function() {
 							$("#result55").html( "<div class='tooltip'><a style = 'text-decoration: underline; color: blue; ' href = '" + output5[28] + "'>"+ output5[30] +"</a><span class='tooltiptext'>" + output5[31] + "</span></div><img src='" + output5[29] + "' style='width: 150px; height: 150px; margin-top: 10px;'>");
 						}
 						else {
-							$("#result05").html("<h3>" + (categoryOne == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");					
-							$("#error5").html("There was an error in RECS' database, please try again later." );
+							//$("#result05").html("<h3>" + (categoryFive == 'videogames'? 'Video Games': capitalizeFirstLetter(categoryFive)) + ": </h3>");
+							$("#error5").html("The crawled result of this category does not the meet the requirement. <br/> There should be at least 5 different products. Please crawl more products before trying again." );
 						}
 					}
-					}
 					
+					}
 				},
 				error: function(xhr, status, error) {
 					$("#loader").hide();
@@ -1306,6 +1326,7 @@ $(document).ready(function() {
 				}
 			});
 		});
-	});	
+	});
+		
 </script>
 </body>

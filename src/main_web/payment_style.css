@@ -101,7 +101,7 @@
 	font-size: 16px;
     position: absolute;
 	text-align: center;
-    transform: translate(0%, 220%);
+    transform: translate(0%, 180%);
 	padding-bottom: 20px;
 	border-bottom: 1px solid silver;
 }
@@ -117,7 +117,7 @@
 	font-size: 20px;
 	font-weight: 500;
     position: absolute;
-    transform: translate(10%,900%);
+    transform: translate(10%,980%);
 	
 }
 
@@ -127,7 +127,7 @@
 	font-weight: 500;
 	font-size: 20px;
     position: absolute;
-    transform: translate(10%,1000%);
+    transform: translate(10%,1100%);
 	
 }
 

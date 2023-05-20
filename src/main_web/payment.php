@@ -1,6 +1,8 @@
 <?php
 	// We need to use sessions, so you should always start sessions using the below code.
 	session_start();
+
+	
 	// If the user is not logged in redirect to the login page...
 	if (!isset($_SESSION['loggedin'])) {
 		header('Location:login.php');
@@ -21,6 +23,7 @@
 	}else {
 		$upgradeplan = '';
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +86,10 @@ li a[name='upgradeplans'] {
 <?php 
 
 include('navbar.php');
+
+$order = $user->getLatestOrderNumber();
+$orderNumber = str_pad($order['transactionID'] + 1, 6, '0', STR_PAD_LEFT);
+$_SESSION['ordernumber'] = $orderNumber;
 
 echo'
 
@@ -175,10 +182,10 @@ if ($userType == '1')
 		<div class = 'bill' style='transform:translate(60%, -205%); '>
 			<img name = 'pro' src ='images/high.svg' alt =''>
 			<h2 name = 'upgradetype'>Pro</h2>
-			<p name = 'benefits' >50GB Uploadable Data</br>5000 Recommendation Requests</p>
+			<p name = 'benefits' >1500 Recommendation Requests</br>1250MB Uploadable Data<br/>200 URL Links</p>
 			<h2 name = 'amounttopay'>Amount to pay:</h2>
 			<p name = 'company'>Company: RECS</p>
-			<p name ='ordernumber'>Order Number: 000001</p>
+			<p name ='ordernumber'>Order Number: ". $orderNumber ."</p>
 			<p name = 'amount'>SGD$49.90</p>	
 		</div>
 		";
@@ -189,10 +196,10 @@ if ($userType == '1')
 		<div class = 'bill' style='transform:translate(60%, -205%); '>
 			<img name = 'standard' src ='images/upgrade.svg' alt =''>
 			<h2 name = 'upgradetype2'>Standard</h2>
-			<p name = 'benefits' >10GB Uploadable Data</br>1000 Recommendation Requests</p>
+			<p name = 'benefits' >300 Recommendation Requests</br>250MB Uploadable Data</br>40 URL Links</p>
 			<h2 name = 'amounttopay'>Amount to pay:</h2>
 			<p name = 'company'>Company: RECS</p>
-			<p name ='ordernumber'>Order Number: 000001</p>
+			<p name ='ordernumber'>Order Number: ". $orderNumber ."</p>
 			<p name = 'amount'>SGD$14.90</p>	
 		</div>
 		";
@@ -206,10 +213,10 @@ else if ($userType == '2')
 		<div class = 'bill' style='transform:translate(60%, -205%); '>
 			<img name = 'pro' src ='images/high.svg' alt =''>
 			<h2 name = 'upgradetype'>Pro</h2>
-			<p name = 'benefits' ></br>10000 Recommendation Requests</p>
+			<p name = 'benefits' ></br>2500 Recommendation Requests</br>250 URL Links</p>
 			<h2 name = 'amounttopay'>Amount to pay:</h2>
 			<p name = 'company'>Company: RECS</p>
-			<p name ='ordernumber'>Order Number: 000001</p>
+			<p name ='ordernumber'>Order Number: ". $orderNumber ."</p>
 			<p name = 'amount'>SGD$34.90</p>	
 		</div>
 		";
@@ -220,10 +227,11 @@ else if ($userType == '2')
 		<div class = 'bill' style='transform:translate(60%, -205%); '>
 			<img name = 'standard' src ='images/upgrade.svg' alt =''>
 			<h2 name = 'upgradetype2'>Standard</h2>
-			<p name = 'benefits' ></br>2000 Recommendation Requests</p>
+			<p name = 'benefits' ></br>500 Recommendation Requests</br>50 URL Links</p>
+			
 			<h2 name = 'amounttopay'>Amount to pay:</h2>
 			<p name = 'company'>Company: RECS</p>
-			<p name ='ordernumber'>Order Number: 000001</p>
+			<p name ='ordernumber'>Order Number: ". $orderNumber ."</p>
 			<p name = 'amount'>SGD$9.90</p>	
 		</div>
 		";

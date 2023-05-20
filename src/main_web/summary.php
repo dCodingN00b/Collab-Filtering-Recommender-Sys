@@ -8,7 +8,9 @@
 	}
 	
 	$userType = $_SESSION['userType'];
-	$daysRemaining = $_SESSION['daysremaining'];
+	if (isset($_SESSION['daysremaining'])){
+		$daysRemaining = $_SESSION['daysremaining'];
+	}
 	$amounttopay = $_SESSION['amounttopay'];
 
 	
@@ -108,6 +110,8 @@ li a[name='upgradeplans'] {
 <?php 
 $success = true;
 
+$orderNumber = $_SESSION['ordernumber'];
+
 if ($success)
 {
 	echo"	
@@ -117,7 +121,7 @@ if ($success)
 			<p name = 'paymentstatus' ></br>Payment success</p>
 			<p name = 'date' >30 March 2023, 11:59pm</p>
 			<ul class = 'paymentinfo' style='transform:translate(-4%, 380%); '>
-				<li class = 'paymentinfo-row' >Order Number<b>: 000001</b></li>
+				<li class = 'paymentinfo-row' >Order Number<b>: {$orderNumber}</b></li>
 				<li class = 'paymentinfo-row' >Amount Paid <b>: {$amounttopay}</b></li>
 				<li class = 'paymentinfo-row' >Payment Method<b>: Credit/Debit Card</b></li>
 			</ul>

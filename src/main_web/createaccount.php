@@ -11,6 +11,8 @@
 	if (isset($_GET['id'])){
 		$id = $_GET['id'];
 	}
+	
+	
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +21,7 @@
 
 <title>Create Account</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
- <link rel="stylesheet" href="createaccount_style.css?version14">
+ <link rel="stylesheet" href="createaccount_style.css?version16">
 <style>
 .success-box {
 	background-color: whitesmoke;
@@ -122,6 +124,11 @@ if (isset($_POST['submit'])){
 		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
 	
+	if (!isset($_POST['categories']))
+	{
+		echo "<p> You must select at least 1 category</p>";
+		$DisplayForm = True; 
+	}
 }
 	if ($DisplayForm){ ?>
 	 <div class = 'reg'>
@@ -130,7 +137,7 @@ if (isset($_POST['submit'])){
 		onmouseover="style = 'color:green; border-bottom:2px solid lightgreen;'" onmouseout="style = 'color:grey;'" >Individual</h3></a>
 		<a href="createaccount.php?id=admincreateacc"><h3 name = 'adminregister' id = 'adminregister' style='color:grey;'
 		onmouseover="style = 'color:green; border-bottom:2px solid lightgreen;'" onmouseout="style = 'color:grey;'" >Admin</h3></a>
-		<form action = "" method = "POST">
+		<form action = "" method = "POST" id = 'myForm'>
 			<div class = 'text_field'>
 				<span>Email:</span><input type="email" name="email" required />
 			</div>
@@ -149,25 +156,75 @@ if (isset($_POST['submit'])){
 			</div>
 			<div class = 'text_field'>
 				<span>Organization Website: </span><input type="text" name="orgsite" required />
-			</div>
+			</div><!--
 			<div class="checkboxes">
 				<label><input name="accept" type="checkbox" class="tickbox" value="1"required /><span>   
 				I Accept the Terms and Conditions</span> </label>
+			</div>-->
+			<div style ='transform:translate(3%, 0%)'>
+			<span>Categories: </span></div>
+			<div style = 'width: 800px; transform:translate(1%, 20%);'>
+			
+			  <label ><input type="checkbox" name="categories[]" value="Electronics"> Electronics</label>
+			  <label><input type="checkbox" name="categories[]" value="Video Games"> Video Games</label>
+			  <label><input type="checkbox" name="categories[]" value="Pets">   Pets</label> <br>
+			  <label><input type="checkbox" name="categories[]" value="Computers"> Computers</label>
+			  
+			  <label><input type="checkbox" name="categories[]" value="Toys"> Toys</label><br>
+			  
 			</div>
+			<br>
+
 			</br><input type="submit" name = "submit" value="Create">
 		</form>
 	</div>
 <?php 
 	}
 	else{
-		$password = $_POST['password'];
+		$password =  hash('md5',$_POST['password']);
 		$email = $_POST['email'];
 		$name = $_POST['name'];
 		$orgName = $_POST['orgname'];
 		$orgWeb = $_POST['orgsite'];
+		
+		$categories = $_POST['categories'];
+		if (isset($categories[0])){
+			$category1 = $categories[0];
+		}
+		else {
+			$category1 = '';
+		}
+		
+		if (isset($categories[1])){
+			$category2 = $categories[1];
+		}
+		else {
+			$category2 = '';
+		}
+		
+		if (isset($categories[2])){
+			$category3 = $categories[2];
+		}
+		else {
+			$category3 = '';
+		}
+		
+		if (isset($categories[3])){
+			$category4 = $categories[3];
+		}
+		else {
+			$category4 = '';
+		}
+		
+		if (isset($categories[4])){
+			$category5 = $categories[4];
+		}
+		else {
+			$category5 = '';
+		}
 
 		#call user entity method too createaccount
-		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
+		$user-> createAccount($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
 		
 		
 		$DisplayForm = False;
@@ -194,6 +251,12 @@ if (isset($_POST['submit'])){
 		$user = new User();
 		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
+	
+	if (!isset($_POST['categories']))
+	{
+		echo "<p> You must select at least 1 category</p>";
+		$DisplayForm = True; 
+	}
 }
 	if ($DisplayForm){
 ?>
@@ -218,17 +281,30 @@ if (isset($_POST['submit'])){
 			<div class = 'text_field'>
 				<span>Name: </span><input type="text" name="name" required />
 			</div>
-			<div class="checkboxes">
+			<!--<div class="checkboxes">
 				<label><input name="accept" type="checkbox" class="tickbox" value="1" required /><span>   
 				I Accept the Terms and Conditions</span> </label>
+			</div>-->
+			<div style ='transform:translate(3%, 0%)'>
+			<span>Categories: </span></div>
+			<div style = 'width: 800px; transform:translate(1%, 20%);'>
+			
+			  <label ><input type="checkbox" name="categories[]" value="Electronics"> Electronics</label>
+			  <label><input type="checkbox" name="categories[]" value="Video Games"> Video Games</label>
+			  <label><input type="checkbox" name="categories[]" value="Pets">   Pets</label> <br>
+			  <label><input type="checkbox" name="categories[]" value="Computers"> Computers</label>
+			  
+			  <label><input type="checkbox" name="categories[]" value="Toys"> Toys</label><br>
+			  
 			</div>
+			<br>
 			</br><input type="submit" name = "submit" value="Create">
 		</form>
 	</div>
 <?php 
 }
 else{
-		$password = $_POST['password'];
+		$password =  hash('md5',$_POST['password']);
 		$email = $_POST['email'];
 		$name = $_POST['name'];
 		$orgName = '';
@@ -239,10 +315,45 @@ else{
 		if (isset($_POST['orgsite'])){
 			$orgWeb = $_POST['orgsite'];
 		}
+		
+		$categories = $_POST['categories'];
+		if (isset($categories[0])){
+			$category1 = $categories[0];
+		}
+		else {
+			$category1 = '';
+		}
+		
+		if (isset($categories[1])){
+			$category2 = $categories[1];
+		}
+		else {
+			$category2 = '';
+		}
+		
+		if (isset($categories[2])){
+			$category3 = $categories[2];
+		}
+		else {
+			$category3 = '';
+		}
+		
+		if (isset($categories[3])){
+			$category4 = $categories[3];
+		}
+		else {
+			$category4 = '';
+		}
+		
+		if (isset($categories[4])){
+			$category5 = $categories[4];
+		}
+		else {
+			$category5 = '';
+		}
 
-	
 		#call user entity method too createaccount
-		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
+		$user-> createAccount($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
 		
 		$DisplayForm = False;
 		$_POST['userType'] == '';
@@ -273,6 +384,12 @@ if (isset($_POST['submit'])){
 		$DisplayForm = $user -> checkEmail($_POST['email']);
 	}
 	
+	if (!isset($_POST['categories']))
+	{
+		echo "<p> You must select at least 1 category</p>";
+		$DisplayForm = True; 
+	}
+	
 }
 	if ($DisplayForm){
 ?>
@@ -298,17 +415,31 @@ if (isset($_POST['submit'])){
 			<div class = 'text_field'>
 				<span>Name: </span><input type="text" name="name" required />
 			</div>
+			<!--
 			<div class="checkboxes">
 				<label><input name="accept" type="checkbox" class="tickbox" value="1" required /><span>   
 				I Accept the Terms and Conditions</span> </label>
+			</div>-->
+			<div style ='transform:translate(3%, 0%)'>
+			<span>Categories: </span></div>
+			<div style = 'width: 800px; transform:translate(1%, 20%);'>
+			
+			  <label ><input type="checkbox" name="categories[]" value="Electronics"> Electronics</label>
+			  <label><input type="checkbox" name="categories[]" value="Video Games"> Video Games</label>
+			  <label><input type="checkbox" name="categories[]" value="Pets">   Pets</label> <br>
+			  <label><input type="checkbox" name="categories[]" value="Computers"> Computers</label>
+			  
+			  <label><input type="checkbox" name="categories[]" value="Toys"> Toys</label><br>
+			  
 			</div>
+			<br>
 			</br><input type="submit" name = "submit" value="Create">
 		</form>
 	</div>
 <?php 
 }
 else{
-		$password = $_POST['password'];
+		$password =  hash('md5',$_POST['password']);
 		$email = $_POST['email'];
 		$name = $_POST['name'];
 		$orgName = '';
@@ -319,9 +450,44 @@ else{
 		if (isset($_POST['orgsite'])){
 			$orgWeb = $_POST['orgsite'];
 		}
-	
+	$categories = $_POST['categories'];
+		if (isset($categories[0])){
+			$category1 = $categories[0];
+		}
+		else {
+			$category1 = '';
+		}
+		
+		if (isset($categories[1])){
+			$category2 = $categories[1];
+		}
+		else {
+			$category2 = '';
+		}
+		
+		if (isset($categories[2])){
+			$category3 = $categories[2];
+		}
+		else {
+			$category3 = '';
+		}
+		
+		if (isset($categories[3])){
+			$category4 = $categories[3];
+		}
+		else {
+			$category4 = '';
+		}
+		
+		if (isset($categories[4])){
+			$category5 = $categories[4];
+		}
+		else {
+			$category5 = '';
+		}
+
 		#call user entity method too createaccount
-		$user-> createAccount ($email, $password, $name, $userType, $orgName, $orgWeb);
+		$user-> createAccount($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
 		
 		$DisplayForm = False;
 		$_POST['userType'] == '';
@@ -336,6 +502,8 @@ else{
 document.querySelector('.close-button').addEventListener('click', function() {
 			document.querySelector('.success-box').style.display = 'none';
 		});
+		
+
 </script>
 </body>
 </html>

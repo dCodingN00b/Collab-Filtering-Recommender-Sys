@@ -66,25 +66,57 @@ input {
     session_start();
     include('user.php');
 	
-	
+	unset($_SESSION["error"]);
 
     $verification_code = $_SESSION["vCode"];
 	$userType = $_SESSION['userType'];
-      
-   
+    $name = $_SESSION['name'];
+	$email = $_SESSION["email"];
 
     $DisplayForm = TRUE;
 	if (isset($_POST['submit'])){
 		$code = $_POST['digit1'] . $_POST['digit2'] .  $_POST['digit3'] . $_POST['digit4'] .  $_POST['digit5'] .  $_POST['digit6'];
 	    if($verification_code  == $code){
 	        $DisplayForm = FALSE;
-	    }
+	    }else{
+			$_SESSION["error"] = "Invalid code";
+		}
 	}
 	
 	if ($DisplayForm){
-		// send email
-		mail($_SESSION["email"], "Email  Verification", $verification_code);
-		//echo $verification_code;
+		
+		require_once('C:/Users/Administrator/vendor/autoload.php');
+		
+		$message = "Dear User,<br/><br/>";
+		$message .= "Thank you for signing up with our platform! To ensure the security of your account and complete the registration process, we kindly request you to verify your email address.<br/><br/>";
+		$message .= "Please use the following 6-digit verification code to confirm your account:<br/><br/>";
+		$message .= "Verification Code: <b>" . $verification_code . "</b><br/><br/>";
+		$message .= "If you haven't signed up for our platform or believe this email was sent to you in error, please disregard it.<br/><br/>";
+		$message .= "Should you have any questions or need further assistance, feel free to reach out to our support team at fyprecs.service@gmail.com.<br/><br/>";
+		$message .= "Thank you for choosing our platform!<br/><br/>";
+		$message .= "Best regards,<br/>";
+		$message .= "The RECS Development Team";
+		
+		$credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+		$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
+
+		$sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+			 'subject' => 'Email Verification - Please Confirm Your Account',
+			 'sender' => ['name' => 'RECS', 'email' => 'fyprecs@gmail.com'],
+			 //'replyTo' => ['name' => 'Sendinblue', 'email' => 'contact@sendinblue.com'],
+			 'to' => [[ 'name' => "$name", 'email' => "$email"]],
+			 'htmlContent' => "<html><body>". $message ."</body></html>",
+			 'params' => ['bodyMessage' => 'made just for you!']
+		]);
+
+		try {
+			$result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+			//print_r($result);
+		} catch (Exception $e) {
+			echo $e->getMessage(),PHP_EOL;
+		}
+		
+
 	}
 	
 	if($DisplayForm){
@@ -139,6 +171,12 @@ input {
 								<input type="text" name="digit4" maxlength="1">
 								<input type="text" name="digit5" maxlength="1">
 								<input type="text" name="digit6" maxlength="1">
+								<?php
+								if(isset($_SESSION["error"])){
+									$error = $_SESSION["error"];
+									echo "<span style='color:red'>$error</span>";
+								}
+								?> 
 								</div>
 								
 								
@@ -179,7 +217,7 @@ input {
 		else {
 			$category1 = '';
 		}
-		/*
+		
 		if (isset($_SESSION['category2'])){
 			$category2 = $_SESSION['category2'];
 		}
@@ -187,6 +225,27 @@ input {
 			$category2 = '';
 		}
 		
+		if (isset($_SESSION['category3'])){
+			$category3 = $_SESSION['category3'];
+		}
+		else {
+			$category3 = '';
+		}
+		
+		if (isset($_SESSION['category4'])){
+			$category4 = $_SESSION['category4'];
+		}
+		else {
+			$category4 = '';
+		}
+		
+		if (isset($_SESSION['category5'])){
+			$category5 = $_SESSION['category5'];
+		}
+		else {
+			$category5 = '';
+		}
+		/*
 		if (isset($_SESSION['agerange'])){
 			$agerange = $_SESSION['agerange'];
 		}
@@ -195,14 +254,10 @@ input {
 		}
 		*/
 		
-		
-		if ($category1 == null){
-			$category1 = "";
-		}
-		
+	
 	    #call user entity method to register
 	    $user = new User();
-	    $status = $user -> registerUser($email, $userType, $name, $password, $orgName, $orgWeb, $category1);
+	    $status = $user -> registerUser($email, $userType, $name, $password, $orgName, $orgWeb, $category1, $category2, $category3, $category4, $category5);
 	    if($status == true){
 	       
 	        if (isset($_SESSION['successStatus'])){

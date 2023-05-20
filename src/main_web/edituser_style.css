@@ -11,6 +11,7 @@
 
 body{
 	height: 1200px;
+	overflow-x: hidden;
 }
 
 h1 {

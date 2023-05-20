@@ -85,8 +85,21 @@ if ($userType == '0') #admin
 	<h1>Manage User</h1>
 	
 <?php 
+		//display membership duration (not just current one)
 		echo"<div style = 'transform:translate(0%, -210%)'><p style ='font-size:20px; font-weight: 500;;'><center>Membered for: $month Month $day Days</center></p></div>";
-
+		
+		//show current plan, days remaining
+		if ($row['pricePlan'] != '0' and $row['pricePlan'] != 'None')
+		{
+			$daysLeft = floor((strtotime($row['expiryDate']) - time()) / 86400);
+			echo"<div style = 'transform:translate(0%, -210%)'><p style ='font-size:20px; font-weight: 500;;'><center>Current Plan: $daysLeft Days Left</center></p></div>";
+		}
+		else if ($row['pricePlan'] == '0')
+		{
+			$daysLeft = floor((strtotime($row['freeTrialExpiryDate']) - time()) / 86400);
+			echo"<div style = 'transform:translate(0%, -210%)'><p style ='font-size:20px; font-weight: 500;;'><center>Free Trial: $daysLeft Days Left</center></p></div>";
+		}
+		
 
 
 
@@ -98,6 +111,25 @@ if (isset($_POST['submit']) and ($_POST['submit'] == 'Confirm')){
 	#call user entity method
 	$user-> manageUser ($pricePlan, $accountStatus, $userid);
 	header("Location: manageaccounts.php");
+	
+	if ($pricePlan == 'i1'){
+		$amountToPay = "$9.90";
+	}
+	else if ($pricePlan == 'i1'){
+		$amountToPay = "$9.90";
+	}
+	else if($pricePlan == 'o1'){
+		$amountToPay = "$14.90";
+	}
+	else if ($pricePlan == 'o2'){
+		$amountToPay = "$49.90";
+	}
+	
+	if ($pricePlan != 'None' and $pricePlan != '0'){
+		$user->createTransaction($userid, $pricePlan, '$0');
+		$userinfo = $user->getLatestTransactionInfo ($userid);
+		$user->upgradePlans ($pricePlan, $userid, $userinfo['startDate'], $userinfo['expiryDate']);
+	}
 }
 
 
@@ -134,7 +166,7 @@ echo"
 				
 				if ($row['userType'] == '2'){
 					echo"
-						<option value='none'" .(($row['pricePlan'] == 'none')? 'selected="selected"' : '') . ">None</option>
+						<option value='none'" .(($row['pricePlan'] == 'None')? 'selected="selected"' : '') . ">None</option>
 						<option value='0'" .(($row['pricePlan'] == '0')? 'selected="selected"' : '') . ">Free Trial</option>
 						<option value='i1'" . (($row['pricePlan'] == 'i1')? 'selected="selected"' : '') . ">Individual - Standard</option>
 						<option value='i2'" . (($row['pricePlan'] == 'i2')? 'selected="selected"' : '') . ">Individual - Pro</option>";

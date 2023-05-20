@@ -119,7 +119,9 @@ if ($userType == '1'){
 				<img name = 'standard' src ='images/upgrade.svg' alt =''>
 				<h2>Standard</h2>
 				<p name='intro'>Get more out of the</br> product.</p>
-				<p>10GB Uploadable Data</br>1000 Recommendation Requests</p>
+				<p>300 Recommendation Requests</p>
+					<p>250MB Uploadable Data</p>
+					<p>40 URL Links</p>
 				<h3>$14.90 / month</h3>
 				<button><a href = 'payment.php?upgrade=standard'>Upgrade to Standard</a></button>
 			</div>
@@ -127,7 +129,9 @@ if ($userType == '1'){
 				<img name = 'pro' src ='images/high.svg' alt =''>
 				<h2>Pro</h2>
 				<p name='intro'>Get the most out of</br> the product.</p>
-				<p>50GB Uploadable Data</br>5000 Recommendation Requests</p>
+				<p>1500 Recommendation Requests</p>
+					<p>1250MB Uploadable Data</p>
+					<p>200 URL Links</p>
 				<h3>$49.90 / month</h3>
 				<button><a href = 'payment.php?upgrade=pro'>Upgrade to Pro</a></button>
 			</div>";
@@ -150,7 +154,8 @@ echo"
 					<img name = 'standard' src ='images/upgrade.svg' alt =''>
 					<h2>Standard</h2>
 					<p name='intro'>Get more out of the</br> product.</p>
-					<p>2000 Recommendation Requests</p>
+					<p>500 Recommendation Requests</p>
+					<p>50 URL Links</p>
 					<h3>$9.90 / month</h3>
 					<button><a href = 'payment.php?upgrade=standard'>Upgrade to Standard</a></button>
 			</div>
@@ -158,7 +163,8 @@ echo"
 				<img name = 'pro' src ='images/high.svg' alt =''>
 				<h2>Pro</h2>
 				<p name='intro'>Get the most out of</br> the product.</p>
-				<p>10000 Recommendation Requests</p>
+				<p>2500 Recommendation Requests</p>
+					<p>250 URL Links</p>
 				<h3>$34.90 / month</h3>
 				<button><a href = 'payment.php?upgrade=pro'>Upgrade to Pro</a></button>
 			</div>";
