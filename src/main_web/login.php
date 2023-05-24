@@ -70,6 +70,7 @@
 			$message .= "Best regards,<br/>";
 			$message .= "The RECS Development Team";
 
+			//put in the api-key that you have generated
 			$credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '');
 			$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
 
