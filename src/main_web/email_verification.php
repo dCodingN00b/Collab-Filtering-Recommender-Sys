@@ -98,6 +98,7 @@ input {
 		$message .= "The RECS Development Team";
 		
 		//put in the api-key that you have generated
+		//the api-key can't be placed in github for security reasons (Brevo/SendInBlue's policy)
 		$credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '');
 		$apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
 
